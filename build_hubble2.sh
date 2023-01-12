@@ -108,6 +108,7 @@ echo "Build INDI Core"
 echo "Getting INDI Core..."
 mkdir -p ~/${BUILDDIR}/Projects
 cd ~/${BUILDDIR}/Projects
+sudo rm -rf indi
 git clone --depth 1 https://github.com/indilib/indi.git
 
 echo "Making INDI Core..."
@@ -135,6 +136,7 @@ sudo apt-get -y install libindi-dev
 echo "Build INDI 3rd-Party Libraries and Drivers"
 echo "Getting INDI 3rd-Party Drivers..."
 cd ~/${BUILDDIR}/Projects
+sudo rm -rf indi-3rdparty
 git clone --depth=1 https://github.com/indilib/indi-3rdparty
 
 ##################################################
@@ -179,6 +181,7 @@ sudo pip install indiweb
 
 echo "Getting indiwebmanager source..."
 
+sudo rm -rf indiwebmanager
 git clone https://github.com/knro/indiwebmanager.git
 cd ~/${BUILDDIR}/indiwebmanager
 
@@ -203,6 +206,7 @@ sudo apt-get install -y build-essential git cmake pkg-config \
 
 cd ~/${BUILDDIR}
 echo "Getting PHD2 source..."
+sudo rm -rf phd2
 git clone https://github.com/OpenPHDGuiding/phd2.git
 echo "Building PHD2..."
 cd phd2
