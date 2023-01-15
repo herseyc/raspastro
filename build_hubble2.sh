@@ -14,18 +14,18 @@
 ##################################################
 
 #Set the build directory
-
 BUILDDIR=Projects
 
-#Array of INDI Libraries to build
+#Set the log file
+LOGFILE=~/$BUILDDIR/build-hubble2.log
 
+#Array of INDI Libraries to build
 INDILIBRARIES=(
   libasi
   libqhy
 )
 
 #Array of INDI Drivers to build
-
 INDIDRIVERS=(
    indi-asi
    indi-qhy
@@ -33,12 +33,15 @@ INDIDRIVERS=(
    indi-gpsd
 )
 
+#Start Code Block
+{
+
 ##################################################
 # Update Raspberry Pi
 ##################################################
 echo "Updating the Raspberry Pi..."
-sudo apt update
-sudo apt -y upgrade
+sudo apt update 
+sudo apt -y upgrade 
 
 ##################################################
 # OPTIMIZATIONS
@@ -217,5 +220,6 @@ echo ""
 echo "I think that should mostly do it..."
 echo "Probably want to check things out and then reboot"
 
-
+# End Code Block
+}  > >(tee ${LOGFILE}) 2>&1
 
