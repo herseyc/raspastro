@@ -1,4 +1,19 @@
 #!/bin/bash
+#################################################################
+# install_indi_driver.sh
+#
+# Build and install a single INDI Driver or Library
+#
+# Assumes all dependencies are met
+# and indi-core is already built and installed
+# 
+# Prompt for driver/library to install
+# Get or update indi-3rdparty from repository
+# Check that driver/library is part of indi-3rdparty
+# Build and install 3rd-party library
+#
+# Visit me at: http://www.suffolksky.com/
+#################################################################
 
 BUILDDIR=Projects
 mkdir -p ~/${BUILDDIR}/build
