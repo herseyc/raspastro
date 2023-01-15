@@ -155,7 +155,7 @@ for DRIVER in "${INDIDRIVERS[@]}"; do
 
    cmake -B ~/${BUILDDIR}/build/${DRIVER} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${DRIVER}
 
-   cd ~/${BUILDDIR}/Projects/${DRIVER}
+   cd ~/${BUILDDIR}/build/${DRIVER}
    make clean
    make -j4
    sudo make install
