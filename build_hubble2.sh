@@ -223,6 +223,8 @@ echo ""
 echo "I think that should mostly do it..."
 echo "Probably want to check things out and then reboot"
 
+exit
+
 # End Code Block
 }  > >(tee ${LOGFILE}) 2>&1
 
