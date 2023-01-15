@@ -72,7 +72,7 @@ sudo sed -i 's/^USBAUTO.*/USBAUTO=\"false\"/' /etc/default/gpsd
 ##################################################
 echo "Using directory ~/"${BUILDDIR}" to build software..."
 
-echo "Making Build Directories...
+echo "Making Build Directories..."
 mkdir -p ~/${BUILDDIR}/build
 cd ~/${BUILDDIR}
 
