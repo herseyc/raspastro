@@ -39,7 +39,7 @@ Build and Installs StellarSolver and KStars
 Edit script to configure BUILDDIR and LOGFILE (or just use the defaults)
 Set JOBS to 2 if Raspberry Pi has < 4 GB of RAM
 ```
-./install-indi-driver.sh
+./install-kstars.sh
 ```
 
 
