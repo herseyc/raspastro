@@ -68,5 +68,6 @@ sudo make install
 
 print "Done."
 exit
+
 # End Code Block
-} > >(tee ${LOGFILE}) 2>&1
+} 2>&1 | tee -a ${LOGFILE}

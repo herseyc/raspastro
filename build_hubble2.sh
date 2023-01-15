@@ -226,5 +226,5 @@ echo "Probably want to check things out and then reboot"
 exit
 
 # End Code Block
-}  > >(tee ${LOGFILE}) 2>&1
+}  2>&1 | tee -a ${LOGFILE}
 
