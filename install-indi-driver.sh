@@ -15,7 +15,11 @@
 # Visit me at: http://www.suffolksky.com/
 #################################################################
 
+#Set JOBS to 2 for Raspberry Pi with < 4 GB RAM
+JOBS=4
+
 BUILDDIR=Projects
+
 mkdir -p ~/${BUILDDIR}/build
 
 echo "Enter the INDI 3rd-Party Package to Install: "
@@ -35,7 +39,7 @@ cmake -B ~/${BUILDDIR}/build/${INDIPKG} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUIL
 cd ~/${BUILDDIR}/build/${INDIPKG}
 
 make clean
-make -j4
+make -j ${JOBS}
 sudo make install
 
 echo "Done."
