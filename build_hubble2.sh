@@ -27,6 +27,8 @@ INDIDRIVERS=(
 echo "Updating the Raspberry Pi..."
 sudo apt update
 sudo apt -y upgrade
+
+echo "Installing GPSD..."
 sudo apt -y install gpsd
 
 ##################################################
