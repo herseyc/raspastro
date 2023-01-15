@@ -1,4 +1,17 @@
 #!/bin/bash
+##################################################
+# build_hubble2.sh
+# Setting up my Raspberry Pi for EAA and Astrophotography
+#
+# Updates Raspberry Pi
+# Applies some Optimizations
+# Installs and Configures GPSD
+# Get, Build, and Install INDI CORE
+# Get, Build, and Install INDI 3rd-Party Libs and Drivers
+# Get, Build, and Install PHD2
+#
+# Visit me at: http://www.suffolksky.com/
+##################################################
 
 #Set the build directory
 
@@ -20,16 +33,12 @@ INDIDRIVERS=(
    indi-gpsd
 )
 
-
 ##################################################
 # Update Raspberry Pi
 ##################################################
 echo "Updating the Raspberry Pi..."
 sudo apt update
 sudo apt -y upgrade
-
-echo "Installing GPSD..."
-sudo apt -y install gpsd
 
 ##################################################
 # OPTIMIZATIONS
@@ -49,6 +58,10 @@ sudo sysctl --system
 ##################################################
 # GPSD Configuration
 ##################################################
+
+echo "Installing GPSD..."
+sudo apt -y install gpsd
+
 echo "Writing GPSD Configuration to /etc/default/gpsd ..."
 sudo sed -i 's/^DEVICES.*/DEVICES=\"\/dev\/ttyACM0\"/' /etc/default/gpsd
 sudo sed -i 's/^GPSD_OPTIONS.*/GPSD_OPTIONS=\"-r -n -F \/var\/run\/gpsd.sock\"/' /etc/default/gpsd
@@ -194,7 +207,7 @@ mkdir -p ~/${BUILDDIR}/build/phd2
 cd ~/${BUILDDIR}/build/phd2
 cmake ~/${BUILDDIR}/phd2
 make clean
-make
+make -j4
 sudo make install
 
 ##################################################
