@@ -1,24 +1,26 @@
 #!/bin/bash
 
-BUILDDIR = build-pi
-mkdir -p ~/${BUILDDIR}
+BUILDDIR=Projects
+mkdir -p ~/${BUILDDIR}/build
 
 echo "Enter the INDI 3rd-Party Package to Install: "
 read INDIPKG
 
+echo "Getting INDI 3rd-Party Drivers and Libraries..."
+cd ~/${BUILDDIR}
+[ ! -d "indi-3rdparty" ] && git clone --depth=1 https://github.com/indilib/indi-3rdparty
+cd indi-3rdparty
+git pull origin
 
-echo "Getting INDI 3rd-Party..."
-mkdir -p ~/${BUILDDIR}/Projects
-cd ~/${BUILDDIR}/Projects
-sudo m -rf indi-3rdparty
-git clone --depth=1 https://github.com/indilib/indi-3rdparty
+[ ! -d "~/${BUILDDIR}/indi-3rdparty/${INDIPKG}" ] && { echo "No INDI 3rd-Party package: ${INDIPKG} found"; exit; }
 
 echo "Building INDI: "${INDIPKG}
 
-mkdir -p ~/${BUILDDIR}/Projects/build/${INDIPKG}
+cmake -B ~/${BUILDDIR}/Projects/build/${INDIPKG} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/Projects/indi-3rdparty/${INDIPKG}
 cd ~/${BUILDDIR}/Projects/build/${INDIPKG}
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ~/${BUILDDIR}/Projects/indi-3rdparty/${INDIPKG}
+
+make clean
 make -j4
 sudo make install
 
-
+echo "Done."
