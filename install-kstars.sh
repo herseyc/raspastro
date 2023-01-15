@@ -43,7 +43,8 @@ cd ~/${BUILDDIR}
 cd stellarsolver
 git pull origin
 
-cmake -B ~/${BUILDDIR}/build/stellarsolver ../stellarsolver -DCMAKE_BUILD_TYPE=Release
+cmake -B ~/${BUILDDIR}/build/stellarsolver -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/stellarsolver
+
 cd ~/${BUILDDIR}/build/stellarsolver
 make clean
 make -j ${JOBS}
@@ -60,7 +61,8 @@ cd ~/${BUILDDIR}
 cd kstars
 git pull origin
 
-cmake -B ~/${BUILDDIR}/build/kstars -DBUILD_TESTING=Off ../kstars -DCMAKE_BUILD_TYPE=Release
+cmake -B ~/${BUILDDIR}/build/kstars -DBUILD_TESTING=Off -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/kstars
+
 cd ~/${BUILDDIR}/build/kstars
 make clean
 make -j ${JOBS}
