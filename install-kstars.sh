@@ -66,5 +66,7 @@ make clean
 make -j ${JOBS}
 sudo make install 
 
+print "Done."
+exit
 # End Code Block
 } > >(tee ${LOGFILE}) 2>&1
