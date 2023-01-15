@@ -4,6 +4,9 @@ Just a place to put some of my Raspberry Pi Astronomy Stuff
 
 Visit my EAA and astronomy site at: http://www.suffolksky.com/
 
+
+I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work on Raspberry Pi 32-bit OS.
+
 ## Install
 ```
 mkdir -p ~/Projects
