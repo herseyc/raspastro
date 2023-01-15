@@ -19,6 +19,9 @@ BUILDDIR=Projects
 #Set the log file
 LOGFILE=~/$BUILDDIR/build-hubble2.log
 
+# Set JOBS to 2 if Raspberry Pi has < 2 GB RAM
+JOBS=4
+
 #Array of INDI Libraries to build
 INDILIBRARIES=(
   libasi
@@ -108,7 +111,7 @@ cmake -B ~/${BUILDDIR}/build/indi-core -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD
 echo "Building INDI Core..."
 cd ~/${BUILDDIR}/build/indi-core
 make clean
-make -j4
+make -j ${JOBS}
 sudo make install
 
 ##################################################
@@ -143,7 +146,7 @@ for LIB in "${INDILIBRARIES[@]}"; do
 
    cd ~/${BUILDDIR}/build/${LIB}
    make clean
-   make -j4
+   make -j ${JOBS}
    sudo make install
 
 done
@@ -160,7 +163,7 @@ for DRIVER in "${INDIDRIVERS[@]}"; do
 
    cd ~/${BUILDDIR}/build/${DRIVER}
    make clean
-   make -j4
+   make -j ${JOBS}
    sudo make install
 
 done
@@ -208,7 +211,7 @@ mkdir -p ~/${BUILDDIR}/build/phd2
 cd ~/${BUILDDIR}/build/phd2
 cmake ~/${BUILDDIR}/phd2
 make clean
-make -j4
+make -j ${JOBS}
 sudo make install
 
 ##################################################
