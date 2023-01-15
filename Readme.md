@@ -28,6 +28,14 @@ Installs an indi-3rdparty driver or library based on user input.  Helpful to add
 ./install-indi-driver.sh
 ```
 
+### install-kstars.sh
+Installs StellarSolver and KStars
+
+Edit script to configure BUILDDIR and LOGFILE
+```
+./install-indi-driver.sh
+```
+
 Visit my EAA and astronomy site at: http://www.suffolksky.com/
 
 
