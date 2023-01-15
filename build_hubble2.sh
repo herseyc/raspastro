@@ -2,7 +2,7 @@
 
 #Set the build directory
 
-BUILDDIR=build-pi
+BUILDDIR=Projects
 
 #Array of INDI Libraries to build
 
@@ -56,46 +56,18 @@ sudo sed -i 's/^USBAUTO.*/USBAUTO=\"false\"/' /etc/default/gpsd
 ##################################################
 echo "Using directory ~/"${BUILDDIR}" to build software..."
 
-echo "Making Build Directory..."
-mkdir -p ~/${BUILDDIR}
-
+echo "Making Build Directories...
+mkdir -p ~/${BUILDDIR}/build
 cd ~/${BUILDDIR}
 
 ##################################################
-# ZWO ASI and EAF SDK
+# Many thanks to the code script found here:
+# https://gitea.nouspiro.space/nou/astro-soft-build/
 ##################################################
-echo "Download and Install ASI SDKs"
-
-echo "Downloading and Installing ASI Camera SDK..."
-wget -O ASI-Camera-SDK.tar.bz2 'https://dl.zwoastro.com/software?app=AsiCameraDriverSdk&platform=macIntel&region=Overseas'
-
-tar xvf ASI-Camera-SDK.tar.bz2
-
-cd ~/${BUILDDIR}/ASI_linux_mac_SDK*/lib
-sudo cp ./armv7/libASICamera2.so.* /usr/local/lib
-sudo install asi.rules /lib/udev/rules.d
-
-echo "Downloading and Installing ASI EAF SDK..."
-wget -O ASI-EAF-SDK.tar.bz2 'https://dl.zwoastro.com/software?app=EafSdk&platform=linux&region=Overseas'
- 
-tar xvf ASI-EAF-SDK.tar.bz2
-
-cd ~/${BUILDDIR}/EAF_linux_mac_SDK*/lib
-sudo cp ./armv7/libEAFFocuser.so.* /usr/local/lib
-sudo install eaf.rules /lib/udev/rules.d
-
-echo "Create Links for ASI SDK Libraries..."
-cd /usr/local/lib
-sudo ln -s libASICamera2.so.* libASICamera2.so
-sudo ln -s libEAFFocuser.so.* libEAFFocuser.so
 
 ##################################################
 # Building Indi Core
 ##################################################
-
-
-cd ~/${BUILDDIR}
-
 echo "Install INDI Core Dependencies..."
 sudo apt-get install -y  git cdbs dkms cmake fxload libev-dev \
   libgps-dev libgsl-dev libraw-dev libusb-dev zlib1g-dev \
@@ -106,15 +78,17 @@ sudo apt-get install -y  git cdbs dkms cmake fxload libev-dev \
 
 echo "Build INDI Core"
 echo "Getting INDI Core..."
-mkdir -p ~/${BUILDDIR}/Projects
-cd ~/${BUILDDIR}/Projects
-sudo rm -rf indi
-git clone --depth 1 https://github.com/indilib/indi.git
+cd ~/${BUILDDIR}
+[ ! -d "indi" ] && git clone --depth 1 https://github.com/indilib/indi.git
+cd indi
+git pull origin
 
-echo "Making INDI Core..."
-mkdir -p ~/${BUILDDIR}/Projects/build/indi-core
-cd ~/${BUILDDIR}/Projects/build/indi-core
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ~/${BUILDDIR}/Projects/indi
+echo "Creating INDI Core Makefiles..."
+cmake -B ~/${BUILDDIR}/build/indi-core -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi 
+
+echo "Building INDI Core..."
+cd ~/${BUILDDIR}/build/indi-core
+make clean
 make -j4
 sudo make install
 
@@ -134,10 +108,11 @@ sudo apt-get -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
 sudo apt-get -y install libindi-dev
 
 echo "Build INDI 3rd-Party Libraries and Drivers"
-echo "Getting INDI 3rd-Party Drivers..."
-cd ~/${BUILDDIR}/Projects
-sudo rm -rf indi-3rdparty
-git clone --depth=1 https://github.com/indilib/indi-3rdparty
+echo "Getting INDI 3rd-Party Libraries and Drivers..."
+cd ~/${BUILDDIR}
+[ ! -d "indi-3rdparty" ] && git clone --depth=1 https://github.com/indilib/indi-3rdparty
+cd indi-3rdparty
+git pull origin
 
 ##################################################
 # Build INDI 3rd-Party Libraries defined in INDILIBRARIES
@@ -147,9 +122,10 @@ for LIB in "${INDILIBRARIES[@]}"; do
 
    echo "Building INDI Lilbrary: "${LIB} 
 
-   mkdir -p ~/${BUILDDIR}/Projects/build/${LIB}
-   cd ~/${BUILDDIR}/Projects/build/${LIB}
-   cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ~/${BUILDDIR}/Projects/indi-3rdparty/${LIB}
+   cmake -B ~/${BUILDDIR}/build/${LIB} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${LIB}
+
+   cd ~/${BUILDDIR}/build/${LIB}
+   make clean
    make -j4
    sudo make install
 
@@ -163,9 +139,10 @@ for DRIVER in "${INDIDRIVERS[@]}"; do
 
    echo "Building INDI Driver: "${DRIVER}
 
-   mkdir -p ~/${BUILDDIR}/Projects/build/${DRIVER}
-   cd ~/${BUILDDIR}/Projects/build/${DRIVER}
-   cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ~/${BUILDDIR}/Projects/indi-3rdparty/${DRIVER}
+   cmake -B ~/${BUILDDIR}/build/{$DRIVER} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${DRIVER}
+
+   cd ~/${BUILDDIR}/Projects/${DRIVER}
+   make clean
    make -j4
    sudo make install
 
@@ -181,9 +158,9 @@ sudo pip install indiweb
 
 echo "Getting indiwebmanager source..."
 
-sudo rm -rf indiwebmanager
-git clone https://github.com/knro/indiwebmanager.git
+[ ! -d "indiwebmanager" ] && git clone https://github.com/knro/indiwebmanager.git
 cd ~/${BUILDDIR}/indiwebmanager
+git pull origin
 
 echo "Setting up INDI Web Manager to Start with Pi..."
 
@@ -206,13 +183,14 @@ sudo apt-get install -y build-essential git cmake pkg-config \
 
 cd ~/${BUILDDIR}
 echo "Getting PHD2 source..."
-sudo rm -rf phd2
-git clone https://github.com/OpenPHDGuiding/phd2.git
+[ ! -d "phd2" ] && git clone https://github.com/OpenPHDGuiding/phd2.git
 echo "Building PHD2..."
 cd phd2
+git pull origin
 mkdir -p tmp
 cd tmp
 cmake ..
+make clean
 make
 sudo make install
 
