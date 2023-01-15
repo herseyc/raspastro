@@ -103,7 +103,7 @@ echo "Getting INDI Core..."
 cd ~/${BUILDDIR}
 [ ! -d "indi" ] && git clone --depth 1 https://github.com/indilib/indi.git
 cd indi
-git pull origin
+git fetch origin
 
 echo "Creating INDI Core Makefiles..."
 cmake -B ~/${BUILDDIR}/build/indi-core -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi 
@@ -132,7 +132,7 @@ echo "Getting INDI 3rd-Party Libraries and Drivers..."
 cd ~/${BUILDDIR}
 [ ! -d "indi-3rdparty" ] && git clone --depth=1 https://github.com/indilib/indi-3rdparty
 cd indi-3rdparty
-git pull origin
+git fetch origin
 
 ##################################################
 # Build INDI 3rd-Party Libraries defined in INDILIBRARIES
@@ -180,7 +180,7 @@ echo "Getting indiwebmanager source..."
 
 [ ! -d "indiwebmanager" ] && git clone https://github.com/knro/indiwebmanager.git
 cd ~/${BUILDDIR}/indiwebmanager
-git pull origin
+git fetch origin
 
 echo "Setting up INDI Web Manager to Start with Pi..."
 
@@ -206,7 +206,7 @@ echo "Getting PHD2 source..."
 [ ! -d "phd2" ] && git clone https://github.com/OpenPHDGuiding/phd2.git
 echo "Building PHD2..."
 cd phd2
-git pull origin
+git fetch origin
 mkdir -p ~/${BUILDDIR}/build/phd2
 cd ~/${BUILDDIR}/build/phd2
 cmake ~/${BUILDDIR}/phd2
