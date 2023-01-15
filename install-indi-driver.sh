@@ -12,12 +12,12 @@ cd ~/${BUILDDIR}
 cd indi-3rdparty
 git pull origin
 
-[ ! -d "~/${BUILDDIR}/indi-3rdparty/${INDIPKG}" ] && { echo "No INDI 3rd-Party package: ${INDIPKG} found"; exit; }
+[ ! -d "${INDIPKG}" ] && { echo "No INDI 3rd-Party package: ${INDIPKG} found"; exit; }
 
 echo "Building INDI: "${INDIPKG}
 
-cmake -B ~/${BUILDDIR}/Projects/build/${INDIPKG} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/Projects/indi-3rdparty/${INDIPKG}
-cd ~/${BUILDDIR}/Projects/build/${INDIPKG}
+cmake -B ~/${BUILDDIR}/build/${INDIPKG} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${INDIPKG}
+cd ~/${BUILDDIR}/build/${INDIPKG}
 
 make clean
 make -j4

@@ -119,9 +119,7 @@ sudo apt-get -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
     libcurl4-gnutls-dev libtiff-dev libfftw3-dev libftdi-dev libgps-dev \
     libraw-dev libdc1394-22-dev libgphoto2-dev libboost-dev \
     libboost-regex-dev librtlsdr-dev liblimesuite-dev libftdi1-dev \ 
-    libavcodec-dev libavdevice-dev
-
-sudo apt-get -y install libindi-dev
+    libavcodec-dev libavdevice-dev libindi-dev
 
 echo "Build INDI 3rd-Party Libraries and Drivers"
 echo "Getting INDI 3rd-Party Libraries and Drivers..."
