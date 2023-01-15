@@ -190,9 +190,9 @@ echo "Getting PHD2 source..."
 echo "Building PHD2..."
 cd phd2
 git pull origin
-mkdir -p tmp
-cd tmp
-cmake ..
+mkdir -p ~/${BUILDDIR}/build/phd2
+cd ~/${BUILDDIR}/build/phd2
+cmake ~/${BUILDDIR}/phd2
 make clean
 make
 sudo make install
