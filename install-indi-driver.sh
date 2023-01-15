@@ -29,7 +29,7 @@ echo "Getting INDI 3rd-Party Drivers and Libraries..."
 cd ~/${BUILDDIR}
 [ ! -d "indi-3rdparty" ] && git clone --depth=1 https://github.com/indilib/indi-3rdparty
 cd indi-3rdparty
-git fetch origin
+git pull origin --no-rebase
 
 [ ! -d "${INDIPKG}" ] && { echo "No INDI 3rd-Party package: ${INDIPKG} found"; exit; }
 

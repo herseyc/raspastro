@@ -41,7 +41,7 @@ echo "Building StellarSolver..."
 cd ~/${BUILDDIR}
 [ ! -d "stellarsolver" ] && git clone --depth=1 https://github.com/rlancaste/stellarsolver.git
 cd stellarsolver
-git fetch origin
+git pull origin --no-rebase
 
 cmake -B ~/${BUILDDIR}/build/stellarsolver -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/stellarsolver
 
@@ -59,7 +59,7 @@ cd ~/${BUILDDIR}
 
 [ ! -d "kstars" ] && git clone --depth=1 https://invent.kde.org/education/kstars.git
 cd kstars
-git fetch origin
+git pull origin --no-rebase
 
 cmake -B ~/${BUILDDIR}/build/kstars -DBUILD_TESTING=Off -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/kstars
 
