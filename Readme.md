@@ -3,9 +3,7 @@
 Just a place to put some of my Raspberry Pi Astronomy Stuff
 
 
-build_hubble2.sh - Updates the raspberry pi, configures GPSD, some RPi optimizations, and  installs indi-core, indi-3rdparty drivers and libraries, and phd2
 
-install-indi-driver.sh - Installs an indi-3rdparty driver or library based on user input.  Helpful to adding new indi drivers after initial build.
 
 ## Install
 ```
@@ -14,10 +12,20 @@ cd ~/Projects
 git clone https://github.com/herseyc/raspastro.git
 ```
 
-Set INDILIBRARIES and INDIDRIVERS in build_hubble2.sh
+### build_hubble2.sh
+Updates the raspberry pi, configures GPSD, some RPi optimizations, and  installs indi-core, indi-3rdparty drivers and libraries, and phd2
+
+Set BUILDDIR, LOGFILE, INDILIBRARIES and INDIDRIVERS in build_hubble2.sh
 Cross your fingers...
 ```
 ./build_hubble2.sh
+```
+
+### install-indi-driver.sh
+Installs an indi-3rdparty driver or library based on user input.  Helpful to adding new indi drivers after initial build.
+
+```
+./install-indi-driver.sh
 ```
 
 Visit my EAA and astronomy site at: http://www.suffolksky.com/
