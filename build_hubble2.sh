@@ -153,7 +153,7 @@ for DRIVER in "${INDIDRIVERS[@]}"; do
 
    echo "Building INDI Driver: "${DRIVER}
 
-   cmake -B ~/${BUILDDIR}/build/{$DRIVER} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${DRIVER}
+   cmake -B ~/${BUILDDIR}/build/${DRIVER} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${DRIVER}
 
    cd ~/${BUILDDIR}/Projects/${DRIVER}
    make clean
