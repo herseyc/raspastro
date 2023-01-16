@@ -9,7 +9,6 @@
 # Updates Raspberry Pi
 # Applies some Optimizations 
 #    - Increase SWAPFILE to 2048 and Decreases Swappiness
-# Installs and Configures GPSD
 # Get, Build, and Install INDI CORE
 # Get, Build, and Install INDI 3rd-Party Libs and Drivers
 #
@@ -63,18 +62,6 @@ sudo dphys-swapfile swapon
 echo "Decreasing Swappiness..."
 echo "vm.swappiness = 1" | sudo tee /etc/sysctl.d/90-swappiness.conf
 sudo sysctl --system
-
-##################################################
-# GPSD Configuration
-##################################################
-
-echo "Installing GPSD..."
-sudo apt -y install gpsd
-
-echo "Writing GPSD Configuration to /etc/default/gpsd ..."
-sudo sed -i 's/^DEVICES.*/DEVICES=\"\/dev\/ttyACM0\"/' /etc/default/gpsd
-sudo sed -i 's/^GPSD_OPTIONS.*/GPSD_OPTIONS=\"-r -n -F \/var\/run\/gpsd.sock\"/' /etc/default/gpsd
-sudo sed -i 's/^USBAUTO.*/USBAUTO=\"false\"/' /etc/default/gpsd
 
 ##################################################
 # Building and Installing Software
