@@ -7,6 +7,13 @@
 # Visit my EAA site at http://www.suffolksky.com/
 ##########################################################
 
+#Set the build directory
+BUILDDIR=Projects
+
+#Set the log file
+LOGFILE=~/$BUILDDIR/build-hubble2.log
+
+
 # Start Code Block
 {
 ##################################################
