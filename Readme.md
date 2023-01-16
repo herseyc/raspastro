@@ -22,10 +22,22 @@ If this is a new Raspberry Pi OS build you will need to install the dependencies
 ```
 ./install-raspastro-dependencies.sh
 ```
-This installs the dependencies for INDI, INDI 3rd-Party, PHD2, StellarSolver, and KStars,
+This updates the Raspberry Pi and installs the dependencies for INDI, INDI 3rd-Party, PHD2, StellarSolver, and KStars,
+
+### install-gpsd.sh
+Installs and configures GPSD
+```
+./install-gpsd.sh
+```
+
+### install-phd2.sh
+Builds and installs PHD2
+```
+./install-phd2.sh
+```
 
 ### build_hubble2.sh
-Updates the raspberry pi, configures GPSD, some RPi optimizations, and  installs indi-core, indi-3rdparty drivers and libraries, and phd2
+Builds and installs indi-core, indi-3rdparty drivers and libraries
 
 Set BUILDDIR, LOGFILE, INDILIBRARIES and INDIDRIVERS in build_hubble2.sh
 Set JOBS to 2 if Raspberry Pi has < 4 GB of RAM
