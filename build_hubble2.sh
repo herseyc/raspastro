@@ -12,7 +12,6 @@
 # Installs and Configures GPSD
 # Get, Build, and Install INDI CORE
 # Get, Build, and Install INDI 3rd-Party Libs and Drivers
-# Get, Build, and Install PHD2
 #
 # Visit me at: http://www.suffolksky.com/
 ##################################################
@@ -194,31 +193,6 @@ sudo chmod 644 /etc/systemd/system/indiwebmanager.service
 sudo systemctl daemon-reload
 sudo systemctl enable indiwebmanager.service
 echo "INDI Web Manager Should Now Start on Boot..."
-
-##################################################
-# Building PHD2
-##################################################
-
-echo "Build PHD2 and Install"
-
-# Moved dependencies to install-raspastro-dependencies.sh
-#echo "Installing PHD2 Dependencies..."
-#sudo apt-get install -y build-essential git cmake pkg-config \
-# libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libindi-dev libnova-dev \
-# gettext zlib1g-dev libx11-dev libcurl4-gnutls-dev
-
-cd ~/${BUILDDIR}
-echo "Getting PHD2 source..."
-[ ! -d "phd2" ] && git clone https://github.com/OpenPHDGuiding/phd2.git
-echo "Building PHD2..."
-cd phd2
-git pull origin --no-rebase
-mkdir -p ~/${BUILDDIR}/build/phd2
-cd ~/${BUILDDIR}/build/phd2
-cmake ~/${BUILDDIR}/phd2
-make clean
-make -j ${JOBS}
-sudo make install
 
 ##################################################
 # DONE
