@@ -1,8 +1,13 @@
 #!/bin/bash
 ###############################################################
-# 
-# Install dependecies using install-raspastro-dependencies.sh
 #
+# install-kstars.sh
+#
+# Builds and Installs StellarSolver and KStars
+#
+# Install dependencies using install-raspastro-dependencies.sh
+#
+# Visit my EAA site at: http://www.suffolksky.com/
 ###############################################################
 
 BUILDDIR=Projects
