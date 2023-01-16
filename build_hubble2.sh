@@ -7,7 +7,8 @@
 # required dependencies
 #
 # Updates Raspberry Pi
-# Applies some Optimizations
+# Applies some Optimizations 
+#    - Increase SWAPFILE to 2048 and Decreases Swappiness
 # Installs and Configures GPSD
 # Get, Build, and Install INDI CORE
 # Get, Build, and Install INDI 3rd-Party Libs and Drivers
