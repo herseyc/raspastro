@@ -36,14 +36,14 @@ Builds and installs PHD2
 ./install-phd2.sh
 ```
 
-### build_hubble2.sh
-Builds and installs indi-core, indi-3rdparty drivers and libraries
+### install-indi.sh
+Builds and installs indi-core, indi-3rdparty drivers and libraries, and indiwebmanager
 
-Set BUILDDIR, LOGFILE, INDILIBRARIES and INDIDRIVERS in build_hubble2.sh
+Set BUILDDIR, LOGFILE, INDILIBRARIES and INDIDRIVERS in install-indi.sh
 Set JOBS to 2 if Raspberry Pi has < 4 GB of RAM
 Cross your fingers...
 ```
-./build_hubble2.sh
+./install-indi.sh
 ```
 
 ### install-indi-driver.sh
