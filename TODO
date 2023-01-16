@@ -13,5 +13,5 @@ Create new build_hubble2.sh script to execute all scripts
 - install-gpsd.sh
 - apply-optimizations.sh
 - install-indi.sh
-- install-phd2.sh
+DONE install-phd2.sh DONE
 - install-kstars.sh
