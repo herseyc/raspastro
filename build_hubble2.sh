@@ -125,7 +125,7 @@ for LIB in "${INDILIBRARIES[@]}"; do
 
    echo "Building INDI Lilbrary: "${LIB} 
 
-   cmake -B ~/${BUILDDIR}/build/${LIB} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${LIB}
+   cmake -B ~/${BUILDDIR}/build/${LIB} -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_LIBS=1 -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${LIB}
 
    cd ~/${BUILDDIR}/build/${LIB}
    make clean
