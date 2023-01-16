@@ -33,6 +33,7 @@ echo "vm.swappiness = 1" | sudo tee /etc/sysctl.d/90-swappiness.conf
 sudo sysctl --system
 
 
+exit
 
 # End Code Block
 }  2>&1 | tee -a ${LOGFILE}
