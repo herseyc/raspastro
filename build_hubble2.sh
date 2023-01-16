@@ -6,7 +6,6 @@
 # Run install-raspastro-dependencies.sh to install
 # required dependencies
 #
-# Updates Raspberry Pi
 # Applies some Optimizations 
 #    - Increase SWAPFILE to 2048 and Decreases Swappiness
 # Get, Build, and Install INDI CORE
@@ -40,13 +39,6 @@ INDIDRIVERS=(
 
 #Start Code Block
 {
-
-##################################################
-# Update Raspberry Pi
-##################################################
-echo "Updating the Raspberry Pi..."
-sudo apt update 
-sudo apt -y upgrade 
 
 ##################################################
 # OPTIMIZATIONS
