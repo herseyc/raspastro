@@ -9,9 +9,11 @@
 # before I am sure I got them all.
 #
 ###################################################################
-echo "Installing Dependencies..."
-
+echo "Updating Raspberry Pi..."
 sudo apt update
+sudo apt -y upgrade
+
+echo "Installing Dependencies..."
 sudo apt -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
         zlib1g-dev libgsl-dev build-essential cmake git \
         libjpeg-dev libcurl4-gnutls-dev libtiff-dev libfftw3-dev \
