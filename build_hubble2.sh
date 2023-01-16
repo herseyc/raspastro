@@ -3,6 +3,9 @@
 # build_hubble2.sh
 # Setting up my Raspberry Pi for EAA and Astrophotography
 #
+# Run install-raspastro-dependencies.sh to install
+# required dependencies
+#
 # Updates Raspberry Pi
 # Applies some Optimizations
 # Installs and Configures GPSD
@@ -90,13 +93,14 @@ cd ~/${BUILDDIR}
 ##################################################
 # Building Indi Core
 ##################################################
-echo "Install INDI Core Dependencies..."
-sudo apt-get install -y  git cdbs dkms cmake fxload libev-dev \
-  libgps-dev libgsl-dev libraw-dev libusb-dev zlib1g-dev \
-  libftdi-dev libgsl0-dev libjpeg-dev libkrb5-dev libnova-dev \
-  libtiff-dev libfftw3-dev librtlsdr-dev libcfitsio-dev \
-  libgphoto2-dev build-essential libusb-1.0-0-dev libdc1394-22-dev \
-  libboost-regex-dev libcurl4-gnutls-dev libtheora-dev
+# Moved dependencies to install-raspastro-dependencies.sh
+#echo "Install INDI Core Dependencies..."
+#sudo apt-get install -y  git cdbs dkms cmake fxload libev-dev \
+#  libgps-dev libgsl-dev libraw-dev libusb-dev zlib1g-dev \
+#  libftdi-dev libgsl0-dev libjpeg-dev libkrb5-dev libnova-dev \
+#  libtiff-dev libfftw3-dev librtlsdr-dev libcfitsio-dev \
+#  libgphoto2-dev build-essential libusb-1.0-0-dev libdc1394-22-dev \
+#  libboost-regex-dev libcurl4-gnutls-dev libtheora-dev
 
 echo "Build INDI Core"
 echo "Getting INDI Core..."
@@ -118,14 +122,14 @@ sudo make install
 # Building Indi 3rd-Party Drivers
 ##################################################
 
-echo "Install 3rd-Party Dependencies..."
-
-sudo apt-get -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
-    zlib1g-dev libgsl-dev build-essential cmake git libjpeg-dev \
-    libcurl4-gnutls-dev libtiff-dev libfftw3-dev libftdi-dev libgps-dev \
-    libraw-dev libdc1394-22-dev libgphoto2-dev libboost-dev \
-    libboost-regex-dev librtlsdr-dev liblimesuite-dev libftdi1-dev \ 
-    libavcodec-dev libavdevice-dev libindi-dev
+# Moved dependencies to install-raspastro-dependencies.sh
+#echo "Install 3rd-Party Dependencies..."
+#sudo apt-get -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
+#    zlib1g-dev libgsl-dev build-essential cmake git libjpeg-dev \
+#    libcurl4-gnutls-dev libtiff-dev libfftw3-dev libftdi-dev libgps-dev \
+#    libraw-dev libdc1394-22-dev libgphoto2-dev libboost-dev \
+#    libboost-regex-dev librtlsdr-dev liblimesuite-dev libftdi1-dev \ 
+#    libavcodec-dev libavdevice-dev libindi-dev
 
 echo "Build INDI 3rd-Party Libraries and Drivers"
 echo "Getting INDI 3rd-Party Libraries and Drivers..."
@@ -196,10 +200,11 @@ echo "INDI Web Manager Should Now Start on Boot..."
 
 echo "Build PHD2 and Install"
 
-echo "Installing PHD2 Dependencies..."
-sudo apt-get install -y build-essential git cmake pkg-config \
- libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libindi-dev libnova-dev \
- gettext zlib1g-dev libx11-dev libcurl4-gnutls-dev
+# Moved dependencies to install-raspastro-dependencies.sh
+#echo "Installing PHD2 Dependencies..."
+#sudo apt-get install -y build-essential git cmake pkg-config \
+# libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libindi-dev libnova-dev \
+# gettext zlib1g-dev libx11-dev libcurl4-gnutls-dev
 
 cd ~/${BUILDDIR}
 echo "Getting PHD2 source..."
