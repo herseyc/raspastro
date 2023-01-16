@@ -12,9 +12,17 @@ I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work 
 mkdir -p ~/Projects
 cd ~/Projects
 git clone https://github.com/herseyc/raspastro.git
+cd ~/Projects/raspastro
 ```
 
 In all scripts BUILDDIR is set to Projects by default so if you do the above it will already be set. This downloads the repositories to ~/Projects and does the work in ~/Projects/build 
+
+### install-raspastro-dependencies.sh
+If this is a new Raspberry Pi OS build you will need to install the dependencies.
+```
+./install-raspastro-dependencies.sh
+```
+This installs the dependencies for INDI, INDI 3rd-Party, PHD2, StellarSolver, and KStars,
 
 ### build_hubble2.sh
 Updates the raspberry pi, configures GPSD, some RPi optimizations, and  installs indi-core, indi-3rdparty drivers and libraries, and phd2
