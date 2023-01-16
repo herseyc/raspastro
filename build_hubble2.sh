@@ -6,8 +6,6 @@
 # Run install-raspastro-dependencies.sh to install
 # required dependencies
 #
-# Applies some Optimizations 
-#    - Increase SWAPFILE to 2048 and Decreases Swappiness
 # Get, Build, and Install INDI CORE
 # Get, Build, and Install INDI 3rd-Party Libs and Drivers
 #
@@ -41,22 +39,7 @@ INDIDRIVERS=(
 {
 
 ##################################################
-# OPTIMIZATIONS
-##################################################
-echo "Updating /etc/dphys-swapfile changing CONF_SWAPSIZE=2048"
-sudo sed -i "s/^CONF_SWAPSIZE.*/CONF_SWAPSIZE=2048/" /etc/dphys-swapfile
-
-echo "Stopping, setting up, and starting swap..."
-sudo dphys-swapfile swapoff
-sudo dphys-swapfile setup
-sudo dphys-swapfile swapon
-
-echo "Decreasing Swappiness..."
-echo "vm.swappiness = 1" | sudo tee /etc/sysctl.d/90-swappiness.conf
-sudo sysctl --system
-
-##################################################
-# Building and Installing Software
+# Building and Installing INDI Software
 ##################################################
 echo "Using directory ~/"${BUILDDIR}" to build software..."
 
