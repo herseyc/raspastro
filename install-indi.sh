@@ -128,7 +128,8 @@ echo "Getting indiwebmanager source..."
 cd ~/${BUILDDIR}/indiwebmanager
 git pull origin --no-rebase
 
-echo "Setting up INDI Web Manager to Start with Pi..."
+echo "Setting up INDI Web Manager to Start with current user ${USER}..."
+sed -i 's/^User=.*/User='${USER}'/' indiwebmanager.service
 
 sudo cp indiwebmanager.service /etc/systemd/system/
 sudo chmod 644 /etc/systemd/system/indiwebmanager.service
