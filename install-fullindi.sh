@@ -8,6 +8,7 @@
 #
 # Get, Build, and Install INDI CORE
 # Get, Build, and Install All INDI 3rd-Party Libs and Drivers
+# Install indiwebmanager and set to start on boot
 #
 # Visit me at: http://www.suffolksky.com/
 ##################################################
