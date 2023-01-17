@@ -1,6 +1,6 @@
 #!/bin/bash
 ##################################################
-# build_hubble2.sh
+# install-indi.sh
 # Setting up my Raspberry Pi for EAA and Astrophotography
 #
 # Run install-raspastro-dependencies.sh to install
@@ -17,7 +17,7 @@
 BUILDDIR=Projects
 
 #Set the log file
-LOGFILE=~/$BUILDDIR/build-hubble2.log
+LOGFILE=~/$BUILDDIR/build-raspastro.log
 
 # Set JOBS to 2 if Raspberry Pi has < 2 GB RAM
 JOBS=4

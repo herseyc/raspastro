@@ -12,7 +12,7 @@
 BUILDDIR=Projects
 
 #Set the log file
-LOGFILE=~/$BUILDDIR/build-hubble2.log
+LOGFILE=~/$BUILDDIR/build-raspastro.log
 
 #Start Code Block
 {

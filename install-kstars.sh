@@ -13,7 +13,7 @@
 BUILDDIR=Projects
 # Set JOBS to 2 if Raspberry Pi < 4GB RAM
 JOBS=4
-LOGFILE=~/${BUILDDIR}/build-hubble2.log
+LOGFILE=~/${BUILDDIR}/build-raspastro.log
 
 # Start Code Block
 {
