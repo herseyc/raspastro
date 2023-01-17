@@ -15,3 +15,6 @@ Create new build_hubble2.sh script to execute all scripts
 - install-indi.sh
 - install-phd2.sh 
 - install-kstars.sh
+
+
+Create script to install indi and all 3rd-party drivers
