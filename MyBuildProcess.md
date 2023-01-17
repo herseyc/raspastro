@@ -82,6 +82,10 @@ Run the script to build and install StellarSolver and then KStars
 ```
 ./install-kstars.sh
 ```
+StellarSolver and KStars take a good while to build... 	
+
+
+The Raspberry Pi is ready for EAA.
 
 
 
