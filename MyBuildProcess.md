@@ -1,6 +1,6 @@
-#Building my Raspberry Pi
+# Building my Raspberry Pi
 
-Just documenting how I build a Raspberry Pi for EAA
+Just documenting the process I use to build a Raspberry Pi for EAA using the RaspAstro scripts
 
 ## Raspberry Pi OS
 Using the Raspberry Pi Imager https://www.raspberrypi.com/software/ I write the Raspberry Pi 64-bit OS to my SD Card
