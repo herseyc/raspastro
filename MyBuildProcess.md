@@ -33,8 +33,7 @@ git clone https://github.com/herseyc/raspastro.git
 cd ~/Projects/raspastro
 ```
 
-## Installing EAA Software
-
+## Set Up the Raspberry Pi
 First I update the Raspberry Pi and install the dependencies
 ```
 ./install-raspastro-dependencies.sh
@@ -50,10 +49,31 @@ Install and Configure GPSD
 ./install-gpsd.sh
 ```
 
-I edit the install-indi.sh script and make sure all the indi 3rd-party libraries and drivers I want to install are assigned and then run install-indi.sh
+## Installing EAA Software
+
+### Build and Install INDI
+I edit the install-indi.sh script and make sure all the indi 3rd-party libraries and drivers I want to install are assigned and then install indi and the selected 3rd-party libraries and drivers.
 ```
 ./install-indi.sh
 ```
+OR if I want to install all the INDI 3rd-Party Libraries and Drivers I just run
+```
+./install-fullindi.sh
+```
 
+## Build and Install PHD2
+Run the script to build and install PHD2
+```
+./install-phd2.sh
+```
+
+## Build and Install StellarSolver and Kstars
+Run the script to build and install StellarSolver and then KStars
+```
+./install-kstars.sh
+```
+
+A
+A
 
 
