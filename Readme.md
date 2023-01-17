@@ -41,6 +41,7 @@ Cross your fingers...
 ```
 ./install-indi.sh
 ```
+I install libasi, libqhy, indi-asi, indi-qhy, indi-eqmod, and indi-gpsd since these are the indi drivers I need for my set up.  Just add the ones you need to INDILIBRARIES and INDIDRIVERS.
 
 ### install-fullindi.sh
 Builds and installs indi core, all indi 3rd-party libraries and drivers, and indiwebmanager
