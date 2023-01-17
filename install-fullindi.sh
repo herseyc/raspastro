@@ -106,14 +106,15 @@ echo "Getting indiwebmanager source..."
 cd ~/${BUILDDIR}/indiwebmanager
 git pull origin --no-rebase
 
-echo "Setting up INDI Web Manager to Start with current user ${USER}..."
-sed -i 's/^User=.*/User='${USER}'/' indiwebmanager.service
+current_user="$(id -u -n)"
+echo "Setting up INDI Web Manager to Start with current user ${current_user}..."
+sed -i 's/^User=.*/User='${current_user}'/' indiwebmanager.service
 
 sudo cp indiwebmanager.service /etc/systemd/system/
 sudo chmod 644 /etc/systemd/system/indiwebmanager.service
 sudo systemctl daemon-reload
 sudo systemctl enable indiwebmanager.service
-echo "INDI Web Manager Should Now Start on Boot as user ${USER}..."
+echo "INDI Web Manager Should Now Start on Boot as user ${current_user}..."
 
 ##################################################
 # DONE
