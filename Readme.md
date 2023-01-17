@@ -2,7 +2,7 @@
 
 Just a place to put some of my Raspberry Pi Astronomy Stuff
 
-This is a set of scripts I use to build out my Raspberry Pi with the software necessary for EAA.
+This is a set of scripts I use to build out my Raspberry Pi with the software necessary for Electronically Assisted Astronomy or EAA.
 
 I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work on Raspberry Pi 32-bit OS.
 
