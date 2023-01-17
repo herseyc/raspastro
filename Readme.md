@@ -2,10 +2,11 @@
 
 Just a place to put some of my Raspberry Pi Astronomy Stuff
 
-Visit my Electronicly Assisted Astronomy (EAA) and Astrophotography site at: http://www.suffolksky.com/
-
+This is a set of scripts I use to build out my Raspberry Pi with the software necessary for EAA.
 
 I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work on Raspberry Pi 32-bit OS.
+
+Visit my Electronicly Assisted Astronomy (EAA) and Astrophotography site at: http://www.suffolksky.com/
 
 ## Install
 ```
