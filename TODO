@@ -1,8 +1,8 @@
 
-Rename build_hubble2.sh to install-indi.sh
+DONE Rename build_hubble2.sh to install-indi.sh DONE
 DONE - move PHD2 to install-phd2.sh
 DONE - move GPSD to install-gpsd.sh
-- move OS optimizations to apply-optimizations.sh
+DONE - move OS optimizations to apply-optimizations.sh
 
 Test scripts on fresh Raspberry Pi 64-bit OS build
 
