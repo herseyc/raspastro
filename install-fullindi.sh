@@ -113,7 +113,7 @@ sudo cp indiwebmanager.service /etc/systemd/system/
 sudo chmod 644 /etc/systemd/system/indiwebmanager.service
 sudo systemctl daemon-reload
 sudo systemctl enable indiwebmanager.service
-echo "INDI Web Manager Should Now Start on Boot..."
+echo "INDI Web Manager Should Now Start on Boot as user ${USER}..."
 
 ##################################################
 # DONE
