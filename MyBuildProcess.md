@@ -1,4 +1,4 @@
-# Building my Raspberry Pi
+# Building my Raspberry Pi for EAA
 
 Just documenting the process I use to build a Raspberry Pi for EAA using the RaspAstro scripts
 
@@ -23,8 +23,7 @@ Then reboot.
 
 ## Getting the raspastro scirpts
 
-SSH is now enabled so I ssh into the Raspberry Pi and git my my scripts from raspastro
-
+After the reboot SSH will be enabled so I ssh into the Raspberry Pi and git my my scripts from raspastro
 ```
 apt install -y git 
 mkdir -p ~\Projects
@@ -73,7 +72,5 @@ Run the script to build and install StellarSolver and then KStars
 ./install-kstars.sh
 ```
 
-A
-A
 
 
