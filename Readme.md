@@ -30,20 +30,25 @@ Installs and configures GPSD
 ./install-gpsd.sh
 ```
 
-### install-phd2.sh
-Builds and installs PHD2
-```
-./install-phd2.sh
-```
-
 ### install-indi.sh
-Builds and installs indi-core, indi-3rdparty drivers and libraries, and indiwebmanager
+Builds and installs indi-core, selected indi-3rdparty drivers and libraries, and indiwebmanager
 
 Set BUILDDIR, LOGFILE, INDILIBRARIES and INDIDRIVERS in install-indi.sh
 Set JOBS to 2 if Raspberry Pi has < 4 GB of RAM
+Only install indi libraries and drivers set in INDILIBRARIES and INDIDRIVERS
 Cross your fingers...
 ```
 ./install-indi.sh
+```
+
+### install-fullindi.sh
+Builds and installs indi core, all indi 3rd-party libraries and drivers, and indiwebmanager
+
+Set BUILDDIR and LOGFILE in install-indi.sh
+Set JOBS to 2 if Raspberry Pi has < 4 GB of RAM
+Cross your fingers...
+```
+./install-fullindi.sh
 ```
 
 ### install-indi-driver.sh
@@ -51,6 +56,12 @@ Installs an indi-3rdparty driver or library based on user input.  Helpful to add
 
 ```
 ./install-indi-driver.sh
+```
+
+### install-phd2.sh
+Builds and installs PHD2
+```
+./install-phd2.sh
 ```
 
 ### install-kstars.sh
