@@ -79,6 +79,8 @@ Run the script to build and install PHD2
 
 ## Build and Install StellarSolver and Kstars
 Run the script to build and install StellarSolver and then KStars
+
+I don't use KStars on the Pi but it is useful to have on there is you need to test or troubleshoot.
 ```
 ./install-kstars.sh
 ```
