@@ -52,7 +52,7 @@ Install and Configure GPSD
 ## Installing EAA Software
 
 ### Build and Install INDI
-I edit the install-indi.sh script and make sure all the indi 3rd-party libraries and drivers I want to install are assigned and then install indi and the selected 3rd-party libraries and drivers.
+I edit the install-indi.sh script and make sure all the indi 3rd-party libraries and drivers I want to install are assigned and then install indi and the selected 3rd-party libraries and drivers. This also installs the indiwebmanager interface.
 ```
 ./install-indi.sh
 ```
