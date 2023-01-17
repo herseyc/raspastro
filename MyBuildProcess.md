@@ -21,7 +21,7 @@ Once the initial configuration is completed run the Raspberry Pi Configuration f
 
 Then reboot.
 
-## Getting the raspastro scirpts
+## Getting the raspastro scripts
 
 After the reboot SSH will be enabled so I ssh into the Raspberry Pi and git my my scripts from raspastro
 ```
@@ -31,6 +31,8 @@ cd ~\Projects
 git clone https://github.com/herseyc/raspastro.git
 cd ~/Projects/raspastro
 ```
+
+I am building this on a Raspberry Pi 4B with 8 GB of memory.  If your Raspberry Pi has less than 4 GB of memory edit each of the install scripts and change JOBS=4 to JOBS=2.  
 
 ## Set Up the Raspberry Pi
 First I update the Raspberry Pi and install the dependencies
