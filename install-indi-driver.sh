@@ -35,7 +35,7 @@ git pull origin --no-rebase
 
 echo "Building INDI: "${INDIPKG}
 
-cmake -B ~/${BUILDDIR}/build/${INDIPKG} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${INDIPKG}
+cmake -B ~/${BUILDDIR}/build/${INDIPKG} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${INDIPKG} 
 cd ~/${BUILDDIR}/build/${INDIPKG}
 
 make clean
