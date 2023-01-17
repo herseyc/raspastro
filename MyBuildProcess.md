@@ -21,6 +21,8 @@ Once the initial configuration is completed run the Raspberry Pi Configuration f
 
 Then reboot.
 
+I disconnect the monitor, mouse, and keyboard. From here on I will be access the Raspberry Pi remotely over SSH or VNC. 
+
 ## Getting the raspastro scripts
 
 After the reboot SSH will be enabled so I ssh into the Raspberry Pi and git my my scripts from raspastro
@@ -49,6 +51,7 @@ Install and Configure GPSD
 ```
 ./install-gpsd.sh
 ```
+I use this GPS Module https://amzn.to/3CVOpLD 
 
 ## Installing EAA Software
 
