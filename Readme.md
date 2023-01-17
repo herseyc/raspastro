@@ -41,12 +41,12 @@ Cross your fingers...
 ```
 ./install-indi.sh
 ```
-I install libasi, libqhy, indi-asi, indi-qhy, indi-eqmod, and indi-gpsd since these are the indi drivers I need for my set up.  Just add the ones you need to INDILIBRARIES and INDIDRIVERS.
+I install libasi, libqhy, indi-asi, indi-qhy, indi-eqmod, and indi-gpsd since these are the indi drivers I need for my set up.  Just add the ones you need to INDILIBRARIES and INDIDRIVERS. OR you can use install-fullindi.sh to install ALL the INDI 3rd-Party Libraries and Drivers.
 
 ### install-fullindi.sh
 Builds and installs indi core, all indi 3rd-party libraries and drivers, and indiwebmanager
 
-Set BUILDDIR and LOGFILE in install-indi.sh
+Set BUILDDIR and LOGFILE in install-fullindi.sh
 Set JOBS to 2 if Raspberry Pi has < 4 GB of RAM
 Cross your fingers...
 ```
