@@ -65,6 +65,12 @@ OR if I want to install all the INDI 3rd-Party Libraries and Drivers I just run
 ./install-fullindi.sh
 ```
 
+After the indi build completes I can start the indiwebmanager and validate I can access it 
+```
+sudo systemctl start indiwebmanager.service
+```
+Then access the indiwebmanager at http://IPADDRESSofPI:8264
+
 ## Build and Install PHD2
 Run the script to build and install PHD2
 ```
