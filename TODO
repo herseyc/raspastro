@@ -6,6 +6,10 @@ DONE - move OS optimizations to apply-optimizations.sh
 DONE Create script to install indi and all 3rd-party drivers
 
 Disable unneeded services in apply-optimizations.sh
+- cups
+- cups-browsed
+- avahi-daemon
+- triggerhappy
 
 Test scripts on fresh Raspberry Pi 64-bit OS build
 
