@@ -13,3 +13,10 @@ print(f"WAN IP: {wlan0ip}")
 
 # Display GPS Fix
 print("GPS Fix")
+print("Lat:")
+print("Long:")
+
+
+print("INDI Server Status:")
+
+
