@@ -31,4 +31,6 @@ sudo apt -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
 	libtheora-dev libdc1394-22-dev libavcodec-dev libavdevice-dev \
 	libindi-dev libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libx11-dev
 
+echo "Installing python packages..."
+sudo pip3 install netifaces
 exit
