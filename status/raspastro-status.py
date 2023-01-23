@@ -12,10 +12,7 @@ WEB_PORT = 5000
 WEB_HOST = "0.0.0.0"
 
 
-
-app = Flask(__name__)
-
-
+#app = Flask(__name__)
 
 #@app.route('/')
 #def main():
@@ -24,22 +21,17 @@ app = Flask(__name__)
 
 the_connection = agps3.GPSDSocket()
 the_fix = agps3.DataStream()
-
 the_connection.connect()
 the_connection.watch()
 
-print(f"GPS {the_fix}")
 
 for new_data in the_connection:
    if new_data:
       the_fix.unpack(new_data)
-      print(the_fix)
-
       gpsfixtype = the_fix.mode
       gpslatitude = the_fix.lat
       gpslongitude = the_fix.lon
       print(f"Fix: {gpsfixtype} Lat: {gpslatitude} Lon: {gpslongitude}")
-
    else:
-      the_fix = agps3.DataStream()
+      print("Waiting...")
       sleep(1)
