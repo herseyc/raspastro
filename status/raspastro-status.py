@@ -5,36 +5,41 @@
 
 from flask import Flask, render_template
 from gevent.pywsgi import WSGIServer
-import netifaces as ni
+from gps3 import agps3
+from time import sleep
 
 WEB_PORT = 5000
 WEB_HOST = "0.0.0.0"
 
 
+
 app = Flask(__name__)
 
-@app.route('/')
-def status():
 
 
-   ip_addresses =  {}
+#@app.route('/')
+#def main():
+#    return render_template('main.html')
 
-#   networkinterfaces = ni.interfaces()
-#   for interface in networkinterfaces:
-#       ip_addresses[interface] = ni.ifaddresses(interface)[ni.AF_INET][0]['addr']
 
-#   eth0ip = ni.ifaddresses(address)[ni.AF_INET][0]['addr']
-   wlan0ip = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
+the_connection = agps3.GPSDSocket()
+the_fix = agps3.DataStream()
 
-   # Display GPS Fix
-   gpsfixtype = "PLACEHOLDER"
-   templateData = {
-      'interfaces' : wlan0ip,
-      'gpsfixtype' : gpsfixtype
-      }
+the_connection.connect()
+the_connection.watch()
 
-   return render_template('./raspastrostatus.html', **templateData)
+print(f"GPS {the_fix}")
 
-# app.run(host=WEB_HOST, port=WEB_PORT)
-http_server = WSGIServer((WEB_HOST, WEB_PORT), app)
-http_server.serve_forever()
+for new_data in the_connection:
+   if new_data:
+      the_fix.unpack(new_data)
+      print(the_fix)
+
+      gpsfixtype = the_fix.mode
+      gpslatitude = the_fix.lat
+      gpslongitude = the_fix.lon
+      print(f"Fix: {gpsfixtype} Lat: {gpslatitude} Lon: {gpslongitude}")
+
+   else:
+      the_fix = agps3.DataStream()
+      sleep(1)
