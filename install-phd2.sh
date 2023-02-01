@@ -20,6 +20,10 @@ JOBS=4
 # Start Code Block
 {
 
+echo "Build Directory = ${BUILDDIR}"
+echo "Make Jobs = ${JOBS}"
+echo "Log File = ${LOGFILE}"
+
 ##################################################
 # Building PHD2
 ##################################################

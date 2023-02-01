@@ -39,6 +39,10 @@ INDIDRIVERS=(
 #Start Code Block
 {
 
+echo "Build Directory = ${BUILDDIR}"
+echo "Make Jobs = ${JOBS}"
+echo "Log File = ${LOGFILE}"
+
 ##################################################
 # Building and Installing INDI Software
 ##################################################
