@@ -50,10 +50,14 @@ cd ~/${BUILDDIR}
 cd indi
 git pull origin --no-rebase
 
-echo "Creating INDI Core Makefiles..."
+echo "Cleaning up INDI Core cmake directory if it exist."
+cd ~/${BUILDDIR}/build
+[ -d "indi-core" ] && rm -rf indi-core
+
+echo "Running cmake for indi-core..."
 cmake -B ~/${BUILDDIR}/build/indi-core -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi 
 
-echo "Building INDI Core..."
+echo "Building and installing INDI Core..."
 cd ~/${BUILDDIR}/build/indi-core
 make clean
 make -j ${JOBS}
@@ -74,8 +78,14 @@ git pull origin --no-rebase
 ##################################################
 echo "Building all INDI 3rd-Party Libraries..."
 
+echo "Cleaning up indi-3rd-party-libs cmake directory if it exist."
+cd ~/${BUILDDIR}/build
+[ -d "indi-3rdparty-libs" ] && rm -rf indi-3rdparty-libs
+
+echo "Running cmake for indi-3rdparty-libs..."
 cmake -B ~/${BUILDDIR}/build/indi-3rdpary-libs -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_LIBS=1 -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty
 
+echo "Building and installing indi-3rdparty-libs..."
 cd ~/${BUILDDIR}/build/indi-3rdparty-libs
 make clean
 make -j ${JOBS}
@@ -87,8 +97,14 @@ sudo make install
 ##################################################
 echo "Building all INDI 3rd-Party Drivers..."
 
+echo "Cleaning up indi-3rd-party-drivers cmake directory if it exist..."
+cd ~/${BUILDDIR}/build
+[ -d "indi-3rdparty-drivers" ] && rm -rf indi-3rdparty-drivers
+
+echo "Running cmake for indi-3rdparty-drivers..."
 cmake -B ~/${BUILDDIR}/build/indi-3rdparty-drivers -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty
 
+echo "Building and installing indi-3rdparty-drivers..."
 cd ~/${BUILDDIR}/build/indi-3rdparty-drivers
 make clean
 make -j ${JOBS}

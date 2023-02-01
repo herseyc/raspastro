@@ -63,10 +63,15 @@ cd ~/${BUILDDIR}
 cd indi
 git pull origin --no-rebase
 
-echo "Creating INDI Core Makefiles..."
+# Clean up previous cmake
+echo "Cleaning up indi-core cmake directory if it exist..." 
+cd ~/${BUILDDIR}/build
+[ -d "indi-core" ] && rm -rf indi-core
+
+echo "Running cmake for indi-core..."
 cmake -B ~/${BUILDDIR}/build/indi-core -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi 
 
-echo "Building INDI Core..."
+echo "Building and instaling indi-core..."
 cd ~/${BUILDDIR}/build/indi-core
 make clean
 make -j ${JOBS}
@@ -88,10 +93,17 @@ git pull origin --no-rebase
 echo "Building INDI 3rd-Party Libraries..."
 for LIB in "${INDILIBRARIES[@]}"; do
 
-   echo "Building INDI Lilbrary: "${LIB} 
+   echo "Building INDI Lilbrary: ${LIB}" 
 
+   # Clean up previous cmake
+   echo "Cleaning up ${LIB} build directory if it exist..."
+   cd ~/${BUILDDIR}/build
+   [ -d "${LIB}" ] && rm -rf ${LIB}
+
+   echo "Running cmake for ${LIB}..."
    cmake -B ~/${BUILDDIR}/build/${LIB} -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_LIBS=1 -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${LIB}
 
+   echo "Building and installing ${LIB}..."
    cd ~/${BUILDDIR}/build/${LIB}
    make clean
    make -j ${JOBS}
@@ -107,8 +119,15 @@ for DRIVER in "${INDIDRIVERS[@]}"; do
 
    echo "Building INDI Driver: "${DRIVER}
 
+   # Clean up previous cmake
+   echo "Cleaning up ${DRIVER} build directory if it exist..."
+   cd ~/${BUILDDIR}/build
+   [ -d "${DRIVER}" ] && rm -rf ${DRIVER}
+
+   echo "Running cmake for ${DRIVER}..."
    cmake -B ~/${BUILDDIR}/build/${DRIVER} -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/indi-3rdparty/${DRIVER}
 
+   echo "Building and installing ${DRIVER}..."
    cd ~/${BUILDDIR}/build/${DRIVER}
    make clean
    make -j ${JOBS}
