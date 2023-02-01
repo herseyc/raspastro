@@ -24,26 +24,28 @@ JOBS=4
 # Building PHD2
 ##################################################
 
-echo "Build PHD2 and Install"
-
-# Moved dependencies to install-raspastro-dependencies.sh
-#echo "Installing PHD2 Dependencies..."
-#sudo apt-get install -y build-essential git cmake pkg-config \
-# libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libindi-dev libnova-dev \
-# gettext zlib1g-dev libx11-dev libcurl4-gnutls-dev
-
+echo "Build and Install PHD2"
 cd ~/${BUILDDIR}
+
 echo "Getting PHD2 source..."
 [ ! -d "phd2" ] && git clone https://github.com/OpenPHDGuiding/phd2.git
-echo "Building PHD2..."
 cd phd2
 git pull origin --no-rebase
-mkdir -p ~/${BUILDDIR}/build/phd2
+
+echo "Clean up PHD2 cmake files if they exist..."
+cd ~/${BUILDDIR}/build
+[ -d "phd2" ] && rm -rf phd2
+
+echo "Running cmake for PHD2..."
+cmake -B ~/${BUILDDIR}/build/phd2 ~/${BUILDDIR}/phd2
+
+echo "Building and installing PHD2..."
 cd ~/${BUILDDIR}/build/phd2
-cmake ~/${BUILDDIR}/phd2
 make clean
 make -j ${JOBS}
 sudo make install
+
+echo "PHD2 Installed."
 
 exit
 
