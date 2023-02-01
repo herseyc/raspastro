@@ -35,8 +35,14 @@ cd ~/${BUILDDIR}
 cd stellarsolver
 git pull origin --no-rebase
 
+echo "Cleaning up stellarsolver cmake files if they exist..."
+cd ~/${BUILDDIR}/build
+[ -d "stellarsolver" ] && rm -rf stellarsolver
+
+echo "Running cmake for stellarsolver..."
 cmake -B ~/${BUILDDIR}/build/stellarsolver -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/stellarsolver
 
+echo "Building and installing stellarsolver..."
 cd ~/${BUILDDIR}/build/stellarsolver
 make clean
 make -j ${JOBS}
@@ -53,8 +59,14 @@ cd ~/${BUILDDIR}
 cd kstars
 git pull origin --no-rebase
 
+echo "Cleaning up kstars cmake files if they exist..."
+cd ~/${BUILDDIR}/build
+[ -d "kstars" ] && rm -rf kstars
+
+echo "Running cmake for kstars..."
 cmake -B ~/${BUILDDIR}/build/kstars -DBUILD_TESTING=Off -DCMAKE_BUILD_TYPE=Release ~/${BUILDDIR}/kstars
 
+echo "Building and installing kstars..."
 cd ~/${BUILDDIR}/build/kstars
 make clean
 make -j ${JOBS}
