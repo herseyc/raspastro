@@ -39,39 +39,48 @@ def mooninfo():
     cycle_percent = round((sm_angle / math.tau) * 100, 2)
     moon_data['cycle_percent'] = cycle_percent
 
+    if cycle_percent <= 50:
+        # waxing
+        if moon_phase_percent >= 0 and moon_phase_percent < 15:
+            moon_data['moon_phase_emoji'] = '🌑'
+            moon_data['moon_phase_name'] = 'New Moon'
+        elif moon_phase_percent >= 15 and moon_phase_percent < 35:
+            moon_data['moon_phase_emoji'] = '🌒'
+            moon_data['moon_phase_name'] = 'Crescent'
+        elif moon_phase_percent >= 35 and moon_phase_percent < 65:
+            moon_data['moon_phase_emoji'] = '🌓'
+            moon_data['moon_phase_name'] = 'First Quarter'
+        elif moon_phase_percent >= 65 and moon_phase_percent < 85:
+            moon_data['moon_phase_emoji'] = '🌔'
+            moon_data['moon_phase_name'] = 'Gibbous'
+        elif moon_phase_percent >= 85 and moon_phase_percent <= 100:
+            moon_data['moon_phase_emoji'] = '🌕'
+            moon_data['moon_phase_name'] = 'Full Moon'
+    else:
+        # waning
+        if moon_phase_percent >= 85 and moon_phase_percent <= 100:
+            moon_data['moon_phase_emoji'] = '🌕'
+            moon_data['moon_phase_name'] = 'Full Moon'
+        elif moon_phase_percent >= 65 and moon_phase_percent < 85:
+            moon_data['moon_phase_emoji'] = '🌖'
+            moon_data['moon_phase_name'] = 'Gibbous'
+        elif moon_phase_percent >= 35 and moon_phase_percent < 65:
+            moon_data['moon_phase_emoji'] = '🌗'
+            moon_data['moon_phase_name'] = 'Last Quarter'
+        elif moon_phase_percent >= 15 and moon_phase_percent < 35:
+            moon_data['moon_phase_emoji'] = '🌘'
+            moon_data['moon_phase_name'] = 'Crescent'
+        elif moon_phase_percent >= 0 and moon_phase_percent < 15:
+            moon_data['moon_phase_emoji'] = '🌑'
+            moon_data['moon_phase_name'] = 'New Moon'
 
-    if moon_data["moon_phase_percent"] >= 0 and moon_data["moon_phase_percent"] < 15:
-        moon_data['moon_phase_sign'] = '🌕'
-        moon_data['moon_phase_name'] = 'New Moon'
 
-    elif moon_data["moon_phase_percent"] >= 15 and moon_data["moon_phase_percent"] < 35:
-        moon_data['moon_phase_sign'] = '🌔'
-        moon_data['moon_phase_name'] = 'Crescent'
+    return moon_data
 
-    elif moon_data["moon_phase_percent"] >= 35 and moon_data["moon_phase_percent"] < 65 and moon_date['moon_phase'] == 'Waxing':
-        moon_data['moon_phase_sign'] = '🌓'
-        moon_data['moon_phase_name'] = 'First Quarter'
-
-    elif moon_data["moon_phase_percent"] >= 35 and moon_data["moon_phase_percent"] < 65 and moon_date['moon_phase'] == 'Waning':
-        moon_data['moon_phase_sign'] = '🌓'
-        moon_data['moon_phase_name'] = 'Last Quarter'
-
-    elif moon_data["moon_phase_percent"] >= 65 and moon_data["moon_phase_percent"] < 85:
-        moon_data['moon_phase_sign'] = '🌒'
-        moon_data['moon_phase_name'] = 'Gibbous'
-
-    elif moon_data["moon_phase_percent"] >= 85 and moon_data["moon_phase_percent"] <= 100:
-        moon_data['moon_phase_sign'] = '🌑'
-        moon_data['moon_phase_name'] = 'Full Moon'
+moon_information = mooninfo()
 
 
-    for key in moon_data:
-        print(f"{key} = {moon_data[key]}")
-
-mooninfo()
-#print(f"Percent Illuminated: {round(moon_data['moon_phase_percent'])}%")
-
-
+print(moon_information)
 
 
 
