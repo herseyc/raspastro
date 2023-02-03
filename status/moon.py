@@ -4,6 +4,7 @@ from datetime import datetime
 
 moon_data = {}
 
+
 def mooninfo():
 
     obs = ephem.Observer()
@@ -11,7 +12,6 @@ def mooninfo():
     obs.lon = -76.535577396
     obs.lat = 36.779397335
     obs.date = datetime.utcnow()
-
 
     sun = ephem.Sun()
     sun.compute(obs)
@@ -22,7 +22,6 @@ def mooninfo():
     #Determine Moon %Illuminated Phase
     moon_phase_percent = round(moon.moon_phase * 100)
     moon_data["moon_phase_percent"] = moon_phase_percent 
-
 
     sun_lon = ephem.Ecliptic(sun).lon
     moon_lon = ephem.Ecliptic(moon).lon
@@ -74,11 +73,10 @@ def mooninfo():
             moon_data['moon_phase_emoji'] = '🌑'
             moon_data['moon_phase_name'] = 'New Moon'
 
-
     return moon_data
 
-moon_information = mooninfo()
 
+moon_information = mooninfo()
 
 print(moon_information)
 
