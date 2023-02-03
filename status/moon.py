@@ -2,8 +2,9 @@ import ephem
 import math
 from datetime import datetime
 
-moon_data = {}
+# Tinkering with ephem module to get data about the moon.
 
+moon_data = {}
 
 def mooninfo():
 
@@ -15,6 +16,10 @@ def mooninfo():
 
     sun = ephem.Sun()
     sun.compute(obs)
+
+    moon_data['astronomical_twilight_starts'] = ephem.localtime(obs.next_setting(sun)).ctime()
+    moon_data['astronomical_twilight_ends'] = ephem.localtime(obs.next_rising(sun)).ctime()
+
 
     moon = ephem.Moon()
     moon.compute(obs)
@@ -72,6 +77,9 @@ def mooninfo():
         elif moon_phase_percent >= 0 and moon_phase_percent < 15:
             moon_data['moon_phase_emoji'] = '🌑'
             moon_data['moon_phase_name'] = 'New Moon'
+
+    moon_data['next_new_moon'] = ephem.localtime(ephem.next_new_moon(obs.date)).ctime()
+    moon_data['next_full_moon'] = ephem.localtime(ephem.next_full_moon(obs.date)).ctime()
 
     return moon_data
 

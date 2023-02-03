@@ -7,6 +7,7 @@ from flask import Flask, render_template
 from gevent.pywsgi import WSGIServer
 from gps3 import agps3
 from time import sleep
+from astroinfo import AstroData
 
 WEB_PORT = 5000
 WEB_HOST = "0.0.0.0"
@@ -31,7 +32,17 @@ for new_data in the_connection:
       gpsfixtype = the_fix.mode
       gpslatitude = the_fix.lat
       gpslongitude = the_fix.lon
-      print(f"Fix: {gpsfixtype} Lat: {gpslatitude} Lon: {gpslongitude}")
+      if the_fix.mode != "n/a":
+         print(f"Fix: {gpsfixtype} Lat: {gpslatitude} Lon: {gpslongitude}")
+         break
    else:
       print("Waiting...")
       sleep(1)
+
+the_connection.close()
+
+astro = AstroData()
+
+print(astro.astro_data)
+
+
