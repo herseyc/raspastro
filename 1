@@ -1,0 +1,7 @@
+from urllib import *
+
+iss_ephermdata = "https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS.OEM_J2K_EPH.txt"
+f = urllib.request.urlopen(iss_ephermdata)
+iss_epherm = f.read()
+
+print(iss_epherm)
