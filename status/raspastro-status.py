@@ -41,11 +41,14 @@ for new_data in the_connection:
 
 the_connection.close()
 
+# Intialize AstroData with GPS lat and lon coordinates
 astro = AstroData(obslat=gpslatitude, obslon=gpslongitude)
 
+# Get Moon Info
 moon = astro.mooninfo()
 print(moon)
 
+# Get Sun Info
 sun = astro.suninfo()
 print(sun)
 
