@@ -7,7 +7,7 @@ from flask import Flask, render_template
 from gevent.pywsgi import WSGIServer
 from gps3 import agps3
 from time import sleep
-from astroinfo import AstroData
+from raspastroinfo import AstroData
 
 WEB_PORT = 5000
 WEB_HOST = "0.0.0.0"
