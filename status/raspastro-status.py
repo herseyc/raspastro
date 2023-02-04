@@ -41,8 +41,12 @@ for new_data in the_connection:
 
 the_connection.close()
 
-astro = AstroData()
+astro = AstroData(obslat=gpslatitude, obslon=gpslongitude)
 
-print(astro.astro_data)
+moon = astro.mooninfo()
+print(moon)
+
+sun = astro.suninfo()
+print(sun)
 
 
