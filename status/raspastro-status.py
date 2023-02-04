@@ -45,11 +45,11 @@ the_connection.close()
 astro = AstroData(obslat=gpslatitude, obslon=gpslongitude)
 
 # Get Moon Info
-moon = astro.mooninfo()
+moon = astro.moon_info()
 print(moon)
 
 # Get Sun Info
-sun = astro.suninfo()
+sun = astro.sun_info()
 print(sun)
 
 

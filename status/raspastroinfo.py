@@ -14,7 +14,7 @@ class AstroData():
         self.obs.date = datetime.utcnow()
 
 
-    def suninfo(self):
+    def sun_info(self):
         sun = ephem.Sun()
         sun.compute(self.obs)
         sun_data = {}
@@ -25,7 +25,7 @@ class AstroData():
         return sun_data
 
 
-    def mooninfo(self):
+    def moon_info(self):
         sun = ephem.Sun()
         sun.compute(self.obs)
         moon = ephem.Moon()
