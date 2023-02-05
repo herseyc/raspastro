@@ -32,5 +32,5 @@ sudo apt -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
 	libindi-dev libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libx11-dev 
 
 echo "Installing python packages..."
-sudo pip3 install netifaces gps3 ephem pypredict
+sudo pip3 install netifaces gps3 ephem 
 exit
