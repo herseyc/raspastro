@@ -58,6 +58,7 @@ iss = ISSData(obslat=gpslatitude, obslon=gpslongitude)
 
 # Get ISS Next Passes
 iss_next_passes = iss.iss_passes()
-print(iss_next_passes)
+for i in iss_next_passes:
+    print(i['aos'], i['los'])
 
 

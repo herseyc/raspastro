@@ -8,15 +8,15 @@ from urllib import request
 class ISSData():
 
     def __init__(self, **kw):
-        obslat = 36.779397335
-        obslon = -76.535577396
-        self.obsepoch = datetime.utcnow()
-        obselev = 3
+        obslat = kw.get("obslat", 36.779397335)
+        obslon = kw.get("obslon", -76.535577396)
+        obsepoch = kw.get("obsepoch", datetime.utcnow())
+        obselev = kw.get("obslev", 3)
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
         self.obs.lat = obslat
-        self.obs.date = self.obsepoch
+        self.obs.date = obsepoch
         self.obs.elev = obselev
         self.degrees_per_radian = 180.0 / math.pi
         self.iss_tle()
@@ -49,7 +49,7 @@ class ISSData():
     def iss_passes(self, **kw):
         # https://stackoverflow.com/questions/52591629/pyephem-and-pypredict-gpredict-differences
         station = self.obs
-        start = self.obsepoch 
+        start = self.obs.date 
         satellite = self.iss_telemetry
         duration = 5
         iss_next_passes = []
@@ -60,6 +60,6 @@ class ISSData():
             iss_next_passes.append({'aos': t_aos.datetime(), 'los': t_los.datetime()})
             station.date = t_los + ephem.second
        
-        station.date = self.obsepoch
+        station.date = start
         return iss_next_passes
 
