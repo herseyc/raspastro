@@ -8,6 +8,7 @@ from gevent.pywsgi import WSGIServer
 from gps3 import agps3
 from time import sleep
 from raspastroinfo import AstroData
+from raspissinfo import ISSData
 
 WEB_PORT = 5000
 WEB_HOST = "0.0.0.0"
@@ -51,5 +52,12 @@ print(moon)
 # Get Sun Info
 sun = astro.sun_info()
 print(sun)
+
+# Get ISS Info
+iss = ISSData(obslat=gpslatitude, obslon=gpslongitude)
+
+# Get ISS Next Passes
+iss_next_passes = iss.iss_passes()
+print(iss_next_passes)
 
 

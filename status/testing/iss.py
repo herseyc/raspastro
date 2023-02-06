@@ -74,4 +74,4 @@ print(f"ISS Elevation: {round(iss_elevation / 1609, 2)} Miles")
 print(f"ISS RA: {iss_telemetry.ra}")
 print(f"ISS DEC: {iss_telemetry.dec}")
 
-
+print("exit")
