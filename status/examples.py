@@ -39,6 +39,7 @@ print(moon)
 # Get Sun Info
 sun = astro.sun_info()
 print(sun)
+print(f"Twilight: {sun['astronomical_twilight_starts']}")
 
 # Initialize ISSData 
 # Optional Keyword args:

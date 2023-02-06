@@ -25,8 +25,11 @@ class AstroData():
         sun.compute(obs)
         sun_data = {}
 
-        sun_data['astronomical_twilight_starts'] = ephem.localtime(self.obs.next_setting(sun)).ctime()
-        sun_data['astronomical_twilight_ends'] = ephem.localtime(self.obs.next_rising(sun)).ctime()
+        # UTC Time
+        next_twilight_starts = self.obs.next_setting(sun)
+        next_twilight_ends = self.obs.next_rising(sun)
+        sun_data['astronomical_twilight_starts'] = next_twilight_starts
+        sun_data['astronomical_twilight_ends'] = next_twilight_ends
          
         return sun_data
 
@@ -93,8 +96,9 @@ class AstroData():
                 moon_data['moon_phase_emoji'] = '🌑'
                 moon_data['moon_phase_name'] = 'New Moon'
 
-        moon_data['next_new_moon'] = ephem.localtime(ephem.next_new_moon(self.obs.date)).ctime()
-        moon_data['next_full_moon'] = ephem.localtime(ephem.next_full_moon(self.obs.date)).ctime()
+        # UTC Time
+        moon_data['next_new_moon'] = ephem.next_new_moon(self.obs.date)
+        moon_data['next_full_moon'] = ephem.next_full_moon(self.obs.date)
 
         return moon_data
        
