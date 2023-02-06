@@ -48,10 +48,10 @@ class ISSData():
 
     def iss_passes(self, **kw):
         # https://stackoverflow.com/questions/52591629/pyephem-and-pypredict-gpredict-differences
-        station = self.obs
-        start = self.obs.date 
-        satellite = self.iss_telemetry
-        duration = 5
+        station = kw.get("station", self.obs)
+        start = kw.get("start", self.obs.date) 
+        satellite = kw.get("satellite", self.iss_telemetry)
+        duration = kw.get("duration", 5)
         iss_next_passes = []
         end = ephem.date(station.date + duration)
 

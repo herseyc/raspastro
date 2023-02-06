@@ -44,6 +44,7 @@ the_connection.close()
 
 # Intialize AstroData with GPS lat and lon coordinates
 astro = AstroData(obslat=gpslatitude, obslon=gpslongitude)
+print(astro.obs.date)
 
 # Get Moon Info
 moon = astro.moon_info()
@@ -53,11 +54,16 @@ print(moon)
 sun = astro.sun_info()
 print(sun)
 
-# Get ISS Info
+# Initialize AstroData with GPS lat and lon coordinates
 iss = ISSData(obslat=gpslatitude, obslon=gpslongitude)
+print(iss.obs.date)
+
+print(f"ISS Geocentric Lat: {iss.iss_telemetry.sublat}")
+print(f"ISS Geocentric Lon: {iss.iss_telemetry.sublong}")
+print(f"ISS Elevation: {round(iss.iss_telemetry.elevation / 1609, 2)} Miles")
 
 # Get ISS Next Passes
-iss_next_passes = iss.iss_passes()
+iss_next_passes = iss.iss_passes(duration=3)
 for i in iss_next_passes:
     print(i['aos'], i['los'])
 
