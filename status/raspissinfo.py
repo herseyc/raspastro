@@ -7,11 +7,11 @@ from urllib import request
 class ISSData():
 
     def __init__(self, **kw):
-        obslat = kw.get("obslat", 36.779397335)
-        obslon = kw.get("obslon", -76.535577396)
+        obslat = kw.get("obslat", "36:43:41.538")
+        obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
-        obshorizon = kw.get("obshorizon", '-0:34')
+        obshorizon = kw.get("obshorizon", '10:34')
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
@@ -49,24 +49,22 @@ class ISSData():
 
     def iss_passes(self, **kw):
         # https://stackoverflow.com/questions/52591629/pyephem-and-pypredict-gpredict-differences
-        station = kw.get("station", self.obs)
+        station = kw.get("station", self.obs.copy())
         start = kw.get("start", self.obs.date) 
         # TODO FIX THIS UP TO TAKE TLE
         sat_name = kw.get("sat_name", self.iss_module_name)
-        sat_tle1 = kw.get("sat_name", self.iss_tle1)
-        sat_tle2 = kw.get("sat_name", self.iss_tle2)
+        sat_tle1 = kw.get("sat_tle1", self.iss_tle1)
+        sat_tle2 = kw.get("sat_tle2", self.iss_tle2)
         duration = kw.get("duration", 5)
         iss_next_passes = []
         end = ephem.date(station.date + duration)
+        sat = ephem.readtle(sat_name, sat_tle1, sat_tle2)
         while station.date < end:
-            # TODO - Need to figure out how to determine if a sat is ecliped or not.
-            # Compute iss_telemetry for current to get eclipsed
-            sat = ephem.readtle(sat_name, sat_tle1, sat_tle2)
+            # Compute iss_telemetry for current station to get eclipsed
             sat.compute(station)
             t_aos, azr, t_max, alt_max, t_los, azs = station.next_pass(sat)
             iss_next_passes.append({'eclipsed': sat.eclipsed, 'aos': t_aos.datetime(), 'los': t_los.datetime(), 'azr': azr, 't_max': t_max, 'alt_max': alt_max, 'azs': azs})
             station.date = t_los + ephem.second
        
-        #station.date = start
         return iss_next_passes
 

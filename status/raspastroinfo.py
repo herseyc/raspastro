@@ -5,15 +5,17 @@ from datetime import datetime
 class AstroData():
    
     def __init__(self, **kw):
-        obslat = kw.get("obslat", 36.779397335)
-        obslon = kw.get("obslon", -76.535577396)
+        obslat = kw.get("obslat", "36:43:41.538")
+        obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
+        obshorizon = kw.get("obshorizon", "10:34")
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
         self.obs.lat = obslat
         self.obs.elev = obselev
+        self.obs.horizon = obshorizon
         self.obs.date = datetime.utcnow()
 
 

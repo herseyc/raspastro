@@ -24,8 +24,8 @@ def meters_to_miles(meters):
 
 # Intialize AstroData 
 # Optional Keyword args:
-# obslat = Observer Latitude (Default: 36.779397335)
-# obslon = Observers Longitude (Default: -76.535577396)
+# obslat = Observer Latitude (Default: 36:43:41.538)
+# obslon = Observers Longitude (Default: -76:35:0.8232)
 # obsepoch = Observation Time in UTC (Default: datetime.utcnow()))
 # obselev = Observers Elevation (Default: 3) (meters)
 
@@ -42,12 +42,18 @@ print(sun)
 
 # Initialize ISSData 
 # Optional Keyword args:
-# obslat = Observer Latitude (Default: 36.779397335)
-# obslon = Observers Longitude (Default: -76.535577396)
+# obslat = Observer Latitude (Default: 36:43:41.538)
+# obslon = Observers Longitude (Default: -76:35:0.8232)
 # obsepoch = Observation Time in UTC (Default: datetime.utcnow()))
 # obselev = Observers Elevation (Default: 3) (meters)
 iss = ISSData()
 print(iss.obs.date)
+print(f"Observer lat: {iss.obs.lat}")
+print(f"Observer lon: {iss.obs.lon}")
+print(f"Observer horizon: {iss.obs.horizon}")
+print(iss.iss_module_name)
+print(iss.iss_tle1)
+print(iss.iss_tle2)
 
 print(f"ISS Eclipsed: {iss.iss_telemetry.eclipsed}")
 print(f"ISS Geocentric Lat: {iss.iss_telemetry.sublat}")
@@ -55,7 +61,7 @@ print(f"ISS Geocentric Lon: {iss.iss_telemetry.sublong}")
 print(f"ISS Elevation: {iss.iss_telemetry.elevation} Meters")
 print(f"ISS Elevation: {meters_to_miles(iss.iss_telemetry.elevation)} Miles")
 
-# Get ISS Visible Next Passes
+# Get ISS Next Passes
 # station = ephem.Observer() (default is intilized observer)
 # start = start date/time (default is self.obs.date)
 # satellite = tle data (default is self.iss_telemetry)
@@ -63,11 +69,11 @@ print(f"ISS Elevation: {meters_to_miles(iss.iss_telemetry.elevation)} Miles")
 iss_next_passes = iss.iss_passes(duration=3)
 
 # ISS pass start and end time (times in UTC)
-print("Visible ISS Passes (Times UTC)")
+print("ISS Passes (Times UTC)")
 for i in iss_next_passes:
     print(i['eclipsed'], i['aos'], i['los'])
 
-print("Visible ISS passes converted to local time")
+print("Visible (eclipsed=False) ISS passes converted to local time")
 for i in iss_next_passes:
     if not i['eclipsed']: 
        print(i['eclipsed'], to_local(i['aos']), to_local(i['los']) , i['alt_max'] * (180.0 / math.pi))
