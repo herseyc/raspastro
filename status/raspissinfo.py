@@ -4,7 +4,6 @@ from datetime import datetime
 from urllib import request
 
 
-
 class ISSData():
 
     def __init__(self, **kw):
@@ -53,19 +52,21 @@ class ISSData():
         station = kw.get("station", self.obs)
         start = kw.get("start", self.obs.date) 
         # TODO FIX THIS UP TO TAKE TLE
-        satellite = kw.get("satellite", self.iss_telemetry)
+        sat_name = kw.get("sat_name", self.iss_module_name)
+        sat_tle1 = kw.get("sat_name", self.iss_tle1)
+        sat_tle2 = kw.get("sat_name", self.iss_tle2)
         duration = kw.get("duration", 5)
         iss_next_passes = []
         end = ephem.date(station.date + duration)
         while station.date < end:
             # TODO - Need to figure out how to determine if a sat is ecliped or not.
             # Compute iss_telemetry for current to get eclipsed
-            sat = ephem.readtle(self.iss_module_name, self.iss_tle1, self.iss_tle2)
+            sat = ephem.readtle(sat_name, sat_tle1, sat_tle2)
             sat.compute(station)
             t_aos, azr, t_max, alt_max, t_los, azs = station.next_pass(sat)
             iss_next_passes.append({'eclipsed': sat.eclipsed, 'aos': t_aos.datetime(), 'los': t_los.datetime(), 'azr': azr, 't_max': t_max, 'alt_max': alt_max, 'azs': azs})
             station.date = t_los + ephem.second
        
-        station.date = start
+        #station.date = start
         return iss_next_passes
 

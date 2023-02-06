@@ -65,7 +65,7 @@ iss_next_passes = iss.iss_passes(duration=3)
 # ISS pass start and end time (times in UTC)
 print("Visible ISS Passes (Times UTC)")
 for i in iss_next_passes:
-    print(i['aos'], i['los'])
+    print(i['eclipsed'], i['aos'], i['los'])
 
 print("Visible ISS passes converted to local time")
 for i in iss_next_passes:
