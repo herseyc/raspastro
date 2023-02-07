@@ -1,3 +1,10 @@
+########################################################
+# raspastroinfo.py
+# AstroData Class
+# Create lists of Sun and Moon info using ephem
+#
+# Visit my EAA site: http://www.suffolksky.com/
+########################################################
 import ephem
 import math
 from datetime import datetime
@@ -5,6 +12,7 @@ from datetime import datetime
 class AstroData():
    
     def __init__(self, **kw):
+        ''' Initialize Observer Data '''
         obslat = kw.get("obslat", "36:43:41.538")
         obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
@@ -20,6 +28,7 @@ class AstroData():
 
 
     def sun_info(self, **kw):
+        ''' Sun Information '''
         obs = kw.get("obs", self.obs)
         sun = ephem.Sun()
         sun.compute(obs)
@@ -39,6 +48,7 @@ class AstroData():
 
 
     def moon_info(self, **kw):
+        ''' Moon Information '''
         obs = kw.get("obs", self.obs)
         sun = ephem.Sun()
         sun.compute(obs)
