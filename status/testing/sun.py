@@ -1,13 +1,11 @@
-########################################################
-# Just some different calculations for RaspAstro       #
-########################################################
-from dateutil import tz
 from datetime import datetime
+from dateutil import tz
 import requests
 
-########################################
-# function to convert UTC to localtime #
-########################################
+MY_LAT = 36.7794571 # Your latitude
+MY_LON = -76.5355366 # Your longitude
+
+
 def to_local(time):
     from_zone = tz.tzutc()
     to_zone = tz.tzlocal()
@@ -15,21 +13,13 @@ def to_local(time):
     local_time = time.astimezone(to_zone)
     return local_time
 
-########################################
-# function to convert Meters to Miles  #
-########################################
-def meters_to_miles(meters):
-    miles = round(meters / 1609, 2)
-    return miles
 
-###################################################
-# function to check if UTC is a night local time  #
-###################################################
+
 def is_at_night(checkdate, lat, lon):
     '''
     determine if UTC (checkdate) for location (lat, lon) is daytime
     or nighttime in local time based on Sunrise-Sunset.org API
-    return True if nighttime, False if daytime
+    return True if nighttime, False if daytime 
     '''
     #Get sunrise/sunset for UTC checkdate from Sunrise-Sunset.org API
     fordate = f"{checkdate.year}-{checkdate.month}-{checkdate.day}"
@@ -50,7 +40,7 @@ def is_at_night(checkdate, lat, lon):
     local_sunrise_min = (local_sunrise.hour * 60) + local_sunrise.minute
     local_sunset = to_local(datetime.fromisoformat(data["results"]["sunset"]))
     local_sunset_min = (local_sunset.hour * 60) + local_sunset.minute
-
+    
     # convert UTC to local time
     local_checkdate = to_local(checkdate)
     # get local minutes since midnight
@@ -60,3 +50,20 @@ def is_at_night(checkdate, lat, lon):
         return False
     else:
         return True
+
+# Test
+checkdate = datetime.fromisoformat("2023-02-09 01:33:50.364767")
+print(checkdate)
+is_night = is_at_night(checkdate, MY_LAT, MY_LON)
+if is_night:
+   print("Nighttime")
+else:
+   print("Daytime")
+
+checkdate = datetime.fromisoformat("2023-02-09 15:33:50.364767")
+print(checkdate)
+is_night = is_at_night(checkdate, MY_LAT, MY_LON)
+if is_night:
+   print("Nighttime")
+else:
+   print("Daytime")

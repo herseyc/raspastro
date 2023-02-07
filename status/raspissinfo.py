@@ -63,7 +63,7 @@ class ISSData():
             # Compute iss_telemetry for current station to get eclipsed
             sat.compute(station)
             t_aos, azr, t_max, alt_max, t_los, azs = station.next_pass(sat)
-            iss_next_passes.append({'eclipsed': sat.eclipsed, 'aos': t_aos.datetime(), 'los': t_los.datetime(), 'azr': azr, 't_max': t_max, 'alt_max': alt_max, 'azs': azs})
+            iss_next_passes.append({'eclipsed': sat.eclipsed, 'aos': t_aos, 'los': t_los, 'azr': azr, 't_max': t_max, 'alt_max': alt_max, 'azs': azs})
             station.date = t_los + ephem.second
        
         return iss_next_passes

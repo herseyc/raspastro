@@ -9,19 +9,8 @@ from dateutil import tz
 import math
 from rasp_calc_func import *
 
-# function convert utc to local time
-#def to_local(time):
-#    from_zone = tz.tzutc()
-#    to_zone = tz.tzlocal()
-#    time = time.replace(tzinfo=from_zone)
-#    local_time = time.astimezone(to_zone)
-#    return local_time
-#
-# function to convert Meters to Miles
-#def meters_to_miles(meters):
-#    miles = round(meters / 1609, 2)
-#    return miles
-
+MY_LAT = 36.7794571 # Your latitude
+MY_LON = -76.5355366 # Your longitude
 
 print("=====================================")
 print("AstroData Examples")
@@ -93,9 +82,10 @@ iss_next_passes = iss.iss_passes(duration=3)
 #for i in iss_next_passes:
 #    print(i['eclipsed'], i['aos'], i['los'])
 
-print("Visible (eclipsed=False) ISS passes converted to local time")
+print("Visible (eclipsed=False) and (is_at_night=True) ISS passes converted to local time")
 for i in iss_next_passes:
-    if not i['eclipsed']: 
-       print(i['eclipsed'], to_local(i['aos']), to_local(i['los']) , math.degrees(i['alt_max']))
+    if not i['eclipsed'] and is_at_night(i['aos'].datetime(), MY_LAT, MY_LON): 
+       print(i['aos'].datetime())
+       print(i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
    
 
