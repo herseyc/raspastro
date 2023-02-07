@@ -9,7 +9,7 @@ for dd in list:
     degrees = int(dd)
     temp = 60 * (dd - degrees)
     minutes = int(temp)
-    seconds = round(60 * (temp - minutes), 4)
+    seconds = round(60 * (temp - minutes), 1)
     dms = f"{degrees}:{abs(minutes)}:{abs(seconds)}"
     print(dms)
 
