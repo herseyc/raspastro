@@ -60,7 +60,7 @@ print(f"Satellite: {iss.iss_module_name}")
 print(f"tle1: {iss.iss_tle1}")
 print(f"tle2: {iss.iss_tle2}")
 
-print("========ISS Info========")
+print("========Current ISS Info========")
 print(f"ISS Eclipsed: {iss.iss_telemetry.eclipsed}")
 print(f"ISS Geocentric Lat: {iss.iss_telemetry.sublat}")
 print(f"ISS Geocentric Lon: {iss.iss_telemetry.sublong}")
@@ -75,17 +75,17 @@ print("========ISS Passes========")
 # sat_tle1 = tle1 data line (default is self.iss_tle1)
 # sat_tle2 = tle2 data line (default is self.iss_tle2)
 # duration = number of days to show passes for (Default: 5)
-iss_next_passes = iss.iss_passes(duration=3)
+iss_next_passes = iss.iss_passes(duration=5)
 
 # ISS pass start and end time (times in UTC)
 #print("ISS Passes (Times UTC)")
 #for i in iss_next_passes:
 #    print(i['eclipsed'], i['aos'], i['los'])
 
-print("Visible (eclipsed=False) and (is_at_night=True) ISS passes converted to local time")
+print("Visible (eclipsed=False) and (is_at_night=True) ISS passes") 
+print("Time is converted to local time")
 for i in iss_next_passes:
     if not i['eclipsed'] and is_at_night(i['aos'].datetime(), MY_LAT, MY_LON): 
-       print(i['aos'].datetime())
        print(i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
    
 
