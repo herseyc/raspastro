@@ -1,6 +1,7 @@
 ########################################################
 # Just some different calculations for RaspAstro       #
 ########################################################
+from dateutil import tz
 
 ########################################
 # function to convert UTC to localtime #

@@ -28,8 +28,12 @@ class AstroData():
         # UTC Time
         next_twilight_starts = self.obs.next_setting(sun)
         next_twilight_ends = self.obs.next_rising(sun)
-        sun_data['astronomical_twilight_starts'] = next_twilight_starts
-        sun_data['astronomical_twilight_ends'] = next_twilight_ends
+        sun_data['astronomical_twilight_starts'] = self.obs.next_setting(sun)
+        sun_data['astronomical_twilight_ends'] = self.obs.next_rising(sun)
+        sun_data['previous_solstice'] = ephem.previous_solstice(obs.date)
+        sun_data['previous_equinox'] = ephem.previous_equinox(obs.date)
+        sun_data['next_solstice'] = ephem.next_solstice(obs.date)
+        sun_data['next_equinox'] = ephem.next_equinox(obs.date)
          
         return sun_data
 
