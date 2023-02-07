@@ -9,6 +9,10 @@ import requests
 # function to convert UTC to localtime #
 ########################################
 def to_local(time):
+    '''
+    Convert UTC (time) to local time
+    Returns local time
+    '''
     from_zone = tz.tzutc()
     to_zone = tz.tzlocal()
     time = time.replace(tzinfo=from_zone)
@@ -19,6 +23,10 @@ def to_local(time):
 # function to convert Meters to Miles  #
 ########################################
 def meters_to_miles(meters):
+    '''
+    Convert meters (meters) to miles
+    Returns miles
+    '''
     miles = round(meters / 1609, 2)
     return miles
 
