@@ -75,7 +75,7 @@ print("========ISS Passes========")
 # sat_tle1 = tle1 data line (default is self.iss_tle1)
 # sat_tle2 = tle2 data line (default is self.iss_tle2)
 # duration = number of days to show passes for (Default: 5)
-iss_next_passes = iss.iss_passes(duration=5)
+iss_next_passes = iss.iss_passes(duration=3)
 
 # ISS pass start and end time (times in UTC)
 #print("ISS Passes (Times UTC)")
