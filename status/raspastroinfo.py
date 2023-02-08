@@ -17,7 +17,7 @@ class AstroData():
         obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
-        obshorizon = kw.get("obshorizon", "10:34")
+        obshorizon = kw.get("obshorizon", "0:34")
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon

@@ -7,6 +7,7 @@ from raspissinfo import ISSData
 from datetime import datetime
 from dateutil import tz
 import math
+import time
 from rasp_calc_func import *
 
 MY_LAT = 36.7794571 # Your latitude
@@ -85,6 +86,8 @@ iss_next_passes = iss.iss_passes(duration=3)
 print("Visible (eclipsed=False) and (is_at_night=True) ISS passes") 
 print("Time is converted to local time")
 for i in iss_next_passes:
+    # Sleep for 1 second to not overwhelm Sunrise-Sunset.org
+    time.sleep(1)
     if not i['eclipsed'] and is_at_night(i['aos'].datetime(), MY_LAT, MY_LON): 
        print(i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
    
