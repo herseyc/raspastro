@@ -4,7 +4,7 @@ from datetime import datetime
 from urllib import request
 
 
-class ISSData():
+class ISSData:
 
     def __init__(self, **kw):
         obslat = kw.get("obslat", "36:43:41.538")

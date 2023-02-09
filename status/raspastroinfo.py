@@ -9,7 +9,7 @@ import ephem
 import math
 from datetime import datetime
 
-class AstroData():
+class AstroData:
    
     def __init__(self, **kw):
         ''' Initialize Observer Data '''
@@ -114,8 +114,34 @@ class AstroData():
 
         return moon_data
        
+    def planet_info(self, **kw):
+        ''' Moon Information '''
+        obs = kw.get("obs", self.obs)
+        # Mercury
+        self.mercury = ephem.Mercury()
+        self.mercury.compute(obs)
+      
+        # Venus
+        self.venus = ephem.Venus()
+        self.venus.compute(obs)
+   
+        # Mars
+        self.mars = ephem.Mars()
+        self.mars.compute(obs)
 
+        # Jupiter
+        self.jupiter = ephem.Jupiter()
+        self.jupiter.compute(obs)
 
+        # Saturn
+        self.saturn = ephem.Saturn()
+        self.saturn.compute(obs)
 
+        # Uranus
+        self.uranus = ephem.Uranus()
+        self.uranus.compute(obs)
 
+        # Neptune
+        self.neptune = ephem.Neptune()
+        self.neptune.compute(obs)
 

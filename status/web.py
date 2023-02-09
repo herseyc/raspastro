@@ -8,6 +8,9 @@ from rasp_calc_func import *
 
 app = Flask(__name__)
 
+
+indi_running = ["MAYBE"]
+
 @app.route('/')
 def index():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
@@ -53,7 +56,7 @@ def index():
     sun_data['next_sunrise'] = time_to_human(to_local(sun_data['next_sunrise'].datetime()))
     sun_data['next_solstice'] = time_to_human(to_local(sun_data['next_solstice'].datetime()))
     sun_data['next_equinox'] = time_to_human(to_local(sun_data['next_equinox'].datetime()))
-    return render_template('raspastrostatus.html', iframe=iframe, datetime=current_datetime, isscurrent = iss_current, iss_pass_list=iss_local, moon=moon_data, sun=sun_data)
+    return render_template('raspastrostatus.html', iframe=iframe, datetime=current_datetime, isscurrent = iss_current, iss_pass_list=iss_local, moon=moon_data, sun=sun_data, indi=indi_running)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
