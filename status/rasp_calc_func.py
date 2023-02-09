@@ -68,3 +68,29 @@ def is_at_night(checkdate, lat, lon):
         return False
     else:
         return True
+
+
+def time_to_human(time):
+     day = time.day
+     month = time.month
+     year = time.year
+     hour = time.hour
+     tod = ""
+     if hour > 12:
+        hour -= 12
+        tod = "PM"
+     elif hour == 12:
+        tod = "PM"
+     elif hour == 0:
+        hour = 12
+        tod = "AM"
+     else:
+        tod = "AM"
+     minute = time.minute
+     if minute < 10:
+        minute = f"0{minute}"
+     timezone = time.tzinfo
+     tz = timezone.tzname(time)
+     humantime = f"{month}/{day}/{year} {hour}:{minute} {tod} {tz}"
+     return humantime
+     

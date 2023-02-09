@@ -24,3 +24,9 @@ Sunset Sunrise
 https://sunrise-sunset.org/api
 
 Get Sunrise and Sunset times - used to determine if ISS pass is at night
+
+
+Folium - Manipulate your data in Python, then visualize it in on a Leaflet map via folium. 
+
+https://python-visualization.github.io/folium/
+

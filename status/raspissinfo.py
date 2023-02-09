@@ -24,19 +24,45 @@ class ISSData():
 
 
     def iss_tle(self):
-        # Get ISS Data from Celestrak.org
-        iss_tledata = "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544"
-        f = request.urlopen(iss_tledata)
-        iss = f.readlines()
-
+        tle_data_file = "isstle.data"
+        now_weekday = datetime.now().weekday()
         tle = []
-        for sub in iss:
-            fix = str(sub)
-            fix = fix.split("'")[1].split("'")[0]
-            fix = fix.replace("\\n", "")
-            fix = fix.replace("\\r", "")
-            fix = fix.strip()
-            tle.append(fix)
+        new_file = False
+
+        try:
+            with open(tle_data_file) as tledata:
+                data = tledata.readline()
+                data_list = data.split("|")
+                weekday = int(data_list[0])
+        except:
+            #Make Weekday Somthing that will not test true
+            weekday = datetime.now().weekday() + 6
+
+        # Get tle from celestrak only once per day
+        if weekday == now_weekday:
+            tle.append(data_list[1])
+            tle.append(data_list[2])
+            tle.append(data_list[3])
+        else: 
+            # Get ISS Data from Celestrak.org
+            iss_tledata = "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544"
+            f = request.urlopen(iss_tledata)
+            iss = f.readlines()
+
+            # Remove any extra stuff (\n \r ') from tle
+            for sub in iss:
+                fix = str(sub)
+                fix = fix.split("'")[1].split("'")[0]
+                fix = fix.replace("\\n", "")
+                fix = fix.replace("\\r", "")
+                fix = fix.strip()
+                tle.append(fix)
+            new_file = True
+
+        # Write tle data to tle_data_file
+        if new_file:
+            with open(tle_data_file, "w") as newtledata:
+                newtledata.write(f"{now_weekday}|{tle[0]}|{tle[1]}|{tle[2]}")
 
         # tle data for ephem
         self.iss_module_name = tle[0]

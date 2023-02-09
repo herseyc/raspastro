@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <head>
 <title>RaspAstro Status Page</title>
-<head>
+</head>
 
 <body>
-<p>GPS Fix: {{gpsfixtype}}</p>
+<h1>RaspAstro Status</h1>
 
-<p>GPS Latitude: {{gpslatitude}}</p>
-<p>GPS Longitude: {{gpslongitude}}</p>
+<p>Current Date/Time: {{ datetime }}</p>
+<p>Moon Information</p>
+<table>
+<tr>
+<td>Current Phase:</td><td>{{ moon['moon_phase_emoji'] }} {{ moon['moon_phase_percent'] }}% {{ moon['moon_quarter'] }} {{ moon['moon_phase_name'] }}</td>
+</tr>
+<tr>
+<td>Moon Cycle:</td><td>{{ moon['cycle_percent'] }} % of the 29.53 day cycle</td>
+</tr>
+<tr>
+<td>Next New Moon:</td><td>{{ moon['next_new_moon'] }} </td>
+</tr>
+<tr>
+<td>Next Full Moon:</td><td>{{ moon['next_full_moon'] }} </td>
+</tr>
+</table>
+
+<p>Sun Information</p>
+<table>
+<tr>
+<td>Next Sunrise:</td><td>{{ sun['next_sunrise'] }} </td>
+</tr>
+<tr>
+<td>Next Sunset:</td><td>{{ sun['next_sunset'] }} </td>
+</tr>
+<tr>
+<td>Next Equinox:</td><td>{{ sun['next_equinox'] }} </td>
+</tr>
+<tr>
+<td>Next Solstice:</td><td>{{ sun['next_solstice'] }} </td>
+</tr>
+</table>
+
+<p>ISS Current Information</p>
+<table>
+<tr>
+<td>ISS Geocentric Lat:</td><td>{{ isscurrent['geolat'] }}</td>
+</tr>
+<tr>
+<td>ISS Geocentric Lon:</td><td>{{ isscurrent['geolong'] }}</td>
+</tr>
+<tr>
+<td>ISS Elevation:</td><td>{{ isscurrent['elevation_miles'] }} Miles</td>
+</tr>
+</table>
+
+{{ iframe|safe }}
+
+<p>ISS Passes</p>
+
+<table>
+<tr>
+<td>Start Time</td><td></td><td>End Time</td>
+</tr>
+  {% for pass in iss_pass_list %}
+<tr>
+      <td>{{ pass['aos'] }}</td><td>|</td><td>{{  pass['los'] }}</td>
+</tr>
+  {% endfor %}
+</table>
+
 
 </body>
 

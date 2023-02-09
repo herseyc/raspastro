@@ -38,8 +38,8 @@ sun = astro.sun_info()
 for key in sun:
     print(f"{key} = {sun[key]}")
 
-print(f"Next Astronomical Twilight Start (Local time): {to_local(sun['astronomical_twilight_starts'].datetime())}")
-print(f"Next Astronomical Twilight End (Local time): {to_local(sun['astronomical_twilight_ends'].datetime())}")
+print(f"Next Sunset (Local time): {to_local(sun['next_sunset'].datetime())}")
+print(f"Next Sunrise (Local time): {to_local(sun['next_sunrise'].datetime())}")
 
 print("=====================================")
 print("ISSData Examples")
