@@ -26,8 +26,6 @@ function refreshdata() {
 <body onload="togglesolarsystem()">
 <h1>RaspAstro Status</h1>
 
-<p>Current Date/Time: {{ datetime }}</p>
-
 <div class="panel_container">
 	<div id="displayctl">
 		<button id="togglesolarsystem" onclick="togglesolarsystem();">Solar System</button>
@@ -39,6 +37,9 @@ function refreshdata() {
 <div id="solarsystem">
 <h2>Moon Information</h2>
 <table>
+<tr>
+<td>Moon Altitude:</td><td>{{ moon['moon_alt'] }} degrees</td>
+</tr>
 <tr>
 <td>Current Phase:</td><td>{{ moon['moon_phase_emoji'] }} {{ moon['moon_phase_percent'] }}% {{ moon['moon_quarter'] }} {{ moon['moon_phase_name'] }}</td>
 </tr>
@@ -77,34 +78,8 @@ function refreshdata() {
 </div>
 
 <div id="iss">
+<iframe id="iss_iframe" src="/iss" width="600" height="600" border="0" style="border:none !important;"></iframe>
 
-<h2>ISS Current Information</h2>
-<table>
-<tr>
-<td>ISS Geocentric Lat:</td><td>{{ isscurrent['geolat'] }}</td>
-</tr>
-<tr>
-<td>ISS Geocentric Lon:</td><td>{{ isscurrent['geolong'] }}</td>
-</tr>
-<tr>
-<td>ISS Elevation:</td><td>{{ isscurrent['elevation_miles'] }} Miles</td>
-</tr>
-</table>
-
-{{ iframe|safe }}
-
-<h2>ISS Passes</h2>
-
-<table>
-<tr>
-<td>Start Time</td><td></td><td>End Time</td><td></td><td>Max Altitude</td>
-</tr>
-  {% for pass in iss_pass_list %}
-<tr>
-      <td>{{ pass['aos'] }}</td><td>|</td><td>{{  pass['los'] }}</td><td>|</td><td>{{ pass['alt_max'] }} degrees</td>
-</tr>
-  {% endfor %}
-</table>
 
 </div>
 

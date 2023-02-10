@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+<title>RaspAstro ISS Page</title>
+<meta http-equiv="refresh" content="30">
+</head>
+
+<body>
+<h2>ISS Current Information</h2>
+<table>
+<tr>
+<td>ISS Geocentric Lat:</td><td>{{ isscurrent['geolat'] }}</td>
+</tr>
+<tr>
+<td>ISS Geocentric Lon:</td><td>{{ isscurrent['geolong'] }}</td>
+</tr>
+<tr>
+<td>ISS Elevation:</td><td>{{ isscurrent['elevation_miles'] }} Miles</td>
+</tr>
+</table>
+
+{{ iframe|safe }}
+
+<h2>ISS Passes</h2>
+
+<table>
+<tr>
+<td>Start Time</td><td></td><td>End Time</td><td></td><td>Max Altitude</td>
+</tr>
+  {% for pass in iss_pass_list %}
+<tr>
+      <td>{{ pass['aos'] }}</td><td>|</td><td>{{  pass['los'] }}</td><td>|</td><td>{{ pass['alt_max'] }} degrees</td>
+</tr>
+  {% endfor %}
+</table>
+
+
+</body>
+
+</html>

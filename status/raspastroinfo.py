@@ -33,7 +33,7 @@ class AstroData:
         sun = ephem.Sun()
         sun.compute(obs)
         self.sun_data = {}
-        sun_alt = math.degrees(sun.alt)
+        sun_alt = round(math.degrees(sun.alt), 1)
 
         # UTC Time
         self.sun_data['next_sunset'] = self.obs.next_setting(sun)
@@ -57,6 +57,8 @@ class AstroData:
         #Determine Moon %Illuminated Phase
         moon_phase_percent = round(moon.moon_phase * 100)
         self.moon_data["moon_phase_percent"] = moon_phase_percent 
+
+        self.moon_data["moon_alt"] = round(math.degrees(moon.alt), 1) 
 
         sun_lon = ephem.Ecliptic(sun).lon
         moon_lon = ephem.Ecliptic(moon).lon
