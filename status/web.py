@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from raspissinfo import ISSData
 from raspastroinfo import AstroData
 import time
+import math
 from datetime import datetime
 import folium
 from rasp_calc_func import *
@@ -16,12 +17,15 @@ def index():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
     # ISS Information
     iss = ISSData()
-    iss.iss_passes(duration=7)
+    iss.iss_passes(duration=3)
     iss_local = []
     iss_current = {}
     for i in iss.iss_next_passes:
-        if not i['eclipsed']:
-            iss_local.append({"aos": time_to_human(to_local(i['aos'].datetime())), "los": time_to_human(to_local(i['los'].datetime()))})
+        if not i['eclipsed'] and i['sun_alt'] < 0:
+            iss_local.append({
+                         "aos": time_to_human(to_local(i['aos'].datetime())), 
+                         "los": time_to_human(to_local(i['los'].datetime())), 
+                         "alt_max": round(math.degrees(i['alt_max']))})
 
     iss_current['geolat'] = iss.iss_telemetry.sublat
     iss_current['geolong'] = iss.iss_telemetry.sublong

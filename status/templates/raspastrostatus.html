@@ -56,6 +56,9 @@ function refreshdata() {
 <h2>Sun Information</h2>
 <table>
 <tr>
+<td>Sun Altitude:</td><td>{{ sun['sun_alt'] }} degrees</td>
+</tr>
+<tr>
 <td>Next Sunrise:</td><td>{{ sun['next_sunrise'] }} </td>
 </tr>
 <tr>
@@ -94,11 +97,11 @@ function refreshdata() {
 
 <table>
 <tr>
-<td>Start Time</td><td></td><td>End Time</td>
+<td>Start Time</td><td></td><td>End Time</td><td></td><td>Max Altitude</td>
 </tr>
   {% for pass in iss_pass_list %}
 <tr>
-      <td>{{ pass['aos'] }}</td><td>|</td><td>{{  pass['los'] }}</td>
+      <td>{{ pass['aos'] }}</td><td>|</td><td>{{  pass['los'] }}</td><td>|</td><td>{{ pass['alt_max'] }} degrees</td>
 </tr>
   {% endfor %}
 </table>

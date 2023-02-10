@@ -11,7 +11,7 @@ class ISSData:
         obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
-        obshorizon = kw.get("obshorizon", '10:34')
+        obshorizon = kw.get("obshorizon", '5:34')
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
@@ -75,25 +75,34 @@ class ISSData:
 
     def iss_passes(self, **kw):
         # https://stackoverflow.com/questions/52591629/pyephem-and-pypredict-gpredict-differences
-        station = kw.get("station", self.obs.copy())
-        start = kw.get("start", self.obs.date) 
-        # TODO FIX THIS UP TO TAKE TLE
         sat_name = kw.get("sat_name", self.iss_module_name)
         sat_tle1 = kw.get("sat_tle1", self.iss_tle1)
         sat_tle2 = kw.get("sat_tle2", self.iss_tle2)
         duration = kw.get("duration", 5)
-        self.iss_next_passes = []
+        station = self.obs.copy()
+        sun_station = self.obs.copy()
+
         end = ephem.date(station.date + duration)
         sat = ephem.readtle(sat_name, sat_tle1, sat_tle2)
-        sun = ephem.Sun()
+        thesun = ephem.Sun()
+
+        self.iss_next_passes = []
         while station.date < end:
-            # Get sun altitude
-            sun.compute(station)
+
             # Compute iss_telemetry for current station to get eclipsed
             sat.compute(station)
             t_aos, azr, t_max, alt_max, t_los, azs = station.next_pass(sat)
+
+            # Get sun altitude
+            sun_station.date = t_los
+            thesun.compute(sun_station)
+
+            # Returning sun_alt to determine if at night.  
+            # if sun_alt < 0 sun is below the horizon
+            sun_alt = round(math.degrees(thesun.alt))
+            t_aos, azr, t_max, alt_max, t_los, azs = station.next_pass(sat)
             self.iss_next_passes.append({
-                                       'sun_alt': sun.alt,
+                                       'sun_alt': sun_alt,
                                        'eclipsed': sat.eclipsed, 
                                        'aos': t_aos, 
                                        'los': t_los, 
@@ -103,5 +112,3 @@ class ISSData:
                                        'azs': azs
                                        })
             station.date = t_los + ephem.second
-       
-

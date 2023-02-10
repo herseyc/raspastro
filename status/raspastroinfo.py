@@ -17,7 +17,7 @@ class AstroData:
         obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
-        obshorizon = kw.get("obshorizon", "0:34")
+        obshorizon = kw.get("obshorizon", "5:34")
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
@@ -33,6 +33,7 @@ class AstroData:
         sun = ephem.Sun()
         sun.compute(obs)
         self.sun_data = {}
+        sun_alt = math.degrees(sun.alt)
 
         # UTC Time
         self.sun_data['next_sunset'] = self.obs.next_setting(sun)
@@ -41,6 +42,7 @@ class AstroData:
         self.sun_data['previous_equinox'] = ephem.previous_equinox(obs.date)
         self.sun_data['next_solstice'] = ephem.next_solstice(obs.date)
         self.sun_data['next_equinox'] = ephem.next_equinox(obs.date)
+        self.sun_data['sun_alt'] = sun_alt
          
 
     def moon_info(self, **kw):
