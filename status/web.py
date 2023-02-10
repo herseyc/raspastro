@@ -16,10 +16,10 @@ def index():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
     # ISS Information
     iss = ISSData()
-    iss_next_passes = iss.iss_passes(duration=3)
+    iss.iss_passes(duration=7)
     iss_local = []
     iss_current = {}
-    for i in iss_next_passes:
+    for i in iss.iss_next_passes:
         if not i['eclipsed']:
             iss_local.append({"aos": time_to_human(to_local(i['aos'].datetime())), "los": time_to_human(to_local(i['los'].datetime()))})
 
@@ -48,15 +48,16 @@ def index():
     
     # Sun/Moon/Information
     astro = AstroData()
-    moon_data = astro.moon_info()
-    moon_data['next_full_moon'] = time_to_human(to_local(moon_data['next_full_moon'].datetime()))
-    moon_data['next_new_moon'] = time_to_human(to_local(moon_data['next_new_moon'].datetime()))
-    sun_data = astro.sun_info()
-    sun_data['next_sunset'] = time_to_human(to_local(sun_data['next_sunset'].datetime()))
-    sun_data['next_sunrise'] = time_to_human(to_local(sun_data['next_sunrise'].datetime()))
-    sun_data['next_solstice'] = time_to_human(to_local(sun_data['next_solstice'].datetime()))
-    sun_data['next_equinox'] = time_to_human(to_local(sun_data['next_equinox'].datetime()))
-    return render_template('raspastrostatus.html', iframe=iframe, datetime=current_datetime, isscurrent = iss_current, iss_pass_list=iss_local, moon=moon_data, sun=sun_data, indi=indi_running)
+    astro.moon_info()
+    astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
+    astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
+    astro.sun_info()
+    astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
+    astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
+    astro.sun_data['next_solstice'] = time_to_human(to_local(astro.sun_data['next_solstice'].datetime()))
+    astro.sun_data['next_equinox'] = time_to_human(to_local(astro.sun_data['next_equinox'].datetime()))
+
+    return render_template('raspastrostatus.html', iframe=iframe, datetime=current_datetime, isscurrent = iss_current, iss_pass_list=iss_local, moon=astro.moon_data, sun=astro.sun_data, indi=indi_running)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

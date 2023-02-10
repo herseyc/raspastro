@@ -28,18 +28,18 @@ print(f"Observer Date (Local time): {to_local(astro.obs.date.datetime())}")
 
 print("========Moon Info========")
 # Get Moon Info
-moon = astro.moon_info()
-for key in moon:
-    print(f"{key} = {moon[key]}")
+astro.moon_info()
+for key in astro.moon_data:
+    print(f"{key} = {astro.moon_data[key]}")
 
 print("========Sun Info========")
 # Get Sun Info
 sun = astro.sun_info()
-for key in sun:
-    print(f"{key} = {sun[key]}")
+for key in astro.sun_data:
+    print(f"{key} = {astro.sun_data[key]}")
 
-print(f"Next Sunset (Local time): {to_local(sun['next_sunset'].datetime())}")
-print(f"Next Sunrise (Local time): {to_local(sun['next_sunrise'].datetime())}")
+print(f"Next Sunset (Local time): {to_local(astro.sun_data['next_sunset'].datetime())}")
+print(f"Next Sunrise (Local time): {to_local(astro.sun_data['next_sunrise'].datetime())}")
 
 print("=====================================")
 print("ISSData Examples")
@@ -76,19 +76,17 @@ print("========ISS Passes========")
 # sat_tle1 = tle1 data line (default is self.iss_tle1)
 # sat_tle2 = tle2 data line (default is self.iss_tle2)
 # duration = number of days to show passes for (Default: 5)
-iss_next_passes = iss.iss_passes(duration=3)
+iss.iss_passes(duration=3)
 
 # ISS pass start and end time (times in UTC)
 #print("ISS Passes (Times UTC)")
-#for i in iss_next_passes:
+#for i in iss.iss_next_passes:
 #    print(i['eclipsed'], i['aos'], i['los'])
 
-print("Visible (eclipsed=False) and (is_at_night=True) ISS passes") 
+print("Visible (eclipsed=False) and (sun_alt < 0) ISS passes") 
 print("Time is converted to local time")
-for i in iss_next_passes:
-    # Sleep for 1 second to not overwhelm Sunrise-Sunset.org
-    time.sleep(1)
-    if not i['eclipsed'] and is_at_night(i['aos'].datetime(), MY_LAT, MY_LON): 
-       print(i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
+for i in iss.iss_next_passes:
+    if not i['eclipsed']: 
+       print(i['sun_alt'], i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
    
 
