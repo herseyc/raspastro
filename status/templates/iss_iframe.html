@@ -2,6 +2,7 @@
 <head>
 <title>RaspAstro ISS Page</title>
 <meta http-equiv="refresh" content="30">
+<link rel="stylesheet" href="/static/raspastro-style.css">
 </head>
 
 <body>
@@ -20,6 +21,7 @@
 <td>ISS Elevation:</td><td>{{ isscurrent['elevation_miles'] }} Miles</td>
 </tr>
 </table>
+<p> </p>
 
 {{ iframe|safe }}
 
@@ -27,11 +29,11 @@
 
 <table>
 <tr>
-<td>Start Time</td><td></td><td>End Time</td><td></td><td>Max Altitude</td>
+<td>Start Time</td><td>End Time</td><td>Max Altitude</td>
 </tr>
   {% for pass in iss_pass_list %}
 <tr>
-      <td>{{ pass['aos'] }}</td><td>|</td><td>{{  pass['los'] }}</td><td>|</td><td>{{ pass['alt_max'] }} degrees</td>
+      <td>{{ pass['aos'] }}</td><td>{{  pass['los'] }}</td><td>{{ pass['alt_max'] }} degrees</td>
 </tr>
   {% endfor %}
 </table>
