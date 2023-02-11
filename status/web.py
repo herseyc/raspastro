@@ -12,6 +12,8 @@ import requests
 
 app = Flask(__name__)
 
+PASSDAYS = 5
+
 gps_data = []
 
 def get_gps():
@@ -106,7 +108,8 @@ def iss():
 
     # ISS Information
     iss = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
-    iss.iss_passes(duration=3)
+    days = PASSDAYS
+    iss.iss_passes(duration=days)
     iss_local = []
     iss_current = {}
     for i in iss.iss_next_passes:
@@ -140,7 +143,7 @@ def iss():
     m.add_child(folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')))
     iframe = m.get_root()._repr_html_()
 
-    return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local)
+    return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local, duration=days)
 
 
 
