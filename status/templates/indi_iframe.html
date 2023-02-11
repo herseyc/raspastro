@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+<title>RaspAstro ISS Page</title>
+<meta http-equiv="refresh" content="30">
+<link rel="stylesheet" href="/static/raspastro-style.css">
+</head>
+
+<body>
+<h2>INDI Status</h2>
+
+<table>
+<tr>
+<td>INDI Running:</td><td>{{ indicurrent['status'] }}</td>
+</tr>
+<tr>
+<td>Active Profile:</td><td>{{ indicurrent['active_profile'] }}</td>
+</tr>
+<tr>
+<td valign="top">Running Drivers:</td>
+<td>
+{% for driver in driverlist %}
+ {{ driver }} <br>
+{% endfor %}
+</td>
+</tr>
+</table>
+
+
+</body>
+
+</html>

@@ -17,11 +17,7 @@ function toggleiss() {
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="block";
 	}
-function toggleindi() {
-	document.getElementById("observer").style.display="none";
-	document.getElementById("solarsystem").style.display="none";
-	document.getElementById("iss").style.display="none";
-	}
+
 function refreshdata() {
 	location.reload()
 }
@@ -66,8 +62,8 @@ function refreshdata() {
 <p> </p>
 {{ obsiframe|safe }}
 
-<h2>INDI Status</h2>
-<p>Coming Soon</p>
+<p>
+<iframe id="indi_iframe" src="/indi" width="600" height="800" border="0" style="border:none !important;"></iframe>
 
 </div>
 

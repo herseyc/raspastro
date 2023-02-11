@@ -8,8 +8,11 @@ from datetime import datetime
 import folium
 from rasp_calc_func import *
 import time
+import requests
 
 app = Flask(__name__)
+
+gps_data = []
 
 def get_gps():
     # GPS Data
@@ -37,9 +40,6 @@ def get_gps():
              time.sleep(.5)
     the_connection.close()
 
-
-
-indi_running = ["MAYBE"]
 
 @app.route('/')
 def index():
@@ -73,8 +73,28 @@ def index():
 
     astro.planet_info()
 
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, indi=indi_running)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune)
 
+# INDI Info from INDI Web Manager API
+@app.route('/indi')
+def indi():
+    indi_current = {}
+    indi_status = requests.get("http://localhost:8624/api/server/status")
+    indi_status_data = indi_status.json()
+    indi_current['status'] = indi_status_data[0]['status']
+    indi_current['active_profile'] = indi_status_data[0]['active_profile']
+    if indi_current['status']:
+       driver_status = requests.get("http://localhost:8624/api/server/drivers")
+       driver_status_data = driver_status.json()
+       driver_list = []
+
+       for driver in driver_status_data:
+           driver_list.append(driver['name'])
+    else:
+       driver_list = ["None"]
+
+
+    return render_template('indi_iframe.html', indicurrent=indi_current, driverlist=driver_list)
 
 @app.route('/iss')
 def iss():
