@@ -13,6 +13,7 @@ import requests
 app = Flask(__name__)
 
 PASSDAYS = 5
+INDIWEBMANAGER_API_ENDPOINT = "http://localhost:8624"
 
 gps_data = []
 
@@ -81,12 +82,12 @@ def index():
 @app.route('/indi')
 def indi():
     indi_current = {}
-    indi_status = requests.get("http://localhost:8624/api/server/status")
+    indi_status = requests.get(f"{INDIWEBMANAGER_API_ENDPOINT}/api/server/status")
     indi_status_data = indi_status.json()
     indi_current['status'] = indi_status_data[0]['status']
     indi_current['active_profile'] = indi_status_data[0]['active_profile']
     if indi_current['status']:
-       driver_status = requests.get("http://localhost:8624/api/server/drivers")
+       driver_status = requests.get(f"{INDIWEBMANAGER_API_ENDPOINT}/api/server/drivers")
        driver_status_data = driver_status.json()
        driver_list = []
 
