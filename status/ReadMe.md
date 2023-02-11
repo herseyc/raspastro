@@ -2,9 +2,11 @@ This is a work in progress
 
 ## web.py
 Flash app to display data on webpage. To run:
-'''
+
+```
 python3 web.py
-'''
+```
+
 Will listen on port 5000, so just access at http://ipofdevice:5000 
 Currently requires GPS data, but I will probably update to allow you to define.
 
