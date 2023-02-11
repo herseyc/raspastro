@@ -1,11 +1,13 @@
 from flask import Flask, render_template
 from raspissinfo import ISSData
 from raspastroinfo import AstroData
+from gps3 import agps3
 import time
 import math
 from datetime import datetime
 import folium
 from rasp_calc_func import *
+import time
 
 app = Flask(__name__)
 
@@ -16,8 +18,31 @@ indi_running = ["MAYBE"]
 def index():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
 
+    # GPS Data
+    the_connection = agps3.GPSDSocket()
+    the_fix = agps3.DataStream()
+    the_connection.connect()
+    the_connection.watch()
+    for new_data in the_connection:
+       if new_data:
+          the_fix.unpack(new_data)
+          gpsfixtype = the_fix.mode
+          gpslatitude = the_fix.lat
+          gpslongitude = the_fix.lon
+          gpsaltitude = the_fix.alt
+          if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
+             gpslatdms = convert_dd_to_dms(gpslatitude)
+             gpslondms = convert_dd_to_dms(gpslongitude)
+             global gps_data
+             gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+             break
+       else:
+          time.sleep(.5)
+    the_connection.close()
+
+
     # Sun/Moon/Information
-    astro = AstroData()
+    astro = AstroData(obslat=gps_data[1], obslon=gps_data[2])
     astro.moon_info()
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
@@ -30,14 +55,14 @@ def index():
 
     astro.planet_info()
 
-    return render_template('raspastrostatus.html', datetime=current_datetime, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, indi=indi_running)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata = gps_data, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, indi=indi_running)
 
 
 @app.route('/iss')
 def iss():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
     # ISS Information
-    iss = ISSData()
+    iss = ISSData(obslat=gps_data[1], obslon=gps_data[2])
     iss.iss_passes(duration=3)
     iss_local = []
     iss_current = {}

@@ -93,4 +93,12 @@ def time_to_human(time):
      tz = timezone.tzname(time)
      humantime = f"{month}/{day}/{year} {hour}:{minute} {tod} {tz}"
      return humantime
-     
+
+def convert_dd_to_dms(dd):
+    degrees = int(dd)
+    temp = 60 * (dd - degrees)
+    minutes = int(temp)
+    seconds = round(60 * (temp - minutes), 1)
+    dms = f"{degrees}:{abs(minutes)}:{abs(seconds)}"
+    return dms
+ 

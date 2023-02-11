@@ -2,17 +2,26 @@
 <head>
 <title>RaspAstro</title>
 <script type="text/javascript">
+function toggleobserver() {
+	document.getElementById("observer").style.display="block";
+	document.getElementById("solarsystem").style.display="none";
+	document.getElementById("iss").style.display="none";
+	document.getElementById("indi").style.display="none";
+	}
 function togglesolarsystem() {
+	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="block";
 	document.getElementById("iss").style.display="none";
 	document.getElementById("indi").style.display="none";
 	}
 function toggleiss() {
+	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="block";
 	document.getElementById("indi").style.display="none";
 	}
 function toggleindi() {
+	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="none";
 	document.getElementById("indi").style.display="block";
@@ -24,16 +33,43 @@ function refreshdata() {
 <link rel="stylesheet" href="/static/raspastro-style.css">
 </head>
 
-<body onload="togglesolarsystem()">
+<body onload="toggleobserver()">
 <h1>RaspAstro</h1>
 
 <div class="panel_container">
 	<div id="displayctl">
+		<button id="toggleobserver" onclick="toggleobserver();">Observer</button>
 		<button id="togglesolarsystem" onclick="togglesolarsystem();">Solar System</button>
 		<button id="toggleiss" onclick="toggleiss();">ISS</button>
 		<button id="toggleindi" onclick="toggleindi();">INDI Services</button>
 		<button id="refreshdata" onclick="refreshdata();">Refresh Data</button>
 	</div>
+
+
+<div id="observer">
+<h2>Observer Data</h2>
+<table>
+<tr>
+<td>Observer's Local Time:</td><td>{{ datetime }}</td>
+</tr>
+<tr>
+<td>GPS Fix:</td><td>{{ gpsdata[0] }}</td>
+</tr>
+<tr>
+<td>Observer's Lat:</td><td>{{ gpsdata[1] }}</td>
+</tr>
+<tr>
+<td>Observer's Lon:</td><td>{{ gpsdata[2] }}</td>
+</tr>
+<tr>
+<td>Observer's Elevation:</td><td>{{ gpsdata[3] }} meters</td>
+</tr>
+<tr>
+<td>Observer's Horizon:</td><td></td>
+</tr>
+</table>
+</div>
+
 
 <div id="solarsystem">
 <h2>Moon Information</h2>
