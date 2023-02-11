@@ -10,8 +10,8 @@ import math
 import time
 from rasp_calc_func import *
 
-MY_LAT = 36.7794571 # Your latitude
-MY_LON = -76.5355366 # Your longitude
+MY_LAT = "36:43:41.538" # Your latitude in DMS
+MY_LON = "-76:35:0.8232" # Your longitude in DMS
 
 print("=====================================")
 print("AstroData Examples")
@@ -23,7 +23,7 @@ print("=====================================")
 # obslon = Observers Longitude in DMS (Default: -76:35:0.8232)
 # obsepoch = Observation Time in UTC (Default: datetime.utcnow()))
 # obselev = Observers Elevation (Default: 3) (meters)
-astro = AstroData()
+astro = AstroData(obslat=MY_LAT, obslon=MY_LON)
 print(f"Observer Date (Local time): {to_local(astro.obs.date.datetime())}")
 
 print("========Moon Info========")
@@ -51,7 +51,7 @@ print("=====================================")
 # obslon = Observers Longitude in DMS(Default: -76:35:0.8232)
 # obsepoch = Observation Time in UTC (Default: datetime.utcnow()))
 # obselev = Observers Elevation (Default: 3) (meters)
-iss = ISSData()
+iss = ISSData(obslat=MY_LAT, obslon=MY_LON)
 print("========ISS Observer Info========")
 print(f"Observers date in local time: {to_local(iss.obs.date.datetime())}")
 print(f"Observer lat: {iss.obs.lat}")

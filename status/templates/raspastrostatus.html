@@ -6,25 +6,21 @@ function toggleobserver() {
 	document.getElementById("observer").style.display="block";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="none";
-	document.getElementById("indi").style.display="none";
 	}
 function togglesolarsystem() {
 	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="block";
 	document.getElementById("iss").style.display="none";
-	document.getElementById("indi").style.display="none";
 	}
 function toggleiss() {
 	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="block";
-	document.getElementById("indi").style.display="none";
 	}
 function toggleindi() {
 	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="none";
-	document.getElementById("indi").style.display="block";
 	}
 function refreshdata() {
 	location.reload()
@@ -41,7 +37,6 @@ function refreshdata() {
 		<button id="toggleobserver" onclick="toggleobserver();">Observer</button>
 		<button id="togglesolarsystem" onclick="togglesolarsystem();">Solar System</button>
 		<button id="toggleiss" onclick="toggleiss();">ISS</button>
-		<button id="toggleindi" onclick="toggleindi();">INDI Services</button>
 		<button id="refreshdata" onclick="refreshdata();">Refresh Data</button>
 	</div>
 
@@ -65,33 +60,21 @@ function refreshdata() {
 <td>Observer's Elevation:</td><td>{{ gpsdata[3] }} meters</td>
 </tr>
 <tr>
-<td>Observer's Horizon:</td><td></td>
+<td>Configured Horizon (D:M:S):</td><td>{{ gpsdata[4] }}</td>
 </tr>
 </table>
+<p> </p>
+{{ obsiframe|safe }}
+
+<h2>INDI Status</h2>
+<p>Coming Soon</p>
+
 </div>
 
 
 <div id="solarsystem">
-<h2>Moon Information</h2>
-<table>
-<tr>
-<td>Moon Altitude:</td><td>{{ moon['moon_alt'] }} degrees</td>
-</tr>
-<tr>
-<td>Current Phase:</td><td>{{ moon['moon_phase_emoji'] }} {{ moon['moon_phase_percent'] }}% {{ moon['moon_quarter'] }} {{ moon['moon_phase_name'] }}</td>
-</tr>
-<tr>
-<td>Moon Cycle:</td><td>{{ moon['cycle_percent'] }} % of the 29.53 day cycle</td>
-</tr>
-<tr>
-<td>Next New Moon:</td><td>{{ moon['next_new_moon'] }} </td>
-</tr>
-<tr>
-<td>Next Full Moon:</td><td>{{ moon['next_full_moon'] }} </td>
-</tr>
-</table>
 
-<h2>Sun Information</h2>
+<h2>Sun</h2>
 <table>
 <tr>
 <td>Sun Altitude:</td><td>{{ sun['sun_alt'] }} degrees</td>
@@ -110,7 +93,26 @@ function refreshdata() {
 </tr>
 </table>
 
-<h2>Planet Information</h2>
+<h2>Moon</h2>
+<table>
+<tr>
+<td>Moon Altitude:</td><td>{{ moon['moon_alt'] }} degrees</td>
+</tr>
+<tr>
+<td>Current Phase:</td><td>{{ moon['moon_phase_emoji'] }} {{ moon['moon_phase_percent'] }}% {{ moon['moon_quarter'] }} {{ moon['moon_phase_name'] }}</td>
+</tr>
+<tr>
+<td>Moon Cycle:</td><td>{{ moon['cycle_percent'] }} % of the 29.53 day cycle</td>
+</tr>
+<tr>
+<td>Next New Moon:</td><td>{{ moon['next_new_moon'] }} </td>
+</tr>
+<tr>
+<td>Next Full Moon:</td><td>{{ moon['next_full_moon'] }} </td>
+</tr>
+</table>
+
+<h2>Planets</h2>
 <table>
 <tr>
 <td>Name</td><td>Altitude</td><td>Magnitude</td><td>Sun Distance (AU)</td><td>Earth Distance (AU)</td>
@@ -142,20 +144,11 @@ function refreshdata() {
 
 <div id="iss">
 <iframe id="iss_iframe" src="/iss" width="600" height="800" border="0" style="border:none !important;"></iframe>
-
-
-</div>
-
-<div id="indi">
-HOLDING PLACE FOR INDI Services
-{{ indi[0]  }}
-</div>
-
 </div>
 
 
+</div>
 
 </body>
-
 
 </html>

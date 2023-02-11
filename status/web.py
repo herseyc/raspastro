@@ -11,18 +11,14 @@ import time
 
 app = Flask(__name__)
 
-
-indi_running = ["MAYBE"]
-
-@app.route('/')
-def index():
-    current_datetime = time_to_human(to_local(datetime.utcnow()))
-
+def get_gps():
     # GPS Data
     the_connection = agps3.GPSDSocket()
     the_fix = agps3.DataStream()
     the_connection.connect()
     the_connection.watch()
+    global gpslatitude
+    global gpslongitude
     for new_data in the_connection:
        if new_data:
           the_fix.unpack(new_data)
@@ -33,16 +29,38 @@ def index():
           if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
              gpslatdms = convert_dd_to_dms(gpslatitude)
              gpslondms = convert_dd_to_dms(gpslongitude)
+             # Make global so it can be used by other routes 
              global gps_data
              gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
              break
-       else:
-          time.sleep(.5)
+          else:
+             time.sleep(.5)
     the_connection.close()
 
 
-    # Sun/Moon/Information
-    astro = AstroData(obslat=gps_data[1], obslon=gps_data[2])
+
+indi_running = ["MAYBE"]
+
+@app.route('/')
+def index():
+    # Observer informaiton
+    current_datetime = time_to_human(to_local(datetime.utcnow()))
+
+    get_gps()
+
+    obsm = folium.Map(location=[gpslatitude, gpslongitude], zoom_start=5)
+    obsm.get_root().width = "450"
+    obsm.get_root().height = "250px"
+    obsm.get_root().render()
+    obsm.add_child(folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')))
+    obsiframe = obsm.get_root()._repr_html_()
+
+
+    # Sun/Moon/Planet/Information
+    # AstroData from GPS
+    astro = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
+    gps_data.append(astro.obs.horizon)
+
     astro.moon_info()
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
@@ -55,14 +73,19 @@ def index():
 
     astro.planet_info()
 
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata = gps_data, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, indi=indi_running)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, indi=indi_running)
 
 
 @app.route('/iss')
 def iss():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
+
+    # Get GPS data if we need to
+    if len(gps_data) == 0:
+       get_gps()
+
     # ISS Information
-    iss = ISSData(obslat=gps_data[1], obslon=gps_data[2])
+    iss = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
     iss.iss_passes(duration=3)
     iss_local = []
     iss_current = {}
@@ -84,28 +107,17 @@ def iss():
       lat_dd = float(lat_list[0]) + float(lat_list[1])/60 + float(lat_list[2])/3600 
 
     lon_list = str(iss_current['geolong']).split(":")
-    if lat_list[0] == '-':
+    if lon_list[0] == '-':
       lon_dd = float(lon_list[0]) - float(lon_list[1])/60 - float(lon_list[2])/3600 
     else:
       lon_dd = float(lon_list[0]) + float(lon_list[1])/60 + float(lon_list[2])/3600 
-
-    obslat = str(iss.obs.lat).split(":")
-    if obslat[0] == '-':
-      obslat_dd = float(obslat[0]) - float(obslat[1])/60 - float(obslat[2])/3600 
-    else:
-      obslat_dd = float(obslat[0]) + float(obslat[1])/60 + float(obslat[2])/3600 
-    obslon = str(iss.obs.lon).split(":")
-    if obslon[0] == '-':
-      obslon_dd = float(obslon[0]) - float(obslon[1])/60 - float(obslon[2])/3600 
-    else:
-      obslon_dd = float(obslon[0]) + float(obslon[1])/60 + float(obslon[2])/3600 
 
     m = folium.Map()
     m.get_root().width = "500"
     m.get_root().height = "300px"
     m.get_root().render()
     m.add_child(folium.Marker(location=[lat_dd, lon_dd], popup=f"ISS Current Location at {current_datetime}", icon=folium.Icon(color='green', prefix='fa', icon='rocket')))
-    m.add_child(folium.Marker(location=[obslat_dd, obslon_dd] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')))
+    m.add_child(folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')))
     iframe = m.get_root()._repr_html_()
 
     return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local)
