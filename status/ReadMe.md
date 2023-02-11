@@ -1,10 +1,10 @@
 This is a work in progress
 
-## web.py
+## raspastro-web.py
 Flash app to display data on webpage. To run:
 
 ```
-python3 web.py
+python3 raspastro-web.py
 ```
 
 Will listen on port 5000, so just access at http://ipofdevice:5000 
