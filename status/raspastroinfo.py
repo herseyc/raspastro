@@ -43,6 +43,7 @@ class AstroData:
         self.sun_data['next_solstice'] = ephem.next_solstice(obs.date)
         self.sun_data['next_equinox'] = ephem.next_equinox(obs.date)
         self.sun_data['sun_alt'] = sun_alt
+        self.sun_data['next_sun_transit'] = self.obs.next_transit(sun)
          
 
     def moon_info(self, **kw):
@@ -113,6 +114,7 @@ class AstroData:
         # UTC Time
         self.moon_data['next_new_moon'] = ephem.next_new_moon(self.obs.date)
         self.moon_data['next_full_moon'] = ephem.next_full_moon(self.obs.date)
+        self.moon_data['next_moon_transit'] = self.obs.next_transit(moon)
 
        
     def planet_info(self, **kw):

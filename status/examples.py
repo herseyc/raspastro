@@ -41,6 +41,9 @@ for key in astro.sun_data:
 print(f"Next Sunset (Local time): {to_local(astro.sun_data['next_sunset'].datetime())}")
 print(f"Next Sunrise (Local time): {to_local(astro.sun_data['next_sunrise'].datetime())}")
 
+print(f"Next Sun Transit: {astro.sun_data['next_sun_transit']}")
+
+
 print("=====================================")
 print("ISSData Examples")
 print("=====================================")
