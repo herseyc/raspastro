@@ -80,7 +80,7 @@ def iss():
     m.add_child(folium.Marker(location=[obslat_dd, obslon_dd] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')))
     iframe = m.get_root()._repr_html_()
 
-    return render_template('iss_iframe.html', iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local)
+    return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local)
 
 
 

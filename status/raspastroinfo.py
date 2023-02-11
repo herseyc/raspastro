@@ -119,30 +119,79 @@ class AstroData:
         ''' Moon Information '''
         obs = kw.get("obs", self.obs)
         # Mercury
-        self.mercury = ephem.Mercury()
-        self.mercury.compute(obs)
+        self.mercury = {}
+        c_mercury = ephem.Mercury()
+        c_mercury.compute(obs)
+        self.mercury['hlat'] =  c_mercury.hlat
+        self.mercury['hlon'] =  c_mercury.hlon
+        self.mercury['mag'] =  c_mercury.mag
+        self.mercury['alt'] =  round(math.degrees(c_mercury.alt), 1)
+        self.mercury['sun_distance'] =  round(c_mercury.sun_distance, 4)
+        self.mercury['earth_distance'] =  round(c_mercury.earth_distance, 4)
       
         # Venus
-        self.venus = ephem.Venus()
-        self.venus.compute(obs)
+        self.venus = {}
+        c_venus = ephem.Venus()
+        c_venus.compute(obs)
+        self.venus['hlat'] =  c_venus.hlat
+        self.venus['hlon'] =  c_venus.hlon
+        self.venus['mag'] =  c_venus.mag
+        self.venus['alt'] =  round(math.degrees(c_venus.alt), 1)
+        self.venus['sun_distance'] =  round(c_venus.sun_distance, 4)
+        self.venus['earth_distance'] =  round(c_venus.earth_distance, 4)
    
         # Mars
-        self.mars = ephem.Mars()
-        self.mars.compute(obs)
+        self.mars = {}
+        c_mars = ephem.Mars()
+        c_mars.compute(obs)
+        self.mars['hlat'] =  c_mars.hlat
+        self.mars['hlon'] =  c_mars.hlon
+        self.mars['mag'] =  c_mars.mag
+        self.mars['alt'] =  round(math.degrees(c_mars.alt), 1)
+        self.mars['sun_distance'] =  round(c_mars.sun_distance, 4)
+        self.mars['earth_distance'] =  round(c_mars.earth_distance, 4)
 
         # Jupiter
-        self.jupiter = ephem.Jupiter()
-        self.jupiter.compute(obs)
+        self.jupiter = {}
+        c_jupiter = ephem.Jupiter()
+        c_jupiter.compute(obs)
+        self.jupiter['hlat'] =  c_jupiter.hlat
+        self.jupiter['hlon'] =  c_jupiter.hlon
+        self.jupiter['mag'] =  c_jupiter.mag
+        self.jupiter['alt'] =  round(math.degrees(c_jupiter.alt), 1)
+        self.jupiter['sun_distance'] =  round(c_jupiter.sun_distance, 4)
+        self.jupiter['earth_distance'] =  round(c_jupiter.earth_distance, 4)
 
         # Saturn
-        self.saturn = ephem.Saturn()
-        self.saturn.compute(obs)
+        self.saturn = {}
+        c_saturn = ephem.Saturn()
+        c_saturn.compute(obs)
+        self.saturn['hlat'] =  c_saturn.hlat
+        self.saturn['hlon'] =  c_saturn.hlon
+        self.saturn['mag'] =  c_saturn.mag
+        self.saturn['alt'] =  round(math.degrees(c_saturn.alt), 1)
+        self.saturn['sun_distance'] =  round(c_saturn.sun_distance, 4)
+        self.saturn['earth_distance'] =  round(c_saturn.earth_distance, 4)
 
         # Uranus
-        self.uranus = ephem.Uranus()
-        self.uranus.compute(obs)
+        self.uranus = {}
+        c_uranus = ephem.Uranus()
+        c_uranus.compute(obs)
+        self.uranus['hlat'] =  c_uranus.hlat
+        self.uranus['hlon'] =  c_uranus.hlon
+        self.uranus['mag'] =  c_uranus.mag
+        self.uranus['alt'] =  round(math.degrees(c_uranus.alt), 1)
+        self.uranus['sun_distance'] =  round(c_uranus.sun_distance, 4)
+        self.uranus['earth_distance'] =  round(c_uranus.earth_distance, 4)
 
         # Neptune
-        self.neptune = ephem.Neptune()
-        self.neptune.compute(obs)
+        self.neptune = {}
+        c_neptune = ephem.Neptune()
+        c_neptune.compute(obs)
+        self.neptune['hlat'] =  c_neptune.hlat
+        self.neptune['hlon'] =  c_neptune.hlon
+        self.neptune['mag'] =  c_neptune.mag
+        self.neptune['alt'] =  round(math.degrees(c_neptune.alt), 1)
+        self.neptune['sun_distance'] =  round(c_neptune.sun_distance, 4)
+        self.neptune['earth_distance'] =  round(c_neptune.earth_distance, 4)
 
