@@ -1,14 +1,13 @@
 body {
-   background-color: #D3D3D3;
+   background-color: #181818;
+   color: #F28C28;
 }
 h1 {
-   color: black;
    font-family: verdana;
    font-size: 150%;
 }
 
 h2 {
-   color: black;
    font-family: verdana;
    font-size: 125%;
 }
@@ -17,7 +16,7 @@ table, td, th {
    border: 1px solid;
    border-collapse: collapse;
    font-family: verdana;
-   padding: 2px;
+   padding: 3px;
 }
 
 p {

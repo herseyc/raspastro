@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>RaspAstro Status Page</title>
+<title>RaspAstro</title>
 <script type="text/javascript">
 function togglesolarsystem() {
 	document.getElementById("solarsystem").style.display="block";
@@ -25,7 +25,7 @@ function refreshdata() {
 </head>
 
 <body onload="togglesolarsystem()">
-<h1>RaspAstro Status</h1>
+<h1>RaspAstro</h1>
 
 <div class="panel_container">
 	<div id="displayctl">
@@ -80,25 +80,25 @@ function refreshdata() {
 <td>Name</td><td>Altitude</td><td>Magnitude</td><td>Sun Distance (AU)</td><td>Earth Distance (AU)</td>
 </tr>
 <tr>
-<td>{{ mercury['name'] }}</td><td>{{ mercury['alt'] }}</td><td>{{ mercury['mag'] }}</td><td>{{ mercury['sun_distance'] }}</td><td>{{ mercury['earth_distance'] }}</td>
+<td>☿️ {{ mercury['name'] }}</td><td>{{ mercury['alt'] }}</td><td>{{ mercury['mag'] }}</td><td>{{ mercury['sun_distance'] }}</td><td>{{ mercury['earth_distance'] }}</td>
 </tr>
 <tr>
-<td>{{ venus['name'] }}</td><td>{{ venus['alt'] }}</td><td>{{ venus['mag'] }}</td><td>{{ venus['sun_distance'] }}</td><td>{{ venus['earth_distance'] }}</td>
+<td>♀️ {{ venus['name'] }}</td><td>{{ venus['alt'] }}</td><td>{{ venus['mag'] }}</td><td>{{ venus['sun_distance'] }}</td><td>{{ venus['earth_distance'] }}</td>
 </tr>
 <tr>
-<td>{{ mars['name'] }}</td><td>{{ mars['alt'] }}</td><td>{{ mars['mag'] }}</td><td>{{ mars['sun_distance'] }}</td><td>{{ mars['earth_distance'] }}</td>
+<td>♂️ {{ mars['name'] }}</td><td>{{ mars['alt'] }}</td><td>{{ mars['mag'] }}</td><td>{{ mars['sun_distance'] }}</td><td>{{ mars['earth_distance'] }}</td>
 </tr>
 <tr>
-<td>{{ jupiter['name'] }}</td><td>{{ jupiter['alt'] }}</td><td>{{ jupiter['mag'] }}</td><td>{{ jupiter['sun_distance'] }}</td><td>{{ jupiter['earth_distance'] }}</td>
+<td>♃ {{ jupiter['name'] }}</td><td>{{ jupiter['alt'] }}</td><td>{{ jupiter['mag'] }}</td><td>{{ jupiter['sun_distance'] }}</td><td>{{ jupiter['earth_distance'] }}</td>
 </tr>
 <tr>
-<td>{{ saturn['name'] }}</td><td>{{ saturn['alt'] }}</td><td>{{ saturn['mag'] }}</td><td>{{ saturn['sun_distance'] }}</td><td>{{ saturn['earth_distance'] }}</td>
+<td>♄ {{ saturn['name'] }}</td><td>{{ saturn['alt'] }}</td><td>{{ saturn['mag'] }}</td><td>{{ saturn['sun_distance'] }}</td><td>{{ saturn['earth_distance'] }}</td>
 </tr>
 <tr>
-<td>{{ uranus['name'] }}</td><td>{{ uranus['alt'] }}</td><td>{{ uranus['mag'] }}</td><td>{{ uranus['sun_distance'] }}</td><td>{{ uranus['earth_distance'] }}</td>
+<td>♅ {{ uranus['name'] }}</td><td>{{ uranus['alt'] }}</td><td>{{ uranus['mag'] }}</td><td>{{ uranus['sun_distance'] }}</td><td>{{ uranus['earth_distance'] }}</td>
 </tr>
 <tr>
-<td>{{ neptune['name'] }}</td><td>{{ neptune['alt'] }}</td><td>{{ neptune['mag'] }}</td><td>{{ neptune['sun_distance'] }}</td><td>{{ neptune['earth_distance'] }}</td>
+<td>♆ {{ neptune['name'] }}</td><td>{{ neptune['alt'] }}</td><td>{{ neptune['mag'] }}</td><td>{{ neptune['sun_distance'] }}</td><td>{{ neptune['earth_distance'] }}</td>
 </tr>
 </table>
 
