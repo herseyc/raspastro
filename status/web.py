@@ -21,13 +21,16 @@ def index():
     astro.moon_info()
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
+
     astro.sun_info()
     astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
     astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
     astro.sun_data['next_solstice'] = time_to_human(to_local(astro.sun_data['next_solstice'].datetime()))
     astro.sun_data['next_equinox'] = time_to_human(to_local(astro.sun_data['next_equinox'].datetime()))
 
-    return render_template('raspastrostatus.html', datetime=current_datetime, moon=astro.moon_data, sun=astro.sun_data, indi=indi_running)
+    astro.planet_info()
+
+    return render_template('raspastrostatus.html', datetime=current_datetime, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, indi=indi_running)
 
 
 @app.route('/iss')

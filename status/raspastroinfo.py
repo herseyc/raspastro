@@ -122,6 +122,7 @@ class AstroData:
         self.mercury = {}
         c_mercury = ephem.Mercury()
         c_mercury.compute(obs)
+        self.mercury['name'] =  c_mercury.name
         self.mercury['hlat'] =  c_mercury.hlat
         self.mercury['hlon'] =  c_mercury.hlon
         self.mercury['mag'] =  c_mercury.mag
@@ -133,6 +134,7 @@ class AstroData:
         self.venus = {}
         c_venus = ephem.Venus()
         c_venus.compute(obs)
+        self.venus['name'] =  c_venus.name
         self.venus['hlat'] =  c_venus.hlat
         self.venus['hlon'] =  c_venus.hlon
         self.venus['mag'] =  c_venus.mag
@@ -144,6 +146,7 @@ class AstroData:
         self.mars = {}
         c_mars = ephem.Mars()
         c_mars.compute(obs)
+        self.mars['name'] =  c_mars.name
         self.mars['hlat'] =  c_mars.hlat
         self.mars['hlon'] =  c_mars.hlon
         self.mars['mag'] =  c_mars.mag
@@ -155,6 +158,7 @@ class AstroData:
         self.jupiter = {}
         c_jupiter = ephem.Jupiter()
         c_jupiter.compute(obs)
+        self.jupiter['name'] =  c_jupiter.name
         self.jupiter['hlat'] =  c_jupiter.hlat
         self.jupiter['hlon'] =  c_jupiter.hlon
         self.jupiter['mag'] =  c_jupiter.mag
@@ -166,6 +170,7 @@ class AstroData:
         self.saturn = {}
         c_saturn = ephem.Saturn()
         c_saturn.compute(obs)
+        self.saturn['name'] =  c_saturn.name
         self.saturn['hlat'] =  c_saturn.hlat
         self.saturn['hlon'] =  c_saturn.hlon
         self.saturn['mag'] =  c_saturn.mag
@@ -177,6 +182,7 @@ class AstroData:
         self.uranus = {}
         c_uranus = ephem.Uranus()
         c_uranus.compute(obs)
+        self.uranus['name'] =  c_uranus.name
         self.uranus['hlat'] =  c_uranus.hlat
         self.uranus['hlon'] =  c_uranus.hlon
         self.uranus['mag'] =  c_uranus.mag
@@ -188,6 +194,7 @@ class AstroData:
         self.neptune = {}
         c_neptune = ephem.Neptune()
         c_neptune.compute(obs)
+        self.neptune['name'] =  c_neptune.name
         self.neptune['hlat'] =  c_neptune.hlat
         self.neptune['hlon'] =  c_neptune.hlon
         self.neptune['mag'] =  c_neptune.mag
