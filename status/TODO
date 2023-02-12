@@ -14,3 +14,6 @@ Show ISS Path from the last 20/next 20 minutes (where it has been, where it is g
 
 Clean up unused stuff, add comments, docstrings, etc...
 
+Move config variables to separate file.
+   - Keep from having to edit script files
+   - Single place for any editable variables
