@@ -3,6 +3,7 @@
 from raspastroinfo import AstroData
 # ISSData (ISS telemerty and pass information) using ephem
 from raspissinfo import ISSData
+from config import *
 
 from datetime import datetime
 from dateutil import tz
@@ -10,8 +11,8 @@ import math
 import time
 from rasp_calc_func import *
 
-MY_LAT = "36:43:41.538" # Your latitude in DMS
-MY_LON = "-76:35:0.8232" # Your longitude in DMS
+#MY_LAT = "36:43:41.538" # Your latitude in DMS
+#MY_LON = "-76:35:0.8232" # Your longitude in DMS
 
 print("=====================================")
 print("AstroData Examples")
