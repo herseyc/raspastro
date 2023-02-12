@@ -16,30 +16,40 @@ app = Flask(__name__)
 gps_data = []
 
 def get_gps():
-    # GPS Data
-    the_connection = agps3.GPSDSocket()
-    the_fix = agps3.DataStream()
-    the_connection.connect()
-    the_connection.watch()
     global gpslatitude
     global gpslongitude
-    for new_data in the_connection:
-       if new_data:
-          the_fix.unpack(new_data)
-          gpsfixtype = the_fix.mode
-          gpslatitude = the_fix.lat
-          gpslongitude = the_fix.lon
-          gpsaltitude = the_fix.alt
-          if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
-             gpslatdms = convert_dd_to_dms(gpslatitude)
-             gpslondms = convert_dd_to_dms(gpslongitude)
-             # Make global so it can be used by other routes 
-             global gps_data
-             gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-             break
-          else:
-             time.sleep(.5)
-    the_connection.close()
+    global gps_data
+    if USE_GPS:   
+        # GPS Data
+        the_connection = agps3.GPSDSocket()
+        the_fix = agps3.DataStream()
+        the_connection.connect()
+        the_connection.watch()
+        for new_data in the_connection:
+           if new_data:
+              the_fix.unpack(new_data)
+              gpsfixtype = the_fix.mode
+              gpslatitude = the_fix.lat
+              gpslongitude = the_fix.lon
+              gpsaltitude = the_fix.alt
+              if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
+                 gpslatdms = convert_dd_to_dms(gpslatitude)
+                 gpslondms = convert_dd_to_dms(gpslongitude)
+                 gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+                 break
+              else:
+                 time.sleep(.5)
+        the_connection.close()
+    else:
+        gpsfixtype = "MANUAL"
+        gpslatdms = MY_LAT
+        gpslondms = MY_LON
+        gpsaltitude = MY_ELEVATION
+        gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+        gpslatitude = convert_dms_to_dd(MY_LAT)
+        gpslongitude = convert_dms_to_dd(MY_LON)
+        
+        
 
 
 @app.route('/')
