@@ -77,10 +77,12 @@ def convert_dd_to_dms(dd):
 ###################################
 def convert_dms_to_dd(dms):
     dms_list = str(dms).split(":")
+
     if dms_list[0] == '-':
-       dd = float(dms_list[0] - float(dms_list[1])/60 - float(dms_list[2])/3600
+       dd = float(dms_list[0]) - float(dms_list[1])/60 - float(dms_list[2])/3600
     else:
-       dd = float(dms_list[0] + float(dms_list[1])/60 + float(dms_list[2])/3600
+       dd = float(dms_list[0]) + float(dms_list[1])/60 + float(dms_list[2])/3600
+
     return dd
 
 
