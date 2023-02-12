@@ -124,17 +124,20 @@ def iss():
     iss_current['geolong'] = iss.iss_telemetry.sublong
     iss_current['elevation_miles'] = meters_to_miles(iss.iss_telemetry.elevation)
 
-    lat_list = str(iss_current['geolat']).split(":")
-    if lat_list[0] == '-':
-      lat_dd = float(lat_list[0]) - float(lat_list[1])/60 - float(lat_list[2])/3600 
-    else:
-      lat_dd = float(lat_list[0]) + float(lat_list[1])/60 + float(lat_list[2])/3600 
+    lat_dd = convert_dms_to_dd(iss_current['geolat'])
+    lon_dd = convert_dms_to_dd(iss_current['geolong'])
 
-    lon_list = str(iss_current['geolong']).split(":")
-    if lon_list[0] == '-':
-      lon_dd = float(lon_list[0]) - float(lon_list[1])/60 - float(lon_list[2])/3600 
-    else:
-      lon_dd = float(lon_list[0]) + float(lon_list[1])/60 + float(lon_list[2])/3600 
+    #lat_list = str(iss_current['geolat']).split(":")
+    #if lat_list[0] == '-':
+    #  lat_dd = float(lat_list[0]) - float(lat_list[1])/60 - float(lat_list[2])/3600 
+    #else:
+    #  lat_dd = float(lat_list[0]) + float(lat_list[1])/60 + float(lat_list[2])/3600 
+
+    #lon_list = str(iss_current['geolong']).split(":")
+    #if lon_list[0] == '-':
+    #  lon_dd = float(lon_list[0]) - float(lon_list[1])/60 - float(lon_list[2])/3600 
+    #else:
+    #  lon_dd = float(lon_list[0]) + float(lon_list[1])/60 + float(lon_list[2])/3600 
 
     m = folium.Map()
     m.get_root().width = "500"
@@ -142,8 +145,6 @@ def iss():
     m.get_root().render()
     folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')).add_to(m)
     folium.Marker(location=[lat_dd, lon_dd], popup=f"ISS Current Location at {current_datetime}", icon=folium.Icon(color='green', prefix='fa', icon='rocket')).add_to(m)
-    #m.add_child(folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')))
-    #m.add_child(folium.Marker(location=[lat_dd, lon_dd], popup=f"ISS Current Location at {current_datetime}", icon=folium.Icon(color='green', prefix='fa', icon='rocket')))
     iframe = m.get_root()._repr_html_()
 
     return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local, duration=days)
