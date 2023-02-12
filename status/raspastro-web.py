@@ -9,11 +9,9 @@ import folium
 from rasp_calc_func import *
 import time
 import requests
+from config import *
 
 app = Flask(__name__)
-
-PASSDAYS = 5
-INDIWEBMANAGER_API_ENDPOINT = "http://localhost:8624"
 
 gps_data = []
 
