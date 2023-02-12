@@ -2,7 +2,7 @@
 
 Determine if Sun/Moon is rising or setting
 
-Do not use GPS, Static setting of Observer LAT, LON, and ELEVATION 
+DONE! 02/12/2023 Do not use GPS, Static setting of Observer LAT, LON, and ELEVATION 
 
 Install script
    - make /var/www/raspastro
@@ -14,6 +14,6 @@ Show ISS Path from the last 20/next 20 minutes (where it has been, where it is g
 
 Clean up unused stuff, add comments, docstrings, etc...
 
-Move config variables to separate file.
+DONE! 02/12/2023 Move config variables to separate file.
    - Keep from having to edit script files
    - Single place for any editable variables
