@@ -28,7 +28,7 @@ def meters_to_miles(meters):
     Convert meters (meters) to miles
     Returns miles
     '''
-    miles = round(meters / 1609, 2)
+    miles = round(meters / 1609.344, 2)
     return miles
 
 
