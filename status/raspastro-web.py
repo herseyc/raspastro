@@ -147,6 +147,7 @@ def iss():
 
     iss_current['geolat'] = iss.iss_telemetry.sublat
     iss_current['geolong'] = iss.iss_telemetry.sublong
+    iss_current['range_velocity'] = round(iss.iss_telemetry.range_velocity, 2) 
     iss_current['elevation_miles'] = meters_to_miles(iss.iss_telemetry.elevation)
 
     lat_dd = convert_dms_to_dd(iss_current['geolat'])
