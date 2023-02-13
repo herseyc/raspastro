@@ -4,7 +4,7 @@ from raspastroinfo import AstroData
 from gps3 import agps3
 import time
 import math
-from datetime import datetime
+from datetime import datetime, timedelta
 import folium
 from rasp_calc_func import *
 import time
@@ -127,6 +127,7 @@ def indi():
 @app.route('/iss')
 def iss():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
+    current_utctime = datetime.utcnow()
 
     # Get GPS data if we need to
     if len(gps_data) == 0:
@@ -172,6 +173,29 @@ def iss():
     m.get_root().render()
     folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')).add_to(m)
     folium.Marker(location=[lat_dd, lon_dd], popup=f"ISS Current Location at {current_datetime}", icon=folium.Icon(color='green', prefix='fa', icon='rocket')).add_to(m)
+
+    # Display ISS previous path
+    path_points = 60
+    seconds_between_points = 30
+    previous_path_coords = []
+    delta = current_utctime - timedelta(seconds=seconds_between_points)
+    while path_points > 0:
+        isspath = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obsepoch=delta)
+        previous_path_coords.append((convert_dms_to_dd(isspath.iss_telemetry.sublat), convert_dms_to_dd(isspath.iss_telemetry.sublong)))
+        delta = delta - timedelta(seconds=seconds_between_points)
+        path_points -= 1
+    folium.PolyLine(previous_path_coords, smooth_factor=6.0, color="#BEBEBE", no_clip=True).add_to(m)
+    # Display ISS future path
+    #path_points = 30
+    #future_path_coords = []
+    #delta = current_utctime + timedelta(seconds=seconds_between_points)
+    #while path_points > 0:
+    #    isspath = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obsepoch=delta)
+    #    future_path_coords.append((convert_dms_to_dd(isspath.iss_telemetry.sublat), convert_dms_to_dd(isspath.iss_telemetry.sublong)))
+    #    delta = delta + timedelta(seconds=seconds_between_points)
+    #    path_points -= 1
+    #folium.PolyLine(future_path_coords, smooth_factor=6.0, color="#BEBEBE", no_clip=True).add_to(m)
+
     iframe = m.get_root()._repr_html_()
 
     return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local, duration=days)
