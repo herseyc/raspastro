@@ -170,32 +170,31 @@ def iss():
     m = folium.Map()
     m.get_root().width = "500"
     m.get_root().height = "300px"
-    m.get_root().render()
     folium.Marker(location=[gpslatitude, gpslongitude] , popup=f"Observer Location", icon=folium.Icon(color='blue', icon='user')).add_to(m)
     folium.Marker(location=[lat_dd, lon_dd], popup=f"ISS Current Location at {current_datetime}", icon=folium.Icon(color='green', prefix='fa', icon='rocket')).add_to(m)
 
     # Display ISS previous path
-    path_points = 60
+    path_points = 120
     seconds_between_points = 30
-    previous_path_coords = []
     delta = current_utctime - timedelta(seconds=seconds_between_points)
     while path_points > 0:
         isspath = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obsepoch=delta)
-        previous_path_coords.append((convert_dms_to_dd(isspath.iss_telemetry.sublat), convert_dms_to_dd(isspath.iss_telemetry.sublong)))
         delta = delta - timedelta(seconds=seconds_between_points)
+        folium.CircleMarker(location=[convert_dms_to_dd(isspath.iss_telemetry.sublat), convert_dms_to_dd(isspath.iss_telemetry.sublong)], radius=1, fill_color="#ECFFDC", fill=True, color="#ECFFDC").add_to(m)
         path_points -= 1
-    folium.PolyLine(previous_path_coords, smooth_factor=6.0, color="#BEBEBE", no_clip=True).add_to(m)
-    # Display ISS future path
-    #path_points = 30
-    #future_path_coords = []
-    #delta = current_utctime + timedelta(seconds=seconds_between_points)
-    #while path_points > 0:
-    #    isspath = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obsepoch=delta)
-    #    future_path_coords.append((convert_dms_to_dd(isspath.iss_telemetry.sublat), convert_dms_to_dd(isspath.iss_telemetry.sublong)))
-    #    delta = delta + timedelta(seconds=seconds_between_points)
-    #    path_points -= 1
-    #folium.PolyLine(future_path_coords, smooth_factor=6.0, color="#BEBEBE", no_clip=True).add_to(m)
 
+    # Display ISS future path
+    # TODO: Need to figure out how to keep path from wrapping back on
+    # itself when it crosses edge of map.
+    path_points = 90
+    delta = current_utctime + timedelta(seconds=seconds_between_points)
+    while path_points > 0:
+        isspath = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obsepoch=delta)
+        delta = delta + timedelta(seconds=seconds_between_points)
+        folium.CircleMarker(location=[convert_dms_to_dd(isspath.iss_telemetry.sublat), convert_dms_to_dd(isspath.iss_telemetry.sublong)], radius=1, fill_color="#BEBEBE", fill=True, color="#BEBEBE").add_to(m)
+        path_points -= 1
+
+    m.get_root().render()
     iframe = m.get_root()._repr_html_()
 
     return render_template('iss_iframe.html', datetime=current_datetime, iframe=iframe, isscurrent = iss_current, iss_pass_list=iss_local, duration=days)
