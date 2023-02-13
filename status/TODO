@@ -1,6 +1,6 @@
 
 
-Determine if Sun/Moon is rising or setting
+DONE! Determine if Sun/Moon is rising or setting
 
 DONE! 02/12/2023 Do not use GPS, Static setting of Observer LAT, LON, and ELEVATION 
 
@@ -10,7 +10,7 @@ Install script
    - raspastro-web.py service start at boot
 
 
-Show ISS Path from the last 20/next 20 minutes (where it has been, where it is going)
+DONE! Show ISS Path from the last 20/next 20 minutes (where it has been, where it is going)
 
 Clean up unused stuff, add comments, docstrings, etc...
 
