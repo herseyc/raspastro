@@ -49,6 +49,23 @@ def get_gps():
         gpslatitude = convert_dms_to_dd(MY_LAT)
         gpslongitude = convert_dms_to_dd(MY_LON)
         
+#Moon Images
+moon_image = {
+    "Waxing": {
+        "New Moon": "NewMoon",
+        "Crescent": "WaxingCrescent",
+        "Gibbous": "WaxingGibbous",
+        "First Quarter": "FirstQuarter",
+        "Full Moon": "FullMoon",
+    },
+    "Waning": {
+        "Full Moon": "FullMoon",
+        "Crescent": "WaningCrescent",
+        "Gibbous": "WaningGibbous",
+        "Last Quarter": "LastQuarter",
+        "New Moon": "NewMoon",
+    },
+}
         
 
 
@@ -101,7 +118,7 @@ def index():
 
     astro.planet_info()
 
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune)
 
 # INDI Info from INDI Web Manager API
 @app.route('/indi')

@@ -73,7 +73,7 @@ function refreshdata() {
 <h2>Sun</h2>
 <table>
 <tr>
-<td>Sun Altitude:</td><td>{{ sun['sun_alt'] }} degrees {{ sun['rising_sign'] }}</td><td rowspan="5"><img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" width="200"><br>Latest <a href="https://sdo.gsfc.nasa.gov/data/">SDO</a> Image</td>
+<td>Sun Altitude:</td><td>{{ sun['sun_alt'] }} degrees {{ sun['rising_sign'] }}</td><td rowspan="5"><img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" width="200"><br>Source: <a href="https://sdo.gsfc.nasa.gov/data/">SDO Image</a></td>
 
 
 </tr>
@@ -94,7 +94,9 @@ function refreshdata() {
 <h2>Moon</h2>
 <table>
 <tr>
-<td>Moon Altitude:</td><td>{{ moon['moon_alt'] }} degrees {{ moon['rising_sign'] }}</td>
+<td>Moon Altitude:</td><td>{{ moon['moon_alt'] }} degrees {{ moon['rising_sign'] }}</td><td rowspan="5">
+<img src="/static/Moon/{{ moonimage[moon['moon_quarter']][moon['moon_phase_name']] }}" width="200">
+<br>Source: <a href="https://moon.nasa.gov/">NASA Moon</a></td>
 </tr>
 <tr>
 <td>Current Phase:</td><td>{{ moon['moon_phase_emoji'] }} {{ moon['moon_phase_percent'] }}% {{ moon['moon_quarter'] }} {{ moon['moon_phase_name'] }}</td>
