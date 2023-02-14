@@ -7,6 +7,7 @@
 ########################################################
 import ephem
 import math
+import numpy
 from datetime import datetime
 
 class AstroData:
@@ -203,4 +204,30 @@ class AstroData:
         self.neptune['alt'] =  round(math.degrees(c_neptune.alt), 1)
         self.neptune['sun_distance'] =  round(c_neptune.sun_distance, 4)
         self.neptune['earth_distance'] =  round(c_neptune.earth_distance, 4)
+
+    def polaris_info(self, **kw):
+        ''' Polaris Information '''
+        obs = kw.get("obs", self.obs)
+        self.polaris_data = {} 
+        self.polaris = ephem.star("Polaris")
+        self.polaris.compute(obs)
+        # Compute polar scope rectile location for Polaris
+        j2000 = ephem.Date('2000/01/01 12:00:00')
+        d = obs.date - j2000
+        utstr = obs.date.datetime().strftime("%H:%M:%S")
+        ut = float(utstr.split(":")[0]) + float(utstr.split(":")[1])/60 + float(utstr.split(":")[2])/3600
+        lon = numpy.rad2deg(float(repr(obs.lon)))
+        lst = 100.46 + 0.985647 * d + lon + 15 * ut
+        lst = lst - int(lst / 360) * 360
+
+        phourangle = lst - numpy.rad2deg(float(repr(self.polaris.ra)))
+        if phourangle < 0:
+            phourangle += 360
+        elif phourangle > 360:
+            phourangle -= 360
+
+        self.polaris_data['phourangle'] = phourangle
+        self.polaris_data['from_pole'] = ephem.degrees(ephem.degrees('90') - self.polaris.a_dec)
+        self.polaris_data['next_transit'] = obs.next_transit(self.polaris)
+        
 

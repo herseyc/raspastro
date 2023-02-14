@@ -9,6 +9,9 @@ import folium
 from rasp_calc_func import *
 import time
 import requests
+import numpy
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 from config import *
 
 app = Flask(__name__)
@@ -116,9 +119,25 @@ def index():
         # Sun Setting
         astro.sun_data['rising_sign'] = "↘️"
 
+    # Get Planet Info
     astro.planet_info()
 
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune)
+    # Get Polaris Info
+    astro.polaris_info()
+    # Generate Polar Align Image
+    phourangle = numpy.deg2rad(astro.polaris_data['phourangle'])
+    mpl.rcParams['xtick.color'] = 'white'
+    fig = plt.figure(facecolor='black')
+    ax = fig.add_subplot(projection='polar', fc='black')
+    ax.set_theta_zero_location("S")
+    ax.set_yticklabels([])
+    ax.plot(phourangle, 1, marker='o', markersize=10.2, color='red', label='Polaris')
+    plt.savefig('static/polarisalign.png', bbox_inches='tight')
+    astro.polaris_data['phourangle'] = int(astro.polaris_data['phourangle'])
+    astro.polaris_data['next_transit'] = time_to_human(to_local(astro.polaris_data['next_transit'].datetime()))
+
+
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data)
 
 # INDI Info from INDI Web Manager API
 @app.route('/indi')
