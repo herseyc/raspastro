@@ -40,6 +40,8 @@ The Observer Page displays the Observer's location information. The location inf
 ![RaspAstro Observer Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-observer-page.png?raw=true)
 
 ## Example Solar System Information
+Sun, Moon, and Planet Data.  This information on this page is only updated when refreshed.
+
 ![RaspAstro Solar System Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-solarsystem-page.png?raw=true)
 
 ## Example ISS Information
