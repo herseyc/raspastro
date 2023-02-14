@@ -132,6 +132,7 @@ def index():
     # Flip it around since polar scope image is inverted
     ax.set_theta_zero_location("S")
     ax.set_yticklabels([])
+    ax.text(0,0, "NCP", fontdict={"fontsize": "medium", "color": "white", "family": "monospace", "fontweight": "bold"})
     ax.plot(phourangle, 1, marker='o', markersize=10.2, color='red', label='Polaris')
     plt.savefig('static/polarisalign.png', bbox_inches='tight')
     astro.polaris_data['phourangle'] = int(astro.polaris_data['phourangle'])
