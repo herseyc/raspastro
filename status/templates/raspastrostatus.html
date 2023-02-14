@@ -51,7 +51,7 @@ function refreshdata() {
 <h2>Observer Data</h2>
 <table>
 <tr>
-<td>Observer's Local Time:</td><td>{{ datetime }}</td>
+<td>Refreshed At:</td><td>{{ datetime }}</td>
 </tr>
 <tr>
 <td>GPS Fix:</td><td>{{ gpsdata[0] }}</td>
@@ -166,6 +166,9 @@ function refreshdata() {
 <div id="polaris">
 <h2>Polar Alignment</h2>
 <table>
+<tr>
+<td>Refreshed at:</td><td>{{ datetime }}</td>
+</tr>
 <tr>
 <td>Polaris Hour Angle:</td><td>{{ polaris['phourangle'] }} degrees</td>
 </tr>
