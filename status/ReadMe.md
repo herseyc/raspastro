@@ -34,8 +34,14 @@ python3 raspastro-web.py
 Will listen on port 5000, so just access at http://ipofdevice:5000 
 Currently requires GPS data, but I will probably update to allow you to define.
 
-## Observer Information
+## Example Observer Information
 ![RaspAstro Observer Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-observer-page.png?raw=true)
+
+## Example ISS Information
+![RaspAstro ISS Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-iss-page.png?raw=true)
+
+## Example Polaris/Polar Alignment Information
+![RaspAstro Polaris Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-polaris-page.png?raw=true)
 
 ## raspissinfo.py
 ISSData Class to get ISS current information and determine next passes for observer location.
