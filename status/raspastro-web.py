@@ -105,6 +105,8 @@ def index():
         # Moon Setting
         astro.moon_data['rising_sign'] = "↘️"
 
+    astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
+
     astro.sun_info()
     astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
     astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
@@ -118,6 +120,8 @@ def index():
     else:
         # Sun Setting
         astro.sun_data['rising_sign'] = "↘️"
+
+    astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
 
     # Get Planet Info
     astro.planet_info()
