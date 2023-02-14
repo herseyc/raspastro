@@ -15,6 +15,9 @@ cp *.py ${INSTALL_DIR}
 cp -R templates ${INSTALL_DIR}
 cp -R static ${INSTALL_DIR}
 
+
+# Add service config to start automatically
+
 echo "RaspAstro Web Installed!"
 echo "cd to ${INSTALL_DIR} and run python3 raspastro-web.py"
 
