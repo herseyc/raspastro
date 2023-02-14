@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from flask import Flask, render_template
 from raspissinfo import ISSData
 from raspastroinfo import AstroData
@@ -138,7 +139,7 @@ def index():
     ax.set_yticklabels([])
     ax.text(0,0, "NCP", fontdict={"fontsize": "medium", "color": "white", "family": "monospace", "fontweight": "bold"})
     ax.plot(phourangle, 1, marker='o', markersize=10.2, color='red', label='Polaris')
-    plt.savefig('static/polarisalign.png', bbox_inches='tight')
+    plt.savefig('./static/polarisalign.png', bbox_inches='tight')
     astro.polaris_data['phourangle'] = int(astro.polaris_data['phourangle'])
     astro.polaris_data['next_transit'] = time_to_human(to_local(astro.polaris_data['next_transit'].datetime()))
 

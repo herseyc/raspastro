@@ -1,0 +1,15 @@
+[Unit]
+Description=RaspAstro Web Application
+After=multi-user.target
+
+[Service]
+Type=idle
+# MUST SET YOUR USERNAME HERE.
+User=pi
+
+ExecStart=/var/www/raspastro/raspastro-web.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
