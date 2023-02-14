@@ -150,6 +150,7 @@ def index():
 @app.route('/indi')
 def indi():
     indi_current = {}
+    driver_list = []
     if USE_INDI:
         indi_status = requests.get(f"{INDIWEBMANAGER_API_ENDPOINT}/api/server/status")
         indi_status_data = indi_status.json()
@@ -158,7 +159,6 @@ def indi():
         if indi_current['status']:
            driver_status = requests.get(f"{INDIWEBMANAGER_API_ENDPOINT}/api/server/drivers")
            driver_status_data = driver_status.json()
-           driver_list = []
 
            for driver in driver_status_data:
                driver_list.append(driver['name'])
@@ -166,6 +166,7 @@ def indi():
            driver_list = ["None"]
     else:
         indi_current['status'] = "Not Used"
+        driver_list = ["None"]
 
     return render_template('indi_iframe.html', indicurrent=indi_current, driverlist=driver_list)
 
