@@ -36,6 +36,7 @@ Currently requires GPS data, but I will probably update to allow you to define.
 
 ## Example Observer Information
 ![RaspAstro Observer Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-observer-page.png?raw=true)
+The Observer Page displays the Observer's location information. The location information is obtained from GPSD or from the manual configurations config.py.  The INDI information is updated from the INDI Web Manager API.  The Observer information is static and only updates if refreshed.  The INDI Information updates every 30 seconds. 
 
 ## Example ISS Information
 ![RaspAstro ISS Page](https://github.com/herseyc/raspastro/blob/master/status/img/raspastro-iss-page.png?raw=true)
