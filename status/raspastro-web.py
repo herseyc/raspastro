@@ -129,6 +129,7 @@ def index():
     mpl.rcParams['xtick.color'] = 'white'
     fig = plt.figure(facecolor='black')
     ax = fig.add_subplot(projection='polar', fc='black')
+    # Flip it around since polar scope image is inverted
     ax.set_theta_zero_location("S")
     ax.set_yticklabels([])
     ax.plot(phourangle, 1, marker='o', markersize=10.2, color='red', label='Polaris')
