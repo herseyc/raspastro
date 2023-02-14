@@ -4,10 +4,15 @@ After=multi-user.target
 
 [Service]
 Type=idle
-# MUST SET YOUR USERNAME HERE.
+# MUST SET YOUR USERNAME HERE (install script takes care of this).
 User=pi
 
+# SHOULD BE SET TO INSTALL_DIR
+WorkingDirectory=/var/www/raspastro
+
+# SHOULD BE SET TO INSTALL_DIR
 ExecStart=/var/www/raspastro/raspastro-web.py
+
 Restart=always
 RestartSec=5
 
