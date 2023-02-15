@@ -50,7 +50,7 @@ def get_gps():
 
 get_gps()
 
-planets = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
+planets = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
 
 planets.sun_info()
 
