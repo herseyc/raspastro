@@ -7,9 +7,11 @@ User defined settings:
 # Number of days to calculate ISS Passes
 PASSDAYS = 5
 
+#If USE_INDI is False then INDI Server info will not be queried
+USE_INDI = True
+
 # INDI Web Manager API Endpoint
 INDIWEBMANAGER_API_ENDPOINT = "http://localhost:8624"
-
 
 # Work in Progress - Placeholders for now
 # Set to True to use GPS, False to use user configured lat/lon/elev

@@ -44,6 +44,10 @@ class AstroData:
         self.sun_data['next_solstice'] = ephem.next_solstice(obs.date)
         self.sun_data['next_equinox'] = ephem.next_equinox(obs.date)
         self.sun_data['sun_alt'] = sun_alt
+        self.sun_data['earth_hlon'] = sun.hlon
+        self.sun_data['earth_hlat'] = sun.hlat
+        self.sun_data['earth_radius'] = ephem.earth_radius
+        self.sun_data['sun_radius'] = ephem.sun_radius
         self.sun_data['next_sun_transit'] = self.obs.next_transit(sun)
          
 
@@ -128,7 +132,9 @@ class AstroData:
         self.mercury['name'] =  c_mercury.name
         self.mercury['hlat'] =  c_mercury.hlat
         self.mercury['hlon'] =  c_mercury.hlon
+        self.mercury['elong'] =  c_mercury.elong
         self.mercury['mag'] =  c_mercury.mag
+        self.mercury['radius'] =  c_mercury.radius
         self.mercury['alt'] =  round(math.degrees(c_mercury.alt), 1)
         self.mercury['sun_distance'] =  round(c_mercury.sun_distance, 4)
         self.mercury['earth_distance'] =  round(c_mercury.earth_distance, 4)
@@ -140,7 +146,9 @@ class AstroData:
         self.venus['name'] =  c_venus.name
         self.venus['hlat'] =  c_venus.hlat
         self.venus['hlon'] =  c_venus.hlon
+        self.venus['elong'] =  c_venus.elong
         self.venus['mag'] =  c_venus.mag
+        self.venus['radius'] =  c_venus.radius
         self.venus['alt'] =  round(math.degrees(c_venus.alt), 1)
         self.venus['sun_distance'] =  round(c_venus.sun_distance, 4)
         self.venus['earth_distance'] =  round(c_venus.earth_distance, 4)
@@ -152,7 +160,9 @@ class AstroData:
         self.mars['name'] =  c_mars.name
         self.mars['hlat'] =  c_mars.hlat
         self.mars['hlon'] =  c_mars.hlon
+        self.mars['elong'] =  c_mars.elong
         self.mars['mag'] =  c_mars.mag
+        self.mars['radius'] =  c_mars.radius
         self.mars['alt'] =  round(math.degrees(c_mars.alt), 1)
         self.mars['sun_distance'] =  round(c_mars.sun_distance, 4)
         self.mars['earth_distance'] =  round(c_mars.earth_distance, 4)
@@ -164,7 +174,9 @@ class AstroData:
         self.jupiter['name'] =  c_jupiter.name
         self.jupiter['hlat'] =  c_jupiter.hlat
         self.jupiter['hlon'] =  c_jupiter.hlon
+        self.jupiter['elong'] =  c_jupiter.elong
         self.jupiter['mag'] =  c_jupiter.mag
+        self.jupiter['radius'] =  c_jupiter.radius
         self.jupiter['alt'] =  round(math.degrees(c_jupiter.alt), 1)
         self.jupiter['sun_distance'] =  round(c_jupiter.sun_distance, 4)
         self.jupiter['earth_distance'] =  round(c_jupiter.earth_distance, 4)
@@ -176,7 +188,9 @@ class AstroData:
         self.saturn['name'] =  c_saturn.name
         self.saturn['hlat'] =  c_saturn.hlat
         self.saturn['hlon'] =  c_saturn.hlon
+        self.saturn['elong'] =  c_saturn.elong
         self.saturn['mag'] =  c_saturn.mag
+        self.saturn['radius'] =  c_saturn.radius
         self.saturn['alt'] =  round(math.degrees(c_saturn.alt), 1)
         self.saturn['sun_distance'] =  round(c_saturn.sun_distance, 4)
         self.saturn['earth_distance'] =  round(c_saturn.earth_distance, 4)
@@ -188,7 +202,9 @@ class AstroData:
         self.uranus['name'] =  c_uranus.name
         self.uranus['hlat'] =  c_uranus.hlat
         self.uranus['hlon'] =  c_uranus.hlon
+        self.uranus['elong'] =  c_uranus.elong
         self.uranus['mag'] =  c_uranus.mag
+        self.uranus['radius'] =  c_uranus.radius
         self.uranus['alt'] =  round(math.degrees(c_uranus.alt), 1)
         self.uranus['sun_distance'] =  round(c_uranus.sun_distance, 4)
         self.uranus['earth_distance'] =  round(c_uranus.earth_distance, 4)
@@ -200,7 +216,9 @@ class AstroData:
         self.neptune['name'] =  c_neptune.name
         self.neptune['hlat'] =  c_neptune.hlat
         self.neptune['hlon'] =  c_neptune.hlon
+        self.neptune['elong'] =  c_neptune.elong
         self.neptune['mag'] =  c_neptune.mag
+        self.neptune['radius'] =  c_neptune.radius
         self.neptune['alt'] =  round(math.degrees(c_neptune.alt), 1)
         self.neptune['sun_distance'] =  round(c_neptune.sun_distance, 4)
         self.neptune['earth_distance'] =  round(c_neptune.earth_distance, 4)
