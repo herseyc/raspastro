@@ -1,15 +1,56 @@
 #########################################################
 # Plot a map of the Solar System                        #
+# Output planets.png in static/                         #
 #########################################################
 import numpy
 from datetime import datetime
 from raspastroinfo import AstroData
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from gps3 import agps3
 from rasp_calc_func import *
+from config import *
+import time
 
+gps_data = []
 
-planets = AstroData()
+def get_gps():
+    global gpslatitude
+    global gpslongitude
+    global gps_data
+    if USE_GPS:
+        # GPS Data
+        the_connection = agps3.GPSDSocket()
+        the_fix = agps3.DataStream()
+        the_connection.connect()
+        the_connection.watch()
+        for new_data in the_connection:
+           if new_data:
+              the_fix.unpack(new_data)
+              gpsfixtype = the_fix.mode
+              gpslatitude = the_fix.lat
+              gpslongitude = the_fix.lon
+              gpsaltitude = the_fix.alt
+              if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
+                 gpslatdms = convert_dd_to_dms(gpslatitude)
+                 gpslondms = convert_dd_to_dms(gpslongitude)
+                 gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+                 break
+              else:
+                 time.sleep(.5)
+        the_connection.close()
+    else:
+        gpsfixtype = "MANUAL"
+        gpslatdms = MY_LAT
+        gpslondms = MY_LON
+        gpsaltitude = MY_ELEVATION
+        gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+        gpslatitude = convert_dms_to_dd(MY_LAT)
+        gpslongitude = convert_dms_to_dd(MY_LON)
+
+get_gps()
+
+planets = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
 
 planets.sun_info()
 
