@@ -56,6 +56,10 @@ planets.sun_info()
 
 planets.planet_info()
 
+# Set up a dictionary of values used to generate the plots
+# Size is just a way I set the size of the different objects it is not
+# a reference to actual size, but just a way to illustrate the size of
+# the smallest planet (Mercury) to the largest planet (Jupiter)
 planet_dict = {
     "Mercury": {
         "distance": planets.mercury['sun_distance'],
