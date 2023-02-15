@@ -1,3 +1,6 @@
+#########################################################
+# Plot a map of the Solar System                        #
+#########################################################
 import numpy
 from datetime import datetime
 from raspastroinfo import AstroData
