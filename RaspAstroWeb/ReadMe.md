@@ -60,6 +60,12 @@ Sun, Moon, and Planet Data.  This information on this page is only updated when 
 ## Example Polaris/Polar Alignment Information
 ![RaspAstro Polaris Page](https://github.com/herseyc/raspastro/blob/master/RaspAstroWeb/img/raspastro-polaris-page.png?raw=true)
 
+## planets.py
+Generates a Solar System Map. 
+
+![RaspAstro Solar System Map](https://github.com/herseyc/raspastro/blob/master/RaspAstroWeb/static/planets.png?raw=true)
+
+
 ## raspissinfo.py
 ISSData Class to get ISS current information and determine next passes for observer location.
 
