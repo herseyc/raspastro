@@ -1,5 +1,5 @@
 # RaspAstro Web
-Display interesting and useful Astronomy data.  Information about the Sun, Moon, planets, and the ISS.
+Web application which display interesting and useful Astronomy data.  Information about the Sun, Moon, planets, and the ISS.
 
 ## requirements.txt
 Install the required python modules.
