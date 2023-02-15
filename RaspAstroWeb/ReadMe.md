@@ -1,8 +1,11 @@
-This is a work in progress
+#RaspAstro Web
+Display interesting and useful Astronomy data.  Information about the Sun, Moon, planets, and the ISS.
 
 
 ## config.py 
-User defined settings:
+Config.py contains all the user-defined settings.
+
+User-defined settings:
 ```
 # Number of days to calculate ISS Passes
 PASSDAYS = 5
