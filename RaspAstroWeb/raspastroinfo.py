@@ -25,7 +25,7 @@ class AstroData:
         self.obs.lat = obslat
         self.obs.elev = obselev
         self.obs.horizon = obshorizon
-        self.obs.date = datetime.utcnow()
+        self.obs.date = obsepoch
 
 
     def sun_info(self, **kw):
