@@ -3,9 +3,9 @@ Display interesting and useful Astronomy data.  Information about the Sun, Moon,
 
 ## requirements.txt
 Install the required python modules.
-'''
+```
 pip3 install -r requirements.txt
-'''
+```
 
 ## config.py 
 Config.py contains all the user-defined settings.
