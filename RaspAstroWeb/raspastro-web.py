@@ -91,7 +91,7 @@ def index():
 
     # Sun/Moon/Planet/Information
     # AstroData from GPS
-    astro = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
+    astro = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
     gps_data.append(astro.obs.horizon)
 
     astro.moon_info()
@@ -180,7 +180,7 @@ def iss():
        get_gps()
 
     # ISS Information
-    iss = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3])
+    iss = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
     days = PASSDAYS
     iss.iss_passes(duration=days)
     iss_local = []
