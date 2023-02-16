@@ -50,6 +50,20 @@ python3 raspastro-web.py
 Will listen on port 5000, so just access at http://ipofdevice:5000 
 Currently requires GPS data, but I will probably update to allow you to define.
 
+
+## raspastroweb.service
+This can be used to set up systemd to start raspastro-web.py at boot.
+
+Edit the file and udate the user and directory if required (default user is pi, default directory is /var/www/raspastro
+```
+cd /var/www/raspastro
+sudo cp raspastroweb.service /etc/systemd/system
+sudo chmod 644 /etc/systemd/system/raspastroweb.service
+suod systemctl daemon-reload
+sudo systemctl enable raspastroweb.service
+sudo systemctl start reaspastroweb.service
+```
+
 ## Example Observer Information
 The Observer Page displays the Observer's location information. The location information is obtained from GPSD or from the manual configurations config.py.  The INDI information is updated from the INDI Web Manager API.  The Observer information is static and only updates if refreshed.  The INDI Information updates every 30 seconds. 
 
