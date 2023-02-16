@@ -38,9 +38,12 @@ MY_ELEVATION = 7.7
 ```
 
 ## raspastro-web.py
-Flash app to display data on webpage. To run:
+Flash app to display data on webpage. 
 
+Use install_raspastro-web.sh to copy into INSTALL_DIR (/var/www/raspastro is the default).  Then run raspastro-web.py
 ```
+./install_raspastro-web.sh
+cd /var/www/raspastro
 python3 raspastro-web.py
 ```
 
