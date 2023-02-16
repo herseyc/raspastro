@@ -11,6 +11,10 @@ import numpy
 from datetime import datetime
 
 class AstroData:
+    '''
+    AStroData Class - Set up observer, get sun_info, moon_info,
+    and planet_info. All times are in UTC time. 
+    '''
    
     def __init__(self, **kw):
         ''' Initialize Observer Data '''
@@ -29,14 +33,17 @@ class AstroData:
 
 
     def sun_info(self, **kw):
-        ''' Sun Information '''
+        ''' 
+        Sun Information - creates sun_data dictionary with Sun information
+        Dictionary also includes some Earth information (hlon, hlat, radius).
+        '''
         obs = kw.get("obs", self.obs)
         sun = ephem.Sun()
         sun.compute(obs)
         self.sun_data = {}
         sun_alt = round(math.degrees(sun.alt), 1)
 
-        # UTC Time
+        # All times are in UTC Time
         self.sun_data['next_sunset'] = self.obs.next_setting(sun)
         self.sun_data['next_sunrise'] = self.obs.next_rising(sun)
         self.sun_data['previous_solstice'] = ephem.previous_solstice(obs.date)
@@ -52,7 +59,9 @@ class AstroData:
          
 
     def moon_info(self, **kw):
-        ''' Moon Information '''
+        ''' 
+        Moon Information - creates moon_data dictionary with Moon info
+        '''
         obs = kw.get("obs", self.obs)
         sun = ephem.Sun()
         sun.compute(obs)
@@ -116,14 +125,18 @@ class AstroData:
                 self.moon_data['moon_phase_emoji'] = '🌑'
                 self.moon_data['moon_phase_name'] = 'New Moon'
 
-        # UTC Time
+        # All times in UTC Time
         self.moon_data['next_new_moon'] = ephem.next_new_moon(self.obs.date)
         self.moon_data['next_full_moon'] = ephem.next_full_moon(self.obs.date)
         self.moon_data['next_moon_transit'] = self.obs.next_transit(moon)
 
        
     def planet_info(self, **kw):
-        ''' Moon Information '''
+        ''' 
+        Planet Information - Creates a dictionary for each planet with
+        the planets info. Mercury, Venus, Mars, Jupiter, Saturn, Uranus,
+        and Neptune.
+        '''
         obs = kw.get("obs", self.obs)
         # Mercury
         self.mercury = {}
