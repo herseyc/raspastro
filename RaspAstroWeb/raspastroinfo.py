@@ -23,6 +23,8 @@ class AstroData:
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
         obshorizon = kw.get("obshorizon", "0:34:0")
+        obspressure = kw.get("obspressure", "0")
+        obstemp = kw.get("obstemp", "0")
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
@@ -30,6 +32,8 @@ class AstroData:
         self.obs.elev = obselev
         self.obs.horizon = obshorizon
         self.obs.date = obsepoch
+        self.obs.pressure = obspressure
+        self.obs.temperature = obstemp
 
 
     def sun_info(self, **kw):
