@@ -5,7 +5,11 @@ from urllib import request
 
 
 class ISSData:
-
+    '''
+    ISSData Class - Sets up observer and computes current ISS information.
+    KW args obslat (observer latitude) obslon (observer longitude)
+    obsepoch (time) obselev (observers elevation), obshorizon (observer horizon)
+    '''
     def __init__(self, **kw):
         obslat = kw.get("obslat", "36:43:41.538")
         obslon = kw.get("obslon", "-76:35:0.8232")
@@ -74,6 +78,10 @@ class ISSData:
 
 
     def iss_passes(self, **kw):
+        '''
+        Display ISS passes over observer's location.
+        Data stored in next_passes dictionary
+        '''
         # https://stackoverflow.com/questions/52591629/pyephem-and-pypredict-gpredict-differences
         sat_name = kw.get("sat_name", self.iss_module_name)
         sat_tle1 = kw.get("sat_tle1", self.iss_tle1)
@@ -84,6 +92,7 @@ class ISSData:
 
         end = ephem.date(station.date + duration)
         sat = ephem.readtle(sat_name, sat_tle1, sat_tle2)
+        # Setting up the Sun to get alt for day or night.
         thesun = ephem.Sun()
 
         self.iss_next_passes = []
