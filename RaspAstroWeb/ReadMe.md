@@ -49,7 +49,7 @@ python3 raspastro-web.py
 
 Will listen on port 5000, so just access at http://ipofdevice:5000 
 
-If config.py exists in the INSTALL_DIR (default /var/www/raspastro) then it is copy of it, config.old, is created by install_raspastro-web.sh
+If config.py exists in the INSTALL_DIR (default /var/www/raspastro) a copy of it, config.old, is created by install_raspastro-web.sh
 
 ## raspastroweb.service
 This can be used to set up systemd to start raspastro-web.py at boot.
