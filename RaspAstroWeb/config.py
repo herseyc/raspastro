@@ -10,7 +10,7 @@ USE_INDI = True
 INDIWEBMANAGER_API_ENDPOINT = "http://localhost:8624"
 
 # Define Observer Horizon in DMS
-MY_HORIZON = "0:34:0"
+MY_HORIZON = "0:0:0"
 
 # Set to True to use GPS, False to use user configured lat/lon/elev
 USE_GPS = True
