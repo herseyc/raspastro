@@ -133,6 +133,8 @@ class AstroData:
         self.moon_data['next_new_moon'] = ephem.next_new_moon(self.obs.date)
         self.moon_data['next_full_moon'] = ephem.next_full_moon(self.obs.date)
         self.moon_data['next_moon_transit'] = self.obs.next_transit(moon)
+        self.moon_data['hlat'] = moon.hlat
+        self.moon_data['hlon'] = moon.hlon
 
        
     def planet_info(self, **kw):
