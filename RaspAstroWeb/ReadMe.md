@@ -40,7 +40,7 @@ MY_ELEVATION = 7.7
 ## raspastro-web.py
 Flash app to display data on webpage. 
 
-Use install_raspastro-web.sh to copy into INSTALL_DIR (/var/www/raspastro is the default).  Then run raspastro-web.py
+Edit config.py with your configuration settings and then use install_raspastro-web.sh to copy into INSTALL_DIR (/var/www/raspastro is the default).  Then run raspastro-web.py
 ```
 ./install_raspastro-web.sh
 cd /var/www/raspastro
@@ -48,8 +48,8 @@ python3 raspastro-web.py
 ```
 
 Will listen on port 5000, so just access at http://ipofdevice:5000 
-Currently requires GPS data, but I will probably update to allow you to define.
 
+If config.py exists in the INSTALL_DIR (default /var/www/raspastro) then it is copy of it, config.old, is created by install_raspastro-web.sh
 
 ## raspastroweb.service
 This can be used to set up systemd to start raspastro-web.py at boot.
