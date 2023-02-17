@@ -15,7 +15,9 @@ class ISSData:
         obslon = kw.get("obslon", "-76:35:0.8232")
         obsepoch = kw.get("obsepoch", datetime.utcnow())
         obselev = kw.get("obslev", 3)
-        obshorizon = kw.get("obshorizon", '0:34:0')
+        obshorizon = kw.get("obshorizon", '-0:34:0')
+        obspressure = kw.get("obspressure", 0)
+        obstemp = kw.get("obstemp", 0)
         # Setup Observer
         self.obs = ephem.Observer()
         self.obs.lon = obslon
@@ -23,6 +25,8 @@ class ISSData:
         self.obs.date = obsepoch
         self.obs.elev = obselev
         self.obs.horizon = obshorizon
+        self.obs.pressure = obspressure
+        self.obs.temperature = obstemp
         self.degrees_per_radian = 180.0 / math.pi
         self.iss_tle()
 
