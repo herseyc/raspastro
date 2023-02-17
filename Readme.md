@@ -2,13 +2,16 @@
 
 Just a place to put some of my Raspberry Pi Astronomy Stuff
 
-This is a set of scripts I use to build out my Raspberry Pi with the software necessary for Electronically Assisted Astronomy or EAA.
+Base directory contains a set of scripts I use to build out my Raspberry Pi with the software necessary for Electronically Assisted Astronomy or EAA.
 
 I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work on Raspberry Pi 32-bit OS.
 
+## RaspAstroWeb
+The RaspAstroWeb directory contains a python web application which displays interesting and useful Astronomical data about the Sun, Moon, and Planets.  Also provides information on the current location and path of the International Space Station (ISS) along with information about visible passes based on an observer's location.  There is information on Polaris and how Polaris should be oriented in a polar scope for a proper polar alignment in the Northern Hemisphere.
+
 Visit my Electronicly Assisted Astronomy (EAA) and Astrophotography site at: http://www.suffolksky.com/
 
-## Install
+## Clone the git repository
 ```
 mkdir -p ~/Projects
 cd ~/Projects
