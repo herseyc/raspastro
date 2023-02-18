@@ -269,7 +269,7 @@ class AstroData:
         self.polaris_data['from_pole'] = ephem.degrees(ephem.degrees('90') - self.polaris.a_dec)
         self.polaris_data['next_transit'] = obs.next_transit(self.polaris)
         
-    def object_info(self, **kw)
+    def object_info(self, **kw):
         '''
         Takes XEphem formated ecatalog data and computes object information
         '''
