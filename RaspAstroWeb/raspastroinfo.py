@@ -34,6 +34,8 @@ class AstroData:
         self.obs.date = obsepoch
         self.obs.pressure = obspressure
         self.obs.temperature = obstemp
+        # Initilize list to hold dictionary of catalogobjects
+        self.catalogobjects = []
 
 
     def sun_info(self, **kw):
@@ -267,4 +269,16 @@ class AstroData:
         self.polaris_data['from_pole'] = ephem.degrees(ephem.degrees('90') - self.polaris.a_dec)
         self.polaris_data['next_transit'] = obs.next_transit(self.polaris)
         
+    def object_info(self, **kw)
+        '''
+        Takes XEphem formated ecatalog data and computes object information
+        '''
+        obs = kw.get("obs", self.obs)
+        catalog = kw.get("catalog")
+        # Use ephem.readdb(line)
+        # Add dictionary of catalog object data to catalogobject list
+        # object = ephem.readdb(catalog)
+        # object.compute(obs)
+        # self.catalogobject.append[object_data]
+        pass
 
