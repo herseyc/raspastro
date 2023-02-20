@@ -94,3 +94,10 @@ for i in iss.iss_next_passes:
        print(i['sun_alt'], i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
    
 
+print("=========Object Info===========")
+object = "M31|NGC 224|UGC 454|MCG 7-2-16|ZWG 535.17|PGC2557 N,f|G|Sb,0:42:44.3,41:16:8,3.5,2000,11346|3702|35"
+
+astro.object_info(catalog=object)
+for key in astro.object_data:
+    print(f"{key} = {astro.object_data[key]}")
+

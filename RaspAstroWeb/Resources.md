@@ -32,3 +32,6 @@ https://python-visualization.github.io/folium/
 
 
 https://docs.sunpy.org/en/stable/generated/gallery/units_and_coordinates/planet_locations.html
+
+
+https://github.com/XEphem/Catalogs

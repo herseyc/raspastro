@@ -276,25 +276,24 @@ class AstroData:
         '''
         obs = kw.get("obs", self.obs)
         catalog = kw.get("catalog", "None")
-        object_data = {}
+        self.object_data = {}
         # Use ephem.readdb(line)
         # Add dictionary of catalog object data to catalogobject list
         if catalog == "None":
-            self.catalog_objects_data.append["No catalog data provided"]
+            self.object_data.append["No catalog data provided"]
             return
 
         object = ephem.readdb(catalog)
         object.compute(obs)
-        object_data['a_ra'] = object.a_ra
-        object_data['a_dec'] = object.a_dec
-        object_data['mag'] = object.mag
-        object_data['size'] = object.size
-        object_data['alt'] = object.alt
-        object_data['az'] = object.az
-        object_data['next_transit'] = obs.next_transit(object)
-        object_data['next_rising'] = obs.next_rising(object)
-        object_data['next_setting'] = obs.next_setting(object)
-        object_data['constellation'] = ephem.contellation(object)
-        # Add object data to catalog_objects_data list
-        self.catalog_objects_data.append[object_data]
+        self.object_data['name'] = object.name
+        self.object_data['a_ra'] = object.a_ra
+        self.object_data['a_dec'] = object.a_dec
+        self.object_data['mag'] = object.mag
+        self.object_data['size'] = object.size
+        self.object_data['alt'] = object.alt
+        self.object_data['az'] = object.az
+        self.object_data['next_transit'] = obs.next_transit(object)
+        self.object_data['next_rising'] = obs.next_rising(object)
+        self.object_data['next_setting'] = obs.next_setting(object)
+        self.object_data['constellation'] = ephem.constellation(object)
 
