@@ -91,7 +91,7 @@ print("Visible (eclipsed=False) and (sun_alt < 0) ISS passes")
 print("Time is converted to local time")
 for i in iss.iss_next_passes:
     if not i['eclipsed'] and i['sun_alt'] < 0: 
-       print(i['sun_alt'], i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']))
+       print(i['sun_alt'], i['eclipsed'], to_local(i['aos'].datetime()), to_local(i['los'].datetime()) , math.degrees(i['alt_max']), i['constellation'])
    
 
 print("=========Object Info===========")

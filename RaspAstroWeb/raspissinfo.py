@@ -110,6 +110,9 @@ class ISSData:
             sun_station.date = t_los
             thesun.compute(sun_station)
 
+            #What constellation is it in
+            constellation = ephem.constellation(sat)
+
             # Returning sun_alt to determine if at night.  
             # if sun_alt < 0 sun is below the horizon
             sun_alt = round(math.degrees(thesun.alt))
@@ -122,6 +125,7 @@ class ISSData:
                                        'azr': azr, 
                                        't_max': t_max, 
                                        'alt_max': alt_max, 
-                                       'azs': azs
+                                       'azs': azs,
+                                       'constellation': constellation,
                                        })
             station.date = t_los + ephem.second
