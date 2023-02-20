@@ -9,7 +9,7 @@
 <h2>ISS Current Information</h2>
 <table>
 <tr>
-<td>Current Date/Time:</td><td>{{ datetime }}</td>
+<td>ISS at:</td><td>{{ datetime }}</td>
 </tr>
 <tr>
 <td>ISS Geocentric Lat:</td><td>{{ isscurrent['geolat'] }}</td>
@@ -35,11 +35,11 @@
 
 <table>
 <tr>
-<td>Start Time</td><td>End Time</td><td>Max Altitude</td>
+	<td>Start Time</td><td>End Time</td><td>Max Altitude</td><td>Constellation</td>
 </tr>
   {% for pass in iss_pass_list %}
 <tr>
-      <td>{{ pass['aos'] }}</td><td>{{  pass['los'] }}</td><td>{{ pass['alt_max'] }} degrees</td>
+	<td>{{ pass['aos'] }}</td><td>{{  pass['los'] }}</td><td>{{ pass['alt_max'] }} degrees</td><td>{{ pass['constellation'] }}</td>
 </tr>
   {% endfor %}
 </table>

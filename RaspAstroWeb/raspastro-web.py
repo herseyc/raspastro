@@ -191,7 +191,9 @@ def iss():
             iss_local.append({
                          "aos": time_to_human(to_local(i['aos'].datetime())), 
                          "los": time_to_human(to_local(i['los'].datetime())), 
-                         "alt_max": round(math.degrees(i['alt_max']))})
+                         "alt_max": round(math.degrees(i['alt_max'])),
+                         "constellation": i['constellation'][1],
+                         })
 
     iss_current['geolat'] = iss.iss_telemetry.sublat
     iss_current['geolong'] = iss.iss_telemetry.sublong
