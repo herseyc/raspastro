@@ -136,6 +136,7 @@ class AstroData:
         self.moon_data['next_new_moon'] = ephem.next_new_moon(self.obs.date)
         self.moon_data['next_full_moon'] = ephem.next_full_moon(self.obs.date)
         self.moon_data['next_moon_transit'] = self.obs.next_transit(moon)
+        self.moon_data['constellation'] = ephem.constellation(moon)
         self.moon_data['hlat'] = moon.hlat
         self.moon_data['hlon'] = moon.hlon
 
@@ -160,6 +161,7 @@ class AstroData:
         self.mercury['alt'] =  round(math.degrees(c_mercury.alt), 1)
         self.mercury['sun_distance'] =  round(c_mercury.sun_distance, 4)
         self.mercury['earth_distance'] =  round(c_mercury.earth_distance, 4)
+        self.mercury['constellation'] =  ephem.constellation(c_mercury)
       
         # Venus
         self.venus = {}
@@ -174,6 +176,7 @@ class AstroData:
         self.venus['alt'] =  round(math.degrees(c_venus.alt), 1)
         self.venus['sun_distance'] =  round(c_venus.sun_distance, 4)
         self.venus['earth_distance'] =  round(c_venus.earth_distance, 4)
+        self.venus['constellation'] =  ephem.constellation(c_venus)
    
         # Mars
         self.mars = {}
@@ -188,6 +191,7 @@ class AstroData:
         self.mars['alt'] =  round(math.degrees(c_mars.alt), 1)
         self.mars['sun_distance'] =  round(c_mars.sun_distance, 4)
         self.mars['earth_distance'] =  round(c_mars.earth_distance, 4)
+        self.mars['constellation'] =  ephem.constellation(c_mars)
 
         # Jupiter
         self.jupiter = {}
@@ -202,6 +206,7 @@ class AstroData:
         self.jupiter['alt'] =  round(math.degrees(c_jupiter.alt), 1)
         self.jupiter['sun_distance'] =  round(c_jupiter.sun_distance, 4)
         self.jupiter['earth_distance'] =  round(c_jupiter.earth_distance, 4)
+        self.jupiter['constellation'] =  ephem.constellation(c_jupiter)
 
         # Saturn
         self.saturn = {}
@@ -216,6 +221,7 @@ class AstroData:
         self.saturn['alt'] =  round(math.degrees(c_saturn.alt), 1)
         self.saturn['sun_distance'] =  round(c_saturn.sun_distance, 4)
         self.saturn['earth_distance'] =  round(c_saturn.earth_distance, 4)
+        self.saturn['constellation'] =  ephem.constellation(c_saturn)
 
         # Uranus
         self.uranus = {}
@@ -230,6 +236,7 @@ class AstroData:
         self.uranus['alt'] =  round(math.degrees(c_uranus.alt), 1)
         self.uranus['sun_distance'] =  round(c_uranus.sun_distance, 4)
         self.uranus['earth_distance'] =  round(c_uranus.earth_distance, 4)
+        self.uranus['constellation'] =  ephem.constellation(c_uranus)
 
         # Neptune
         self.neptune = {}
@@ -244,6 +251,7 @@ class AstroData:
         self.neptune['alt'] =  round(math.degrees(c_neptune.alt), 1)
         self.neptune['sun_distance'] =  round(c_neptune.sun_distance, 4)
         self.neptune['earth_distance'] =  round(c_neptune.earth_distance, 4)
+        self.neptune['constellation'] =  ephem.constellation(c_neptune)
 
     def polaris_info(self, **kw):
         ''' Polaris Information '''
