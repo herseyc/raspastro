@@ -142,6 +142,7 @@ def index():
     plt.savefig('./static/polarisalign.png', bbox_inches='tight')
     astro.polaris_data['phourangle'] = int(astro.polaris_data['phourangle'])
     astro.polaris_data['next_transit'] = time_to_human(to_local(astro.polaris_data['next_transit'].datetime()))
+    astro.polaris_data['hourangle'] = round(astro.polaris_data['phourangle'] * 0.0667, 1)
 
 
     return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data)

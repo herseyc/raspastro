@@ -34,8 +34,9 @@ class AstroData:
         self.obs.date = obsepoch
         self.obs.pressure = obspressure
         self.obs.temperature = obstemp
+        self.sidereal = self.obs.sidereal_time()
         # Initilize list to hold dictionary of catalogobjects
-        self.catalogobjects = []
+        self.catalog_objects_data = []
 
 
     def sun_info(self, **kw):
@@ -274,11 +275,26 @@ class AstroData:
         Takes XEphem formated ecatalog data and computes object information
         '''
         obs = kw.get("obs", self.obs)
-        catalog = kw.get("catalog")
+        catalog = kw.get("catalog", "None")
+        object_data = {}
         # Use ephem.readdb(line)
         # Add dictionary of catalog object data to catalogobject list
-        # object = ephem.readdb(catalog)
-        # object.compute(obs)
-        # self.catalogobject.append[object_data]
-        pass
+        if catalog == "None":
+            self.catalog_objects_data.append["No catalog data provided"]
+            return
+
+        object = ephem.readdb(catalog)
+        object.compute(obs)
+        object_data['a_ra'] = object.a_ra
+        object_data['a_dec'] = object.a_dec
+        object_data['mag'] = object.mag
+        object_data['size'] = object.size
+        object_data['alt'] = object.alt
+        object_data['az'] = object.az
+        object_data['next_transit'] = obs.next_transit(object)
+        object_data['next_rising'] = obs.next_rising(object)
+        object_data['next_setting'] = obs.next_setting(object)
+        object_data['constellation'] = ephem.contellation(object)
+        # Add object data to catalog_objects_data list
+        self.catalog_objects_data.append[object_data]
 
