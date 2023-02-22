@@ -133,6 +133,7 @@ def index():
         object_name = astro.object_data['name'].split("|")
         astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
+        astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
 
 
