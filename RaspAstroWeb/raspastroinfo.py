@@ -159,6 +159,7 @@ class AstroData:
         self.mercury['mag'] =  c_mercury.mag
         self.mercury['radius'] =  c_mercury.radius
         self.mercury['alt'] =  round(math.degrees(c_mercury.alt), 1)
+        self.mercury['az'] =  round(math.degrees(c_mercury.az), 1)
         self.mercury['sun_distance'] =  round(c_mercury.sun_distance, 4)
         self.mercury['earth_distance'] =  round(c_mercury.earth_distance, 4)
         self.mercury['constellation'] =  ephem.constellation(c_mercury)
@@ -174,6 +175,7 @@ class AstroData:
         self.venus['mag'] =  c_venus.mag
         self.venus['radius'] =  c_venus.radius
         self.venus['alt'] =  round(math.degrees(c_venus.alt), 1)
+        self.venus['az'] =  round(math.degrees(c_venus.az), 1)
         self.venus['sun_distance'] =  round(c_venus.sun_distance, 4)
         self.venus['earth_distance'] =  round(c_venus.earth_distance, 4)
         self.venus['constellation'] =  ephem.constellation(c_venus)
@@ -189,6 +191,7 @@ class AstroData:
         self.mars['mag'] =  c_mars.mag
         self.mars['radius'] =  c_mars.radius
         self.mars['alt'] =  round(math.degrees(c_mars.alt), 1)
+        self.mars['az'] =  round(math.degrees(c_mars.az), 1)
         self.mars['sun_distance'] =  round(c_mars.sun_distance, 4)
         self.mars['earth_distance'] =  round(c_mars.earth_distance, 4)
         self.mars['constellation'] =  ephem.constellation(c_mars)
@@ -204,6 +207,7 @@ class AstroData:
         self.jupiter['mag'] =  c_jupiter.mag
         self.jupiter['radius'] =  c_jupiter.radius
         self.jupiter['alt'] =  round(math.degrees(c_jupiter.alt), 1)
+        self.jupiter['az'] =  round(math.degrees(c_jupiter.az), 1)
         self.jupiter['sun_distance'] =  round(c_jupiter.sun_distance, 4)
         self.jupiter['earth_distance'] =  round(c_jupiter.earth_distance, 4)
         self.jupiter['constellation'] =  ephem.constellation(c_jupiter)
@@ -219,6 +223,7 @@ class AstroData:
         self.saturn['mag'] =  c_saturn.mag
         self.saturn['radius'] =  c_saturn.radius
         self.saturn['alt'] =  round(math.degrees(c_saturn.alt), 1)
+        self.saturn['az'] =  round(math.degrees(c_saturn.az), 1)
         self.saturn['sun_distance'] =  round(c_saturn.sun_distance, 4)
         self.saturn['earth_distance'] =  round(c_saturn.earth_distance, 4)
         self.saturn['constellation'] =  ephem.constellation(c_saturn)
@@ -234,6 +239,7 @@ class AstroData:
         self.uranus['mag'] =  c_uranus.mag
         self.uranus['radius'] =  c_uranus.radius
         self.uranus['alt'] =  round(math.degrees(c_uranus.alt), 1)
+        self.uranus['az'] =  round(math.degrees(c_uranus.az), 1)
         self.uranus['sun_distance'] =  round(c_uranus.sun_distance, 4)
         self.uranus['earth_distance'] =  round(c_uranus.earth_distance, 4)
         self.uranus['constellation'] =  ephem.constellation(c_uranus)
@@ -249,6 +255,7 @@ class AstroData:
         self.neptune['mag'] =  c_neptune.mag
         self.neptune['radius'] =  c_neptune.radius
         self.neptune['alt'] =  round(math.degrees(c_neptune.alt), 1)
+        self.neptune['az'] =  round(math.degrees(c_neptune.az), 1)
         self.neptune['sun_distance'] =  round(c_neptune.sun_distance, 4)
         self.neptune['earth_distance'] =  round(c_neptune.earth_distance, 4)
         self.neptune['constellation'] =  ephem.constellation(c_neptune)
