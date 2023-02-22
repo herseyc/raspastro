@@ -131,6 +131,8 @@ def index():
     for edbobject in CUSTOM_OBJECTS:
         astro.object_info(catalog=edbobject)
         object_name = astro.object_data['name'].split("|")
+        astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']))
+        astro.object_data['az'] = round(math.degrees(astro.object_data['az']))
         custom_deepsky[object_name[0]] = astro.object_data 
 
 
