@@ -124,6 +124,16 @@ def index():
 
     astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
 
+    # Get Deep Sky Custom Object Info
+    # A list of XEphem formated data in config.py
+    #set dict for results
+    custom_deepsky = {}
+    for edbobject in CUSTOM_OBJECTS:
+        astro.object_info(catalog=edbobject)
+        object_name = astro.object_data['name'].split("|")
+        custom_deepsky[object_name[0]] = astro.object_data 
+
+
     # Get Planet Info
     astro.planet_info()
 
@@ -145,7 +155,7 @@ def index():
     astro.polaris_data['hourangle'] = round(astro.polaris_data['phourangle'] * 0.0667, 1)
 
 
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data, deepsky=custom_deepsky)
 
 # INDI Info from INDI Web Manager API
 @app.route('/indi')

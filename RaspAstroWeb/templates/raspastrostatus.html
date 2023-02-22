@@ -7,24 +7,35 @@ function toggleobserver() {
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="none";
+	document.getElementById("deepsky").style.display="none";
 	}
 function togglesolarsystem() {
 	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="block";
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="none";
+	document.getElementById("deepsky").style.display="none";
 	}
 function toggleiss() {
 	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="block";
 	document.getElementById("polaris").style.display="none";
+	document.getElementById("deepsky").style.display="none";
 	}
 function togglepolaris() {
 	document.getElementById("observer").style.display="none";
 	document.getElementById("solarsystem").style.display="none";
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="block";
+	document.getElementById("deepsky").style.display="none";
+	}
+function toggledeepsky() {
+	document.getElementById("observer").style.display="none";
+	document.getElementById("solarsystem").style.display="none";
+	document.getElementById("iss").style.display="none";
+	document.getElementById("polaris").style.display="none";
+	document.getElementById("deepsky").style.display="block";
 	}
 
 function refreshdata() {
@@ -43,6 +54,7 @@ function refreshdata() {
 		<button id="togglesolarsystem" onclick="togglesolarsystem();">Solar System</button>
 		<button id="toggleiss" onclick="toggleiss();">ISS</button>
 		<button id="togglepolaris" onclick="togglepolaris();">Polaris</button>
+		<button id="toggledeepskey" onclick="toggledeepsky();">Deep Sky</button>
 		<button id="refreshdata" onclick="refreshdata();">Refresh Data</button>
 	</div>
 
@@ -179,6 +191,29 @@ function refreshdata() {
 <img src="/static/polarisalign.png">
 <p>Inverted image as seen through polar alignment scope.</p>
 
+</div>
+
+<div id="deepsky">
+<p>Refreshed at: {{ datetime }}</p>
+<table>
+<tr>
+	<td>Name</td>
+	<td>RA</td>
+	<td>DEC</td>
+	<td>Mag</td>
+	<td>Constellation</td> 
+</tr>
+{% for object in deepsky %}
+<tr>
+	<td>{{ object }}</td>
+	<td>{{ deepsky[object]['a_ra'] }}</td>
+	<td>{{ deepsky[object]['a_dec'] }}</td>
+	<td>{{ deepsky[object]['mag'] }}</td>
+	<td>{{ deepsky[object]['constellation'][1] }}</td>
+</tr>
+{% endfor %}
+
+</table>
 </div>
 
 

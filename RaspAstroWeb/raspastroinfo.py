@@ -300,8 +300,15 @@ class AstroData:
         self.object_data['size'] = object.size
         self.object_data['alt'] = object.alt
         self.object_data['az'] = object.az
-        self.object_data['next_transit'] = obs.next_transit(object)
-        self.object_data['next_rising'] = obs.next_rising(object)
-        self.object_data['next_setting'] = obs.next_setting(object)
+        self.object_data['circumpolar'] = object.circumpolar
         self.object_data['constellation'] = ephem.constellation(object)
+
+        if object.circumpolar:
+            self.object_data['next_rising'] = datetime.utcnow
+            self.object_data['next_setting'] = datetime.utcnow
+        else:      
+            self.object_data['next_rising'] = obs.next_rising(object)
+            self.object_data['next_setting'] = obs.next_setting(object)
+
+        self.object_data['next_transit'] = obs.next_transit(object)
 
