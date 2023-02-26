@@ -25,6 +25,8 @@ echo "Copying template directory to ${INSTALL_DIR}"
 cp -R templates ${INSTALL_DIR}
 echo "Copying static directory to ${INSTALL_DIR}"
 cp -R static ${INSTALL_DIR}
+echo "Copying xephemcat directory to ${INSTALL_DIR}"
+cp -R xephemcat ${INSTALL_DIR}
 echo "Copying supporing files to ${INSTALL_DIR}"
 cp raspastroweb.service ${INSTALL_DIR}
 echo "Making  ${INSTALL_DIR}/raspastro-web.py executable."
