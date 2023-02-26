@@ -135,18 +135,29 @@ def index():
         object_name = astro.object_data['name'].split("|")
         astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
-       # Moved to rising_or_setting function
-       # object_transit_delta = astro.object_data['next_transit'].datetime() - current_utctime
-       # if object_transit_delta.seconds < 43200:
-       #     # Oject Rising
-       #     astro.object_data['rising_sign'] = "↗️"
-       # else:
-       #     # Object Setting
-       #     astro.object_data['rising_sign'] = "↘️"
         astro.object_data['rising_sign'] = rising_or_setting(astro.object_data['next_transit'])
 
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
+
+    # Messier Objects
+    messier_objs = {}
+    messier_list = []
+    messier_file = "./xephemcat/Messier.edb"
+    with open(messier_file) as lines:
+        for obj in lines:
+            if not obj.strip().startswith("#"):
+                messier_list.append(obj)
+
+    for messier_obj in messier_list:
+        astro.object_info(catalog=messier_obj)
+        messier_object_name = astro.object_data['name'].split("|")
+        astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
+        astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
+        astro.object_data['rising_sign'] = rising_or_setting(astro.object_data['next_transit'])
+
+        astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
+        messier_objs[messier_object_name[0]] = astro.object_data 
 
 
     # Get Planet Info
@@ -170,7 +181,7 @@ def index():
     astro.polaris_data['hourangle'] = round(astro.polaris_data['phourangle'] * 0.0667, 1)
 
 
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data, deepsky=custom_deepsky)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data, deepsky=custom_deepsky, messier=messier_objs)
 
 # INDI Info from INDI Web Manager API
 @app.route('/indi')

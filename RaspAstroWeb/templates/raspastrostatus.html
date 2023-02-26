@@ -263,11 +263,35 @@ function refreshdata() {
 {% endfor %}
 
 </table>
-</div>
 
 <h2>Messier Objects</h2>
-Coming Soon...
+<table>
+<tr>
+	<td>Name</td>
+	<td>Alt</td>
+	<td>Az</td>
+	<td>RA</td>
+	<td>DEC</td>
+	<td>Next Transit</td>
+	<td>Mag</td>
+	<td>Constellation</td> 
+</tr>
+{% for object in messier %}
+<tr>
+	<td>{{ object }}</td>
+	<td>{{ messier[object]['alt'] }}{{ messier[object]['rising_sign'] }}</td>
+	<td>{{ messier[object]['az'] }}</td>
+	<td>{{ messier[object]['a_ra'] }}</td>
+	<td>{{ messier[object]['a_dec'] }}</td>
+	<td>{{ messier[object]['next_transit'] }}</td>
+	<td>{{ messier[object]['mag'] }}</td>
+	<td>{{ messier[object]['constellation'][1] }}</td>
+</tr>
+{% endfor %}
 
+</table>
+
+</div>
 
 </div>
 <p><a href="https://github.com/herseyc/raspastro">RaspAstro</a> by Hersey from <a href="http://www.suffolksky.com/">SuffolkSky.com</a></p>
