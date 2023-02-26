@@ -15,6 +15,10 @@ if [ -f "${INSTALL_DIR}/config.py" ]; then
     cp ${INSTALL_DIR}/config.py ${INSTALL_DIR}/config.old
 fi
 
+echo "Setting ${current_user} in raspastroweb.service..."
+sed -i 's/^User=.*/User='${current_user}'/' raspastroweb.service
+echo "To use raspastroweb.service with systemd make sure paths are correct"
+
 echo "Copying python files to ${INSTALL_DIR}"
 cp *.py ${INSTALL_DIR}
 echo "Copying template directory to ${INSTALL_DIR}"
