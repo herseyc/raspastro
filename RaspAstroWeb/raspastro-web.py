@@ -135,13 +135,15 @@ def index():
         object_name = astro.object_data['name'].split("|")
         astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
-        object_transit_delta = astro.object_data['next_transit'].datetime() - current_utctime
-        if object_transit_delta.seconds < 43200:
-            # Oject Rising
-            astro.object_data['rising_sign'] = "↗️"
-        else:
-            # Object Setting
-            astro.object_data['rising_sign'] = "↘️"
+       # Moved to rising_or_setting function
+       # object_transit_delta = astro.object_data['next_transit'].datetime() - current_utctime
+       # if object_transit_delta.seconds < 43200:
+       #     # Oject Rising
+       #     astro.object_data['rising_sign'] = "↗️"
+       # else:
+       #     # Object Setting
+       #     astro.object_data['rising_sign'] = "↘️"
+        astro.object_data['rising_sign'] = rising_or_setting(astro.object_data['next_transit'])
 
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
