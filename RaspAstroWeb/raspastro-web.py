@@ -114,13 +114,15 @@ def index():
     astro.sun_data['next_solstice'] = time_to_human(to_local(astro.sun_data['next_solstice'].datetime()))
     astro.sun_data['next_equinox'] = time_to_human(to_local(astro.sun_data['next_equinox'].datetime()))
 
-    sun_transit_delta = astro.sun_data['next_sun_transit'].datetime() - current_utctime
-    if sun_transit_delta.seconds < 43200:
+    # moved to rising_or_setting function in rasp_calc_func.py
+    #sun_transit_delta = astro.sun_data['next_sun_transit'].datetime() - current_utctime
+    #if sun_transit_delta.seconds < 43200:
         # Sun Rising
-        astro.sun_data['rising_sign'] = "↗️"
-    else:
+    #    astro.sun_data['rising_sign'] = "↗️"
+    #else:
         # Sun Setting
-        astro.sun_data['rising_sign'] = "↘️"
+    #    astro.sun_data['rising_sign'] = "↘️"
+    astro.sun_data['rising_sign'] = rising_or_setting(astro.sun_data['next_sun_transit'])
 
     astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
 

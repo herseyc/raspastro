@@ -85,6 +85,20 @@ def convert_dms_to_dd(dms):
 
     return dd
 
+###################################################
+# Use transit time to determine rising or setting #
+###################################################
+def rising_or_setting(next_transit_time):
+    current_utctime = datetime.utcnow()
+    transit_delta = next_transit_time.datetime() - current_utctime
+    if transit_delta.seconds < 43200:
+        # Return Rising Arrow
+        return "↗️"
+    else:
+        # Return setting Arrow
+        return "↘️"
+
+
 
 # NO LONGER USED # 
 ###################################################
