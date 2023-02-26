@@ -250,7 +250,7 @@ function refreshdata() {
 {% for object in deepsky %}
 <tr>
 	<td>{{ object }}</td>
-	<td>{{ deepsky[object]['alt'] }}</td>
+	<td>{{ deepsky[object]['alt'] }}{{ deepsky[object]['rising_sign'] }}</td>
 	<td>{{ deepsky[object]['az'] }}</td>
 	<td>{{ deepsky[object]['a_ra'] }}</td>
 	<td>{{ deepsky[object]['a_dec'] }}</td>
