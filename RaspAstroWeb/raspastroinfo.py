@@ -298,10 +298,35 @@ class AstroData:
             self.object_data.append["No catalog data provided"]
             return
 
+        xephem_edb_objecttypes = {
+                "A": "Cluster of galaxies",
+                "B": "Star, binary",
+                "C": "Cluster, globular",
+                "D": "Star, visual double",
+                "F": "Nebula, diffuse",
+                "G": "Galaxy, spiral",
+                "H": "Galaxy, spherical",
+                "J": "Radio",
+                "K": "Nebula, dark",
+                "L": "Pulsar",
+                "M": "Star, multiple",
+                "N": "Nebula, bright",
+                "O": "Cluster, open",
+                "P": "Nebula, planetary",
+                "Q": "Quasar",
+                "R": "Supernova remnant",
+                "S": "Star",
+                "T": "Stellar object",
+                "U": "Cluster, with nebulosity",
+                "Y": "Supernova",
+                "V": "Star, variable",
+            }
+
         object = ephem.readdb(catalog)
         object.compute(obs)
         self.object_data['name'] = object.name
         self.object_data['class'] = object._class
+        self.object_data['class_name'] = xephem_edb_objecttypes[object._class]
         self.object_data['a_ra'] = object.a_ra
         self.object_data['a_dec'] = object.a_dec
         self.object_data['mag'] = object.mag

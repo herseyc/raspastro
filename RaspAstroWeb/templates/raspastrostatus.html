@@ -241,6 +241,7 @@ function refreshdata() {
 <table>
 <tr>
 	<td>Name</td>
+	<td>Type</td>
 	<td>Alt</td>
 	<td>Az</td>
 	<td>RA</td>
@@ -256,6 +257,7 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>{{ object }}</td>
+	<td>{{ deepsky[object]['class_name'] }}</td>
 	<td>{{ deepsky[object]['alt'] }}{{ deepsky[object]['rising_sign'] }}</td>
 	<td>{{ deepsky[object]['az'] }}</td>
 	<td>{{ deepsky[object]['a_ra'] }}</td>
@@ -273,6 +275,7 @@ function refreshdata() {
 <table>
 <tr>
 	<td>Name</td>
+	<td>Type</td>
 	<td>Alt</td>
 	<td>Az</td>
 	<td>RA</td>
@@ -290,6 +293,7 @@ function refreshdata() {
 {% endif %}
 
 	<td>{{ object }}</td>
+	<td>{{ messier[object]['class_name'] }}</td>
 	<td>{{ messier[object]['alt'] }}{{ messier[object]['rising_sign'] }}</td>
 	<td>{{ messier[object]['az'] }}</td>
 	<td>{{ messier[object]['a_ra'] }}</td>
