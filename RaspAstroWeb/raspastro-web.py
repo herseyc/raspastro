@@ -94,34 +94,24 @@ def index():
     astro = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
     gps_data.append(astro.obs.horizon)
 
+    # Moon Information
     astro.moon_info()
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
 
-    moon_transit_delta = astro.moon_data['next_moon_transit'].datetime() - current_utctime
-    if moon_transit_delta.seconds < 43200:
-        # Moon Rising
-        astro.moon_data['rising_sign'] = "↗️"
-    else:
-        # Moon Setting
-        astro.moon_data['rising_sign'] = "↘️"
+    # Is Moon Rising or Setting
+    astro.moon_data['rising_sign'] = rising_or_setting(astro.moon_data['next_moon_transit'])
 
     astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
 
+    # Sun Information
     astro.sun_info()
     astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
     astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
     astro.sun_data['next_solstice'] = time_to_human(to_local(astro.sun_data['next_solstice'].datetime()))
     astro.sun_data['next_equinox'] = time_to_human(to_local(astro.sun_data['next_equinox'].datetime()))
 
-    # moved to rising_or_setting function in rasp_calc_func.py
-    #sun_transit_delta = astro.sun_data['next_sun_transit'].datetime() - current_utctime
-    #if sun_transit_delta.seconds < 43200:
-        # Sun Rising
-    #    astro.sun_data['rising_sign'] = "↗️"
-    #else:
-        # Sun Setting
-    #    astro.sun_data['rising_sign'] = "↘️"
+    # Is Sun Rising or Setting
     astro.sun_data['rising_sign'] = rising_or_setting(astro.sun_data['next_sun_transit'])
 
     astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
@@ -140,6 +130,9 @@ def index():
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
 
+    # Get Planet Info
+    astro.planet_info()
+
     # Messier Objects
     messier_objs = {}
     messier_list = []
@@ -154,17 +147,15 @@ def index():
         messier_object_name = astro.object_data['name'].split("|")
         astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
+        # Is the object rising or setting
         astro.object_data['rising_sign'] = rising_or_setting(astro.object_data['next_transit'])
 
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         messier_objs[messier_object_name[0]] = astro.object_data 
 
-
-    # Get Planet Info
-    astro.planet_info()
-
     # Get Polaris Info
     astro.polaris_info()
+
     # Generate Polar Align Image
     phourangle = numpy.deg2rad(astro.polaris_data['phourangle'])
     mpl.rcParams['xtick.color'] = 'white'
