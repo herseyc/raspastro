@@ -301,6 +301,7 @@ class AstroData:
         object = ephem.readdb(catalog)
         object.compute(obs)
         self.object_data['name'] = object.name
+        self.object_data['class'] = object._class
         self.object_data['a_ra'] = object.a_ra
         self.object_data['a_dec'] = object.a_dec
         self.object_data['mag'] = object.mag
