@@ -250,7 +250,11 @@ function refreshdata() {
 	<td>Constellation</td> 
 </tr>
 {% for object in deepsky %}
+{% if deepsky[object]['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>{{ object }}</td>
 	<td>{{ deepsky[object]['alt'] }}{{ deepsky[object]['rising_sign'] }}</td>
 	<td>{{ deepsky[object]['az'] }}</td>
@@ -277,7 +281,13 @@ function refreshdata() {
 	<td>Constellation</td> 
 </tr>
 {% for object in messier %}
+
+{% if messier[object]['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
+
 	<td>{{ object }}</td>
 	<td>{{ messier[object]['alt'] }}{{ messier[object]['rising_sign'] }}</td>
 	<td>{{ messier[object]['az'] }}</td>
