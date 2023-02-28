@@ -149,7 +149,11 @@ function refreshdata() {
 	<td>Earth Distance (AU)</td>
 	<td rowspan=8><img src="/static/planets.png" width="200"><br><a href="/static/planets.png">Full-size</a></td>
 </tr>
+{% if mercury['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
         <td>☿️ {{ mercury['name'] }}</td>
 	<td>{{ mercury['alt'] }}</td>
 	<td>{{ mercury['az'] }}</td>
@@ -157,7 +161,11 @@ function refreshdata() {
 	<td>{{ mercury['sun_distance'] }}</td>
 	<td>{{ mercury['earth_distance'] }}</td>
 </tr>
+{% if venus['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>♀️ {{ venus['name'] }}</td>
 	<td>{{ venus['alt'] }}</td>
 	<td>{{ venus['az'] }}</td>
@@ -165,7 +173,11 @@ function refreshdata() {
 	<td>{{ venus['sun_distance'] }}</td>
 	<td>{{ venus['earth_distance'] }}</td>
 </tr>
+{% if mars['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>♂️ {{ mars['name'] }}</td>
 	<td>{{ mars['alt'] }}</td>
 	<td>{{ mars['az'] }}</td>
@@ -173,7 +185,11 @@ function refreshdata() {
 	<td>{{ mars['sun_distance'] }}</td>
 	<td>{{ mars['earth_distance'] }}</td>
 </tr>
+{% if jupiter['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>♃ {{ jupiter['name'] }}</td>
 	<td>{{ jupiter['alt'] }}</td>
 	<td>{{ jupiter['az'] }}</td>
@@ -181,7 +197,11 @@ function refreshdata() {
 	<td>{{ jupiter['sun_distance'] }}</td>
 	<td>{{ jupiter['earth_distance'] }}</td>
 </tr>
+{% if saturn['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>♄ {{ saturn['name'] }}</td>
 	<td>{{ saturn['alt'] }}</td>
 	<td>{{ saturn['az'] }}</td>
@@ -189,7 +209,11 @@ function refreshdata() {
 	<td>{{ saturn['sun_distance'] }}</td>
 	<td>{{ saturn['earth_distance'] }}</td>
 </tr>
+{% if uranus['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>♅ {{ uranus['name'] }}</td>
 	<td>{{ uranus['alt'] }}</td>
 	<td>{{ uranus['az'] }}</td>
@@ -197,7 +221,11 @@ function refreshdata() {
 	<td>{{ uranus['sun_distance'] }}</td>
 	<td>{{ uranus['earth_distance'] }}</td>
 </tr>
+{% if neptune['alt'] > 0 %}
+<tr bgcolor="green">
+{% else %}
 <tr>
+{% endif %}
 	<td>♆ {{ neptune['name'] }}</td>
 	<td>{{ neptune['alt'] }}</td>
 	<td>{{ neptune['az'] }}</td>
