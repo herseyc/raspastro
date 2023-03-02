@@ -40,10 +40,11 @@ def get_gps():
                       gpsaltitude = MY_ELEVATION
                   else:
                      gpsaltitude = the_fix.alt
-                     gpslatdms = convert_dd_to_dms(gpslatitude)
-                     gpslondms = convert_dd_to_dms(gpslongitude)
-                     gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-                     break
+
+                  gpslatdms = convert_dd_to_dms(gpslatitude)
+                  gpslondms = convert_dd_to_dms(gpslongitude)
+                  gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+                  break
               else:
                  time.sleep(.5)
 
