@@ -32,17 +32,21 @@ def get_gps():
         for new_data in the_connection:
            if new_data:
               the_fix.unpack(new_data)
-              gpsfixtype = the_fix.mode
-              gpslatitude = the_fix.lat
-              gpslongitude = the_fix.lon
-              gpsaltitude = the_fix.alt
               if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
-                 gpslatdms = convert_dd_to_dms(gpslatitude)
-                 gpslondms = convert_dd_to_dms(gpslongitude)
-                 gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-                 break
+                  gpsfixtype = the_fix.mode
+                  gpslatitude = the_fix.lat
+                  gpslongitude = the_fix.lon
+                  if gpsfixtype != 3:
+                      gpsaltitude = MY_ELEVATION
+                  else:
+                     gpsaltitude = the_fix.alt
+                     gpslatdms = convert_dd_to_dms(gpslatitude)
+                     gpslondms = convert_dd_to_dms(gpslongitude)
+                     gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+                     break
               else:
                  time.sleep(.5)
+
         the_connection.close()
     else:
         gpsfixtype = "MANUAL"
