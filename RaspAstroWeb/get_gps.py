@@ -7,6 +7,10 @@ from rasp_calc_func import *
 import time
 
 def get_gps_data():
+    '''
+    Get GPS Data from GPS device or user configured values  and return tuple 
+    (gpsfixtype, gpslatdms, gpslondms, gpsaltitude, gpslatitude, gpslongitude, gps_data)
+    '''
     gps_data = []
 
     if USE_GPS:   
