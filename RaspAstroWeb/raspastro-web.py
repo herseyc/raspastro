@@ -14,49 +14,54 @@ import numpy
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from config import *
+from get_gps import *
+
 
 app = Flask(__name__)
 
-gps_data = []
 
-def get_gps():
-    global gpslatitude
-    global gpslongitude
-    global gps_data
-    if USE_GPS:   
-        # GPS Data
-        the_connection = agps3.GPSDSocket()
-        the_fix = agps3.DataStream()
-        the_connection.connect()
-        the_connection.watch()
-        for new_data in the_connection:
-           if new_data:
-              the_fix.unpack(new_data)
-              if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
-                  gpsfixtype = the_fix.mode
-                  gpslatitude = the_fix.lat
-                  gpslongitude = the_fix.lon
-                  if gpsfixtype != 3:
-                      gpsaltitude = MY_ELEVATION
-                  else:
-                     gpsaltitude = the_fix.alt
 
-                  gpslatdms = convert_dd_to_dms(gpslatitude)
-                  gpslondms = convert_dd_to_dms(gpslongitude)
-                  gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-                  break
-              else:
-                 time.sleep(.5)
-
-        the_connection.close()
-    else:
-        gpsfixtype = "MANUAL"
-        gpslatdms = MY_LAT
-        gpslondms = MY_LON
-        gpsaltitude = MY_ELEVATION
-        gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-        gpslatitude = convert_dms_to_dd(MY_LAT)
-        gpslongitude = convert_dms_to_dd(MY_LON)
+# Moved to Function in get_gps.py
+#gps_data = []
+#
+#def get_gps():
+#    global gpslatitude
+#    global gpslongitude
+#    global gps_data
+#    if USE_GPS:   
+#        # GPS Data
+#        the_connection = agps3.GPSDSocket()
+#        the_fix = agps3.DataStream()
+#        the_connection.connect()
+#        the_connection.watch()
+#        for new_data in the_connection:
+#           if new_data:
+#              the_fix.unpack(new_data)
+#              if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
+#                  gpsfixtype = the_fix.mode
+#                  gpslatitude = the_fix.lat
+#                  gpslongitude = the_fix.lon
+#                  if gpsfixtype != 3:
+#                      gpsaltitude = MY_ELEVATION
+#                  else:
+#                     gpsaltitude = the_fix.alt
+#
+#                  gpslatdms = convert_dd_to_dms(gpslatitude)
+#                  gpslondms = convert_dd_to_dms(gpslongitude)
+#                  gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+#                  break
+#              else:
+#                 time.sleep(.5)
+#
+#        the_connection.close()
+#    else:
+#        gpsfixtype = "MANUAL"
+#        gpslatdms = MY_LAT
+#        gpslondms = MY_LON
+#        gpsaltitude = MY_ELEVATION
+#        gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
+#        gpslatitude = convert_dms_to_dd(MY_LAT)
+#        gpslongitude = convert_dms_to_dd(MY_LON)
         
 #Moon Images
 moon_image = {
@@ -84,7 +89,15 @@ def index():
     current_utctime = datetime.utcnow()
     current_datetime = time_to_human(to_local(current_utctime))
 
-    get_gps()
+    gps_data_tuple = get_gps_data()
+
+    gpsfixtype = gps_data_tuple[0]
+    gpslatdms = gps_data_tuple[1]
+    gpslondms = gps_data_tuple[2]
+    gpsaltitude = gps_data_tuple[3]
+    gpslatitude = gps_data_tuple[4]
+    gpslongitude = gps_data_tuple[5]
+    gps_data = gps_data_tuple[6]
 
     obsm = folium.Map(location=[gpslatitude, gpslongitude], zoom_start=5)
     obsm.get_root().width = "450"
@@ -208,9 +221,16 @@ def iss():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
     current_utctime = datetime.utcnow()
 
-    # Get GPS data if we need to
-    if len(gps_data) == 0:
-       get_gps()
+    # Get observer GPS data
+    gps_data_tuple = get_gps_data()
+
+    gpsfixtype = gps_data_tuple[0]
+    gpslatdms = gps_data_tuple[1]
+    gpslondms = gps_data_tuple[2]
+    gpsaltitude = gps_data_tuple[3]
+    gpslatitude = gps_data_tuple[4]
+    gpslongitude = gps_data_tuple[5]
+    gps_data = gps_data_tuple[6]
 
     # ISS Information
     iss = ISSData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)

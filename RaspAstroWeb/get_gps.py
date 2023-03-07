@@ -3,8 +3,10 @@
 ###################################
 from gps3 import agps3
 from config import *
+from rasp_calc_func import *
+import time
 
-def get_gps():
+def get_gps_data():
     gps_data = []
 
     if USE_GPS:   
@@ -42,4 +44,4 @@ def get_gps():
         gpslatitude = convert_dms_to_dd(MY_LAT)
         gpslongitude = convert_dms_to_dd(MY_LON)
         
-    return (gpsfixtype, gpslatdms, gpslondms, gpsaltitude, gpslatitude, gpslognitude, gps_data)
+    return (gpsfixtype, gpslatdms, gpslondms, gpsaltitude, gpslatitude, gpslongitude, gps_data)
