@@ -121,6 +121,9 @@ planet_dict = {
 
 #print(planet_dict)
 
+# Time for text label
+time_generated = datetime.utcnow()
+
 mpl.rcParams['xtick.color'] = 'white'
 fig = plt.figure(figsize=(15,15), facecolor='black')
 #ax = fig.add_subplot(projection='hammer', fc='black')
@@ -129,6 +132,9 @@ ax.set_theta_zero_location("SE")
 ax.set_yticklabels([])
 ax.set_xticklabels([])
 ax.grid(False)
+# Display time generated
+ax.text(-45,33, f"Generated {time_generated} UTC", fontdict={"fontsize": "medium", "color": "white", "family": "monospace", "fontweight": "bold"})
+
 ax.plot(0, 0, marker='o', markersize=20, color="yellow", label="Sun")
 for key in planet_dict:
     ax.plot(numpy.deg2rad(planet_dict[key]['hlon']), planet_dict[key]['distance']+1, marker='o', markersize=planet_dict[key]['size'], color=planet_dict[key]['color'], label=key)
