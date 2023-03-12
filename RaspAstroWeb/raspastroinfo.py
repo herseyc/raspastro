@@ -326,15 +326,26 @@ class AstroData:
         object.compute(obs)
         self.object_data['name'] = object.name
 
-        try:
+        if isinstance(object, ephem.FixedBody):
             self.object_data['class'] = object._class
-        except:
-            self.object_data['class'] = "NA"
-
-        try:
             self.object_data['class_name'] = xephem_edb_objecttypes[object._class]
-        except:
+            self.object_data['perihelion_epoch'] = "NA"
+        elif isinstance(object, ephem.EllipticalBody):
+            self.object_data['class'] = "Elliptical"
+            self.object_data['class_name'] = "Elliptical"
+            self.object_data['perihelion_epoch'] = "NA"
+        elif isinstance(object, ephem.HyperbolicBody):
+            self.object_data['class'] = "Hyperbolic"
+            self.object_data['class_name'] = "Hyperbolic"
+            self.object_data['perihelion_epoch'] = object._epoch_p
+        elif isinstance(object, ephem.ParabolicBody):
+            self.object_data['class'] = "Parabolic"
+            self.object_data['class_name'] = "Parabolic"
+            self.object_data['perihelion_epoch'] = object._epoch_p
+        else:
+            self.object_data['class'] = "NA"
             self.object_data['class_name'] = "NA"
+            self.object_data['perihelion_epoch'] = "NA"
 
         self.object_data['a_ra'] = object.a_ra
         self.object_data['a_dec'] = object.a_dec
