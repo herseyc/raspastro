@@ -72,7 +72,7 @@ make clean
 make -j ${JOBS}
 sudo make install 
 
-print "Done."
+echo "Done."
 exit
 
 # End Code Block
