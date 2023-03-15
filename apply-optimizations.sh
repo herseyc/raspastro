@@ -32,6 +32,11 @@ echo "Decreasing Swappiness..."
 echo "vm.swappiness = 1" | sudo tee /etc/sysctl.d/90-swappiness.conf
 sudo sysctl --system
 
+echo "Disable cups..."
+sudo systemctl disable cups.service
+
+echo "Disable Printer Applet..."
+sudo mv /etc/xdg/autostart/print-applet.desktop /etc/xdg/print-applet.desktop
 
 exit
 
