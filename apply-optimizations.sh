@@ -35,6 +35,9 @@ sudo sysctl --system
 echo "Disable cups..."
 sudo systemctl disable cups.service
 
+echo "Disable cups-browsed..."
+sudo systemctl disable cups-browsed.service
+
 echo "Disable Printer Applet..."
 sudo mv /etc/xdg/autostart/print-applet.desktop /etc/xdg/print-applet.desktop
 
