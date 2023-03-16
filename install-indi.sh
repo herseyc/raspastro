@@ -26,6 +26,7 @@ JOBS=4
 INDILIBRARIES=(
   libasi
   libqhy
+  libahp-gt
 )
 
 #Array of INDI Drivers to build
