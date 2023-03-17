@@ -28,7 +28,7 @@ sudo apt -y install libnova-dev libcfitsio-dev libusb-1.0-0-dev \
         qt5keychain-dev libsecret-1-dev breeze-icon-theme \
         qml-module-qtquick-controls pkg-config libev-dev \
         cdbs dkms  fxload libusb-dev libgsl0-dev  libkrb5-dev \
-	libtheora-dev sqlite libavcodec-dev libavdevice-dev \
+	libtheora-dev sqlite libqt5sql5-sqlite libavcodec-dev libavdevice-dev \
 	libindi-dev libwxgtk3.0-gtk3-dev wx-common wx3.0-i18n libx11-dev 
 
 echo "Installing python packages..."
