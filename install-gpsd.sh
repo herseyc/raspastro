@@ -21,7 +21,7 @@ LOGFILE=~/$BUILDDIR/build-raspastro.log
 ##################################################
 
 echo "Installing GPSD..."
-sudo apt -y install gpsd
+sudo apt -y install gpsd gpsd-tools
 
 echo "Writing GPSD Configuration to /etc/default/gpsd ..."
 sudo sed -i 's/^DEVICES.*/DEVICES=\"\/dev\/ttyACM0\"/' /etc/default/gpsd
