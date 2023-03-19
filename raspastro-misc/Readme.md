@@ -1,4 +1,5 @@
 # Misc RaspAstro Configurations
+Miscellaneous configuration to support RaspAstro. 
 
 ## Samba
 Share directories via smb

@@ -6,6 +6,8 @@ Base directory contains a set of scripts I use to build out my Raspberry Pi with
 
 I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work on Raspberry Pi 32-bit OS.
 
+I have also tested RaspAstro on Libre Computer Renegade SBC running Armbian Jammy. 
+
 ## RaspAstroWeb
 The RaspAstroWeb directory contains a python web application which displays interesting and useful Astronomical data about the Sun, Moon, and Planets.  Also provides information on the current location and path of the International Space Station (ISS) along with information about visible passes based on an observer's location.  There is information on Polaris and how Polaris should be oriented in a polar scope for a proper polar alignment in the Northern Hemisphere.
 
