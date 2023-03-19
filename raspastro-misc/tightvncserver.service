@@ -1,0 +1,14 @@
+[Unit]
+Description=Manage tightVNC Server
+
+[Service]
+User=pi
+Type=forking
+ExecStart=/usr/local/bin/tightvncserver start
+ExecStop=/usr/local/bin/tightvncserver stop
+ExecReload=/usr/local/bin/tightvncserver restart
+
+[Install]
+WantedBy=multi-user.target
+~
+

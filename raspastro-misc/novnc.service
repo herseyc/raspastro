@@ -1,0 +1,14 @@
+[Unit]
+Description="noVNC"
+After=multi-user.target tightvncserver.service
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/websockify --ssl-only --web /usr/share/novnc/ --cert /home/pi/novnc/novnc.pem 6080 localhost:5901
+ExecStop=/usr/bin/pkill websockify
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
