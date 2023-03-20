@@ -16,7 +16,8 @@ Sample Samba configuration file to create share
 ## VNC
 ```
 sudo apt-get install tightvncserver novnc
-# Create the SSL Certificate
+# Create the Self Signed SSL Certificate for noVNC
+# I put novnc.pem  in /home/pi/novnc directory
 openssl req -x509 -nodes -newkey rsa:2048 -keyout novnc.pem -out novnc.pem -days 365
 ```
 
