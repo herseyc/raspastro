@@ -189,8 +189,7 @@ def index():
     astro.polaris_data['next_transit'] = time_to_human(to_local(astro.polaris_data['next_transit'].datetime()))
     astro.polaris_data['hourangle'] = round(astro.polaris_data['phourangle'] * 0.0667, 1)
 
-
-    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data, deepsky=custom_deepsky, messier=messier_objs)
+    return render_template('raspastrostatus.html', datetime=current_datetime,  gpsdata=gps_data, gpslatdec=f"{gpslatitude:.2f}", gpslondec=f"{gpslongitude:.2f}", obsiframe=obsiframe, moon=astro.moon_data, moonimage=moon_image, sun=astro.sun_data, mercury=astro.mercury, venus=astro.venus, mars=astro.mars, jupiter=astro.jupiter, saturn=astro.saturn, uranus=astro.uranus, neptune=astro.neptune, polaris=astro.polaris_data, deepsky=custom_deepsky, messier=messier_objs)
 
 # INDI Info from INDI Web Manager API
 @app.route('/indi')
