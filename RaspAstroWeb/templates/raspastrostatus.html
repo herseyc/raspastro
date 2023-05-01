@@ -8,6 +8,7 @@ function toggleobserver() {
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="none";
 	document.getElementById("deepsky").style.display="none";
+	document.getElementById("forecast").style.display="none";
 	}
 function togglesolarsystem() {
 	document.getElementById("observer").style.display="none";
@@ -15,6 +16,7 @@ function togglesolarsystem() {
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="none";
 	document.getElementById("deepsky").style.display="none";
+	document.getElementById("forecast").style.display="none";
 	}
 function toggleiss() {
 	document.getElementById("observer").style.display="none";
@@ -22,6 +24,7 @@ function toggleiss() {
 	document.getElementById("iss").style.display="block";
 	document.getElementById("polaris").style.display="none";
 	document.getElementById("deepsky").style.display="none";
+	document.getElementById("forecast").style.display="none";
 	}
 function togglepolaris() {
 	document.getElementById("observer").style.display="none";
@@ -29,6 +32,7 @@ function togglepolaris() {
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="block";
 	document.getElementById("deepsky").style.display="none";
+	document.getElementById("forecast").style.display="none";
 	}
 function toggledeepsky() {
 	document.getElementById("observer").style.display="none";
@@ -36,8 +40,16 @@ function toggledeepsky() {
 	document.getElementById("iss").style.display="none";
 	document.getElementById("polaris").style.display="none";
 	document.getElementById("deepsky").style.display="block";
+	document.getElementById("forecast").style.display="none";
 	}
-
+function toggleforecast() {
+	document.getElementById("observer").style.display="none";
+	document.getElementById("solarsystem").style.display="none";
+	document.getElementById("iss").style.display="none";
+	document.getElementById("polaris").style.display="none";
+	document.getElementById("deepsky").style.display="none";
+	document.getElementById("forecast").style.display="block";
+	}
 function refreshdata() {
 	location.reload()
 }
@@ -51,6 +63,7 @@ function refreshdata() {
 <div class="panel_container">
 	<div id="displayctl">
 		<button id="toggleobserver" onclick="toggleobserver();">Observer</button>
+		<button id="toggleforecast" onclick="toggleforecast();">Forecast</button>
 		<button id="togglesolarsystem" onclick="togglesolarsystem();">Solar System</button>
 		<button id="toggleiss" onclick="toggleiss();">ISS</button>
 		<button id="togglepolaris" onclick="togglepolaris();">Polaris</button>
@@ -82,14 +95,16 @@ function refreshdata() {
 <p> </p>
 {{ obsiframe|safe }}
 
-<p>
-<h2>Clear Outside Forecast</h2>
-<a href="http://clearoutside.com/forecast/{{ gpslatdec }}/{{ gpslondec}}"><img src="http://clearoutside.com/forecast_image_large/{{ gpslatdec }}/{{ gpslondec }}/forecast.png" /></a>
-
 
 <p> </p>
 <iframe id="indi_iframe" src="/indi" width="600" height="250" border="0" style="border:none !important;"></iframe>
 
+</div>
+
+<div id="forecast">
+<p>Refreshed at: {{ datetime }}</p> 
+<h2>Clear Outside Forecast</h2>
+<a href="http://clearoutside.com/forecast/{{ gpslatdec }}/{{ gpslondec}}"><img src="http://clearoutside.com/forecast_image_large/{{ gpslatdec }}/{{ gpslondec }}/forecast.png" /></a>
 </div>
 
 
