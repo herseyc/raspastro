@@ -8,6 +8,7 @@
 import ephem
 import math
 import numpy
+import socket
 from datetime import datetime
 
 class AstroData:

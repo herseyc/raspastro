@@ -196,6 +196,8 @@ def index():
 def indi():
     indi_current = {}
     driver_list = []
+    # Pull AstroData for local host name
+    astrohost = get_hostname()
     if USE_INDI:
         indi_status = requests.get(f"{INDIWEBMANAGER_API_ENDPOINT}/api/server/status")
         indi_status_data = indi_status.json()
@@ -213,7 +215,7 @@ def indi():
         indi_current['status'] = "Not Used"
         driver_list = ["None"]
 
-    return render_template('indi_iframe.html', indicurrent=indi_current, driverlist=driver_list)
+    return render_template('indi_iframe.html', indicurrent=indi_current, driverlist=driver_list, astrohost=astrohost)
 
 @app.route('/iss')
 def iss():

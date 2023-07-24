@@ -4,6 +4,7 @@
 from dateutil import tz
 from datetime import datetime
 import requests
+import socket
 
 ########################################
 # function to convert UTC to localtime #
@@ -98,6 +99,12 @@ def rising_or_setting(next_transit_time, current_utctime=datetime.utcnow()):
         # Return setting Arrow
         return "↘️"
 
+
+#################################################
+# Get and return  local hostname                #
+#################################################
+def get_hostname():
+    return socket.gethostname()
 
 
 # NO LONGER USED # 
