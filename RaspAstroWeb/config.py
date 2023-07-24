@@ -4,7 +4,7 @@
 PASSDAYS = 5
 
 #If USE_INDI is False then INDI Server info will not be queried
-USE_INDI = True
+USE_INDI = False
  
 # INDI Web Manager API Endpoint
 INDIWEBMANAGER_API_ENDPOINT = "http://localhost:8624"
@@ -13,7 +13,7 @@ INDIWEBMANAGER_API_ENDPOINT = "http://localhost:8624"
 MY_HORIZON = "0:0:0"
 
 # Set to True to use GPS, False to use user configured lat/lon/elev
-USE_GPS = True
+USE_GPS = False
 
 # If USE_GPS is False use the following for observer location
 # Latitude and Longitude DMS string

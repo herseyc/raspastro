@@ -101,7 +101,7 @@ def rising_or_setting(next_transit_time, current_utctime=datetime.utcnow()):
 
 
 #################################################
-# Get and return  local hostname                #
+# function which returns local hostname         #
 #################################################
 def get_hostname():
     return socket.gethostname()
