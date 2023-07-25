@@ -119,7 +119,6 @@ def index():
 
     # Is Moon Rising or Setting
     astro.moon_data['rising_sign'] = rising_or_setting(astro.moon_data['next_moon_transit'])
-
     astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
 
     # Sun Information
