@@ -150,7 +150,14 @@ def index():
     # Get Planet Info
     astro.planet_info()
 
-    #Figure out if planet is rizing or setting
+    #Determine  if planets is rizing or setting
+    astro.mercury['rising_sign'] = rising_or_setting(astro.mercury['next_transit'])
+    astro.venus['rising_sign'] = rising_or_setting(astro.venus['next_transit'])
+    astro.mars['rising_sign'] = rising_or_setting(astro.mars['next_transit'])
+    astro.jupiter['rising_sign'] = rising_or_setting(astro.jupiter['next_transit'])
+    astro.saturn['rising_sign'] = rising_or_setting(astro.saturn['next_transit'])
+    astro.uranus['rising_sign'] = rising_or_setting(astro.uranus['next_transit'])
+    astro.neptune['rising_sign'] = rising_or_setting(astro.neptune['next_transit'])
 
     # Messier Objects
     messier_objs = {}
