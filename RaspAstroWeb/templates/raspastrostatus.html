@@ -116,7 +116,14 @@ function refreshdata() {
 <h2>Sun</h2>
 <table>
 <tr>
-<td>Sun Altitude:</td><td>{{ sun['sun_alt'] }} degrees {{ sun['rising_sign'] }}</td><td rowspan="6"><img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" width="200"><br>Source: <a href="https://sdo.gsfc.nasa.gov/data/">SDO Image</a></td>
+<td>Sun Altitude:</td>
+{% if sun['sun_alt'] > 0 %}
+<td bgcolor="green">
+{% else %}
+<td>
+{% endif %}
+{{ sun['sun_alt'] }} degrees {{ sun['rising_sign'] }}</td>
+<td rowspan="6"><img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" width="200"><br>Source: <a href="https://sdo.gsfc.nasa.gov/data/">SDO Image</a></td>
 
 
 </tr>
@@ -140,7 +147,13 @@ function refreshdata() {
 <h2>Moon</h2>
 <table>
 <tr>
-<td>Moon Altitude:</td><td>{{ moon['moon_alt'] }} degrees {{ moon['rising_sign'] }}</td><td rowspan="6">
+<td>Moon Altitude:</td>
+{% if moon['moon_alt'] > 0 %}
+<td bgcolor="green">
+{% else %}
+<td>
+{% endif %}
+	{{ moon['moon_alt'] }} degrees {{ moon['rising_sign'] }}</td><td rowspan="6">
 <img src="/static/Moon/{{ moonimage[moon['moon_quarter']][moon['moon_phase_name']] }}" width="200">
 <br>Source: <a href="https://moon.nasa.gov/">NASA Moon</a></td>
 </tr>
@@ -151,7 +164,7 @@ function refreshdata() {
 <td>Current Phase:</td><td>{{ moon['moon_phase_emoji'] }} {{ moon['moon_phase_percent'] }}% {{ moon['moon_quarter'] }} {{ moon['moon_phase_name'] }}</td>
 </tr>
 <tr>
-<td>Moon Cycle:</td><td>{{ moon['cycle_percent'] }} % of the 29.53 day cycle</td>
+<td>Moon Cycle:</td><td>{{ moon['cycle_percent'] }}% of the 29.53 day cycle</td>
 </tr>
 <tr>
 <td>Next New Moon:</td><td>{{ moon['next_new_moon'] }} </td>
