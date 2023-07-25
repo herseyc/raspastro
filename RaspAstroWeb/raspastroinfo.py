@@ -159,6 +159,9 @@ class AstroData:
         self.mercury['elong'] =  c_mercury.elong
         self.mercury['mag'] =  c_mercury.mag
         self.mercury['radius'] =  c_mercury.radius
+        self.mercury['a_ra'] =  c_mercury.a_ra
+        self.mercury['a_dec'] =  c_mercury.a_dec
+        self.mercury['radius'] =  c_mercury.radius
         self.mercury['alt'] =  round(math.degrees(c_mercury.alt), 1)
         self.mercury['az'] =  round(math.degrees(c_mercury.az), 1)
         self.mercury['sun_distance'] =  round(c_mercury.sun_distance, 4)
@@ -176,6 +179,8 @@ class AstroData:
         self.venus['elong'] =  c_venus.elong
         self.venus['mag'] =  c_venus.mag
         self.venus['radius'] =  c_venus.radius
+        self.venus['a_ra'] =  c_venus.a_ra
+        self.venus['a_dec'] =  c_venus.a_dec
         self.venus['alt'] =  round(math.degrees(c_venus.alt), 1)
         self.venus['az'] =  round(math.degrees(c_venus.az), 1)
         self.venus['sun_distance'] =  round(c_venus.sun_distance, 4)
@@ -193,6 +198,8 @@ class AstroData:
         self.mars['elong'] =  c_mars.elong
         self.mars['mag'] =  c_mars.mag
         self.mars['radius'] =  c_mars.radius
+        self.mars['a_ra'] =  c_mars.a_ra
+        self.mars['a_dec'] =  c_mars.a_dec
         self.mars['alt'] =  round(math.degrees(c_mars.alt), 1)
         self.mars['az'] =  round(math.degrees(c_mars.az), 1)
         self.mars['sun_distance'] =  round(c_mars.sun_distance, 4)
@@ -210,6 +217,8 @@ class AstroData:
         self.jupiter['elong'] =  c_jupiter.elong
         self.jupiter['mag'] =  c_jupiter.mag
         self.jupiter['radius'] =  c_jupiter.radius
+        self.jupiter['a_ra'] =  c_jupiter.a_ra
+        self.jupiter['a_dec'] =  c_jupiter.a_dec
         self.jupiter['alt'] =  round(math.degrees(c_jupiter.alt), 1)
         self.jupiter['az'] =  round(math.degrees(c_jupiter.az), 1)
         self.jupiter['sun_distance'] =  round(c_jupiter.sun_distance, 4)
@@ -227,6 +236,8 @@ class AstroData:
         self.saturn['elong'] =  c_saturn.elong
         self.saturn['mag'] =  c_saturn.mag
         self.saturn['radius'] =  c_saturn.radius
+        self.saturn['a_ra'] =  c_saturn.a_ra
+        self.saturn['a_dec'] =  c_saturn.a_dec
         self.saturn['alt'] =  round(math.degrees(c_saturn.alt), 1)
         self.saturn['az'] =  round(math.degrees(c_saturn.az), 1)
         self.saturn['sun_distance'] =  round(c_saturn.sun_distance, 4)
@@ -244,6 +255,8 @@ class AstroData:
         self.uranus['elong'] =  c_uranus.elong
         self.uranus['mag'] =  c_uranus.mag
         self.uranus['radius'] =  c_uranus.radius
+        self.uranus['a_ra'] =  c_uranus.a_ra
+        self.uranus['a_dec'] =  c_uranus.a_dec
         self.uranus['alt'] =  round(math.degrees(c_uranus.alt), 1)
         self.uranus['az'] =  round(math.degrees(c_uranus.az), 1)
         self.uranus['sun_distance'] =  round(c_uranus.sun_distance, 4)
@@ -261,6 +274,8 @@ class AstroData:
         self.neptune['elong'] =  c_neptune.elong
         self.neptune['mag'] =  c_neptune.mag
         self.neptune['radius'] =  c_neptune.radius
+        self.neptune['a_ra'] =  c_neptune.a_ra
+        self.neptune['a_dec'] =  c_neptune.a_dec
         self.neptune['alt'] =  round(math.degrees(c_neptune.alt), 1)
         self.neptune['az'] =  round(math.degrees(c_neptune.az), 1)
         self.neptune['sun_distance'] =  round(c_neptune.sun_distance, 4)
