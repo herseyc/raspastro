@@ -150,6 +150,8 @@ def index():
     # Get Planet Info
     astro.planet_info()
 
+    #Figure out if planet is rizing or setting
+
     # Messier Objects
     messier_objs = {}
     messier_list = []
