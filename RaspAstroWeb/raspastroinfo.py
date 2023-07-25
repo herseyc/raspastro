@@ -161,7 +161,6 @@ class AstroData:
         self.mercury['radius'] =  c_mercury.radius
         self.mercury['a_ra'] =  c_mercury.a_ra
         self.mercury['a_dec'] =  c_mercury.a_dec
-        self.mercury['radius'] =  c_mercury.radius
         self.mercury['alt'] =  round(math.degrees(c_mercury.alt), 1)
         self.mercury['az'] =  round(math.degrees(c_mercury.az), 1)
         self.mercury['sun_distance'] =  round(c_mercury.sun_distance, 4)
