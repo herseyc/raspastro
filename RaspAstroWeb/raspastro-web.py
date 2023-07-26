@@ -19,50 +19,6 @@ from get_gps import *
 
 app = Flask(__name__)
 
-
-
-# Moved to Function in get_gps.py
-#gps_data = []
-#
-#def get_gps():
-#    global gpslatitude
-#    global gpslongitude
-#    global gps_data
-#    if USE_GPS:   
-#        # GPS Data
-#        the_connection = agps3.GPSDSocket()
-#        the_fix = agps3.DataStream()
-#        the_connection.connect()
-#        the_connection.watch()
-#        for new_data in the_connection:
-#           if new_data:
-#              the_fix.unpack(new_data)
-#              if the_fix.mode != "n/a" and the_fix.lat != "n/a" and the_fix.lon != "n/a":
-#                  gpsfixtype = the_fix.mode
-#                  gpslatitude = the_fix.lat
-#                  gpslongitude = the_fix.lon
-#                  if gpsfixtype != 3:
-#                      gpsaltitude = MY_ELEVATION
-#                  else:
-#                     gpsaltitude = the_fix.alt
-#
-#                  gpslatdms = convert_dd_to_dms(gpslatitude)
-#                  gpslondms = convert_dd_to_dms(gpslongitude)
-#                  gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-#                  break
-#              else:
-#                 time.sleep(.5)
-#
-#        the_connection.close()
-#    else:
-#        gpsfixtype = "MANUAL"
-#        gpslatdms = MY_LAT
-#        gpslondms = MY_LON
-#        gpsaltitude = MY_ELEVATION
-#        gps_data = [gpsfixtype, gpslatdms, gpslondms, gpsaltitude]
-#        gpslatitude = convert_dms_to_dd(MY_LAT)
-#        gpslongitude = convert_dms_to_dd(MY_LON)
-        
 #Moon Images
 moon_image = {
     "Waxing": {
@@ -89,6 +45,7 @@ def index():
     current_utctime = datetime.utcnow()
     current_datetime = time_to_human(to_local(current_utctime))
 
+    # function from get_gps.py to poll GPS or GPS config
     gps_data_tuple = get_gps_data()
 
     gpsfixtype = gps_data_tuple[0]
@@ -99,6 +56,7 @@ def index():
     gpslongitude = gps_data_tuple[5]
     gps_data = gps_data_tuple[6]
 
+    # Create map with observer's location
     obsm = folium.Map(location=[gpslatitude, gpslongitude], zoom_start=5)
     obsm.get_root().width = "450"
     obsm.get_root().height = "250px"
@@ -109,22 +67,29 @@ def index():
 
     # Sun/Moon/Planet/Information
     # AstroData from GPS
+    astro = {}
     astro = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
     gps_data.append(astro.obs.horizon)
 
     # Moon Information
     astro.moon_data = {}
     astro.moon_info()
+
+    # Convert times to human readable local time
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
 
     # Is Moon Rising or Setting
     astro.moon_data['rising_sign'] = rising_or_setting(next_transit_time=astro.moon_data['next_moon_transit'])
+
+    # Convert times to human readable local time
     astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
 
     # Sun Information
     astro.sun_data = {}
     astro.sun_info()
+
+    # Convert times to human readable local time
     astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
     astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
     astro.sun_data['next_solstice'] = time_to_human(to_local(astro.sun_data['next_solstice'].datetime()))
@@ -133,6 +98,7 @@ def index():
     # Is Sun Rising or Setting
     astro.sun_data['rising_sign'] = rising_or_setting(next_transit_time=astro.sun_data['next_sun_transit'])
 
+    # Convert times to human readable local time
     astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
 
     # Get Deep Sky Custom Object Info
@@ -147,6 +113,7 @@ def index():
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
         astro.object_data['rising_sign'] = rising_or_setting(next_transit_time=astro.object_data['next_transit'])
 
+        # Convert times to human readable local time
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
 
@@ -161,7 +128,7 @@ def index():
 
     astro.planet_info()
 
-    #Determine  if planets is rizing or setting
+    #Determine  if planets are rizing or setting
     astro.mercury['rising_sign'] = rising_or_setting(next_transit_time=astro.mercury['next_transit'])
     astro.venus['rising_sign'] = rising_or_setting(next_transit_time=astro.venus['next_transit'])
     astro.mars['rising_sign'] = rising_or_setting(next_transit_time=astro.mars['next_transit'])
@@ -188,6 +155,7 @@ def index():
         # Is the object rising or setting
         astro.object_data['rising_sign'] = rising_or_setting(next_transit_time=astro.object_data['next_transit'])
 
+        # Convert times to human readable local time
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         messier_objs[messier_object_name[0]] = astro.object_data 
 
@@ -207,6 +175,7 @@ def index():
     ax.plot(phourangle, 1, marker='o', markersize=10.2, color='red', label='Polaris')
     plt.savefig('./static/polarisalign.png', bbox_inches='tight')
     astro.polaris_data['phourangle'] = int(astro.polaris_data['phourangle'])
+    # Convert times to human readable local time
     astro.polaris_data['next_transit'] = time_to_human(to_local(astro.polaris_data['next_transit'].datetime()))
     astro.polaris_data['hourangle'] = round(astro.polaris_data['phourangle'] * 0.0667, 1)
 
@@ -238,6 +207,7 @@ def indi():
 
     return render_template('indi_iframe.html', indicurrent=indi_current, driverlist=driver_list, astrohost=astrohost)
 
+# Display the ISS information
 @app.route('/iss')
 def iss():
     current_datetime = time_to_human(to_local(datetime.utcnow()))
@@ -281,18 +251,7 @@ def iss():
     lat_dd = convert_dms_to_dd(iss_current['geolat'])
     lon_dd = convert_dms_to_dd(iss_current['geolong'])
 
-    #lat_list = str(iss_current['geolat']).split(":")
-    #if lat_list[0] == '-':
-    #  lat_dd = float(lat_list[0]) - float(lat_list[1])/60 - float(lat_list[2])/3600 
-    #else:
-    #  lat_dd = float(lat_list[0]) + float(lat_list[1])/60 + float(lat_list[2])/3600 
-
-    #lon_list = str(iss_current['geolong']).split(":")
-    #if lon_list[0] == '-':
-    #   lon_dd = float(lon_list[0]) - float(lon_list[1])/60 - float(lon_list[2])/3600 
-    #else:
-    #  lon_dd = float(lon_list[0]) + float(lon_list[1])/60 + float(lon_list[2])/3600 
-
+    # Create map with observer location, iss location, and plot past/future path
     m = folium.Map()
     m.get_root().width = "500"
     m.get_root().height = "300px"
