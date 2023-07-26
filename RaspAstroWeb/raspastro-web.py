@@ -75,21 +75,21 @@ def index():
     astro.moon_data = {}
     astro.moon_info()
 
-    # Convert times to human readable local time
+    # Convert Moon event times to human readable local time
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
 
     # Is Moon Rising or Setting
     astro.moon_data['rising_sign'] = rising_or_setting(next_transit_time=astro.moon_data['next_moon_transit'])
 
-    # Convert times to human readable local time
+    # Convert Moon next transit time to human readable local time
     astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
 
     # Sun Information
     astro.sun_data = {}
     astro.sun_info()
 
-    # Convert times to human readable local time
+    # Convert Sun event times to human readable local time
     astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
     astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
     astro.sun_data['next_solstice'] = time_to_human(to_local(astro.sun_data['next_solstice'].datetime()))
@@ -98,7 +98,7 @@ def index():
     # Is Sun Rising or Setting
     astro.sun_data['rising_sign'] = rising_or_setting(next_transit_time=astro.sun_data['next_sun_transit'])
 
-    # Convert times to human readable local time
+    # Convert Sun next transit  time to human readable local time
     astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
 
     # Get Deep Sky Custom Object Info
@@ -113,7 +113,7 @@ def index():
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
         astro.object_data['rising_sign'] = rising_or_setting(next_transit_time=astro.object_data['next_transit'])
 
-        # Convert times to human readable local time
+        # Convert Deep Sky object next transit times to human readable local time
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
 
@@ -128,7 +128,7 @@ def index():
 
     astro.planet_info()
 
-    #Determine  if planets are rizing or setting
+    #Determine if planets are rizing or setting
     astro.mercury['rising_sign'] = rising_or_setting(next_transit_time=astro.mercury['next_transit'])
     astro.venus['rising_sign'] = rising_or_setting(next_transit_time=astro.venus['next_transit'])
     astro.mars['rising_sign'] = rising_or_setting(next_transit_time=astro.mars['next_transit'])
@@ -136,6 +136,15 @@ def index():
     astro.saturn['rising_sign'] = rising_or_setting(next_transit_time=astro.saturn['next_transit'])
     astro.uranus['rising_sign'] = rising_or_setting(next_transit_time=astro.uranus['next_transit'])
     astro.neptune['rising_sign'] = rising_or_setting(next_transit_time=astro.neptune['next_transit'])
+
+    # Convert planet next transit times to human readable local time
+    astro.mercury['next_transit'] = time_to_human(to_local(astro.mercury['next_transit'].datetime()))
+    astro.venus['next_transit'] = time_to_human(to_local(astro.venus['next_transit'].datetime()))
+    astro.mars['next_transit'] = time_to_human(to_local(astro.mars['next_transit'].datetime()))
+    astro.jupiter['next_transit'] = time_to_human(to_local(astro.jupiter['next_transit'].datetime()))
+    astro.saturn['next_transit'] = time_to_human(to_local(astro.saturn['next_transit'].datetime()))
+    astro.uranus['next_transit'] = time_to_human(to_local(astro.uranus['next_transit'].datetime()))
+    astro.neptune['next_transit'] = time_to_human(to_local(astro.neptune['next_transit'].datetime()))
 
     # Messier Objects
     messier_objs = {}
@@ -175,7 +184,7 @@ def index():
     ax.plot(phourangle, 1, marker='o', markersize=10.2, color='red', label='Polaris')
     plt.savefig('./static/polarisalign.png', bbox_inches='tight')
     astro.polaris_data['phourangle'] = int(astro.polaris_data['phourangle'])
-    # Convert times to human readable local time
+    # Convert polaris next transit time to human readable local time
     astro.polaris_data['next_transit'] = time_to_human(to_local(astro.polaris_data['next_transit'].datetime()))
     astro.polaris_data['hourangle'] = round(astro.polaris_data['phourangle'] * 0.0667, 1)
 

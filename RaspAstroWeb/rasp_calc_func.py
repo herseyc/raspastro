@@ -91,7 +91,7 @@ def convert_dms_to_dd(dms):
 ###################################################
 def rising_or_setting(next_transit_time, current_utctime=datetime.utcnow()):
     #current_utctime = datetime.utcnow()
-    transit_delta = abs(next_transit_time.datetime() - current_utctime)
+    transit_delta = next_transit_time.datetime() - current_utctime
     if transit_delta.seconds < 43200:
         # Return Rising Arrow
         return "↗️"
