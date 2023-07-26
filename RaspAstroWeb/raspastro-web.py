@@ -113,15 +113,17 @@ def index():
     gps_data.append(astro.obs.horizon)
 
     # Moon Information
+    astro.moon_data = {}
     astro.moon_info()
     astro.moon_data['next_full_moon'] = time_to_human(to_local(astro.moon_data['next_full_moon'].datetime()))
     astro.moon_data['next_new_moon'] = time_to_human(to_local(astro.moon_data['next_new_moon'].datetime()))
 
     # Is Moon Rising or Setting
-    astro.moon_data['rising_sign'] = rising_or_setting(astro.moon_data['next_moon_transit'])
+    astro.moon_data['rising_sign'] = rising_or_setting(next_transit_time=astro.moon_data['next_moon_transit'])
     astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
 
     # Sun Information
+    astro.sun_data = {}
     astro.sun_info()
     astro.sun_data['next_sunset'] = time_to_human(to_local(astro.sun_data['next_sunset'].datetime()))
     astro.sun_data['next_sunrise'] = time_to_human(to_local(astro.sun_data['next_sunrise'].datetime()))
@@ -129,7 +131,7 @@ def index():
     astro.sun_data['next_equinox'] = time_to_human(to_local(astro.sun_data['next_equinox'].datetime()))
 
     # Is Sun Rising or Setting
-    astro.sun_data['rising_sign'] = rising_or_setting(astro.sun_data['next_sun_transit'])
+    astro.sun_data['rising_sign'] = rising_or_setting(next_transit_time=astro.sun_data['next_sun_transit'])
 
     astro.sun_data['next_sun_transit'] = time_to_human(to_local(astro.sun_data['next_sun_transit'].datetime()))
 
@@ -138,26 +140,35 @@ def index():
     #set dict for results
     custom_deepsky = {}
     for edbobject in CUSTOM_OBJECTS:
+        astro.object_data = {}
         astro.object_info(catalog=edbobject)
         object_name = astro.object_data['name'].split("|")
         astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
-        astro.object_data['rising_sign'] = rising_or_setting(astro.object_data['next_transit'])
+        astro.object_data['rising_sign'] = rising_or_setting(next_transit_time=astro.object_data['next_transit'])
 
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         custom_deepsky[object_name[0]] = astro.object_data 
 
     # Get Planet Info
+    astro.mercury = {}
+    astro.venus = {}
+    astro.mars = {}
+    astro.jupiter = {}
+    astro.saturn = {}
+    astro.uranus = {}
+    astro.neptune = {}
+
     astro.planet_info()
 
     #Determine  if planets is rizing or setting
-    astro.mercury['rising_sign'] = rising_or_setting(astro.mercury['next_transit'])
-    astro.venus['rising_sign'] = rising_or_setting(astro.venus['next_transit'])
-    astro.mars['rising_sign'] = rising_or_setting(astro.mars['next_transit'])
-    astro.jupiter['rising_sign'] = rising_or_setting(astro.jupiter['next_transit'])
-    astro.saturn['rising_sign'] = rising_or_setting(astro.saturn['next_transit'])
-    astro.uranus['rising_sign'] = rising_or_setting(astro.uranus['next_transit'])
-    astro.neptune['rising_sign'] = rising_or_setting(astro.neptune['next_transit'])
+    astro.mercury['rising_sign'] = rising_or_setting(next_transit_time=astro.mercury['next_transit'])
+    astro.venus['rising_sign'] = rising_or_setting(next_transit_time=astro.venus['next_transit'])
+    astro.mars['rising_sign'] = rising_or_setting(next_transit_time=astro.mars['next_transit'])
+    astro.jupiter['rising_sign'] = rising_or_setting(next_transit_time=astro.jupiter['next_transit'])
+    astro.saturn['rising_sign'] = rising_or_setting(next_transit_time=astro.saturn['next_transit'])
+    astro.uranus['rising_sign'] = rising_or_setting(next_transit_time=astro.uranus['next_transit'])
+    astro.neptune['rising_sign'] = rising_or_setting(next_transit_time=astro.neptune['next_transit'])
 
     # Messier Objects
     messier_objs = {}
@@ -169,17 +180,19 @@ def index():
                 messier_list.append(obj)
 
     for messier_obj in messier_list:
+        astro.object_data = {}
         astro.object_info(catalog=messier_obj)
         messier_object_name = astro.object_data['name'].split("|")
         astro.object_data['alt'] = round(math.degrees(astro.object_data['alt']), 1)
         astro.object_data['az'] = round(math.degrees(astro.object_data['az']), 1)
         # Is the object rising or setting
-        astro.object_data['rising_sign'] = rising_or_setting(astro.object_data['next_transit'])
+        astro.object_data['rising_sign'] = rising_or_setting(next_transit_time=astro.object_data['next_transit'])
 
         astro.object_data['next_transit'] = time_to_human(to_local(astro.object_data['next_transit'].datetime()))
         messier_objs[messier_object_name[0]] = astro.object_data 
 
     # Get Polaris Info
+    astro.polaris_data = {}
     astro.polaris_info()
 
     # Generate Polar Align Image
@@ -258,6 +271,9 @@ def iss():
 
     iss_current['geolat'] = iss.iss_telemetry.sublat
     iss_current['geolong'] = iss.iss_telemetry.sublong
+    iss_current['a_ra'] = iss.iss_telemetry.a_ra
+    iss_current['a_dec'] = iss.iss_telemetry.a_dec
+    iss_current['alt'] = iss.iss_telemetry.alt
     iss_current['range'] = meters_to_miles(iss.iss_telemetry.range)
     iss_current['range_velocity'] = round(meters_to_miles(iss.iss_telemetry.range_velocity * 3600), 2) 
     iss_current['elevation_miles'] = meters_to_miles(iss.iss_telemetry.elevation)
