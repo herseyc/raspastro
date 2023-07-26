@@ -82,8 +82,10 @@ def index():
     # Is Moon Rising or Setting
     astro.moon_data['rising_sign'] = rising_or_setting(next_transit_time=astro.moon_data['next_moon_transit'])
 
-    # Convert Moon next transit time to human readable local time
+    # Convert Moon next transit/set/rise time to human readable local time
     astro.moon_data['next_moon_transit'] = time_to_human(to_local(astro.moon_data['next_moon_transit'].datetime()))
+    astro.moon_data['next_moonset'] = time_to_human(to_local(astro.moon_data['next_moonset'].datetime()))
+    astro.moon_data['next_moonrise'] = time_to_human(to_local(astro.moon_data['next_moonrise'].datetime()))
 
     # Sun Information
     astro.sun_data = {}

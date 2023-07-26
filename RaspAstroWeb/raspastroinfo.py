@@ -140,6 +140,8 @@ class AstroData:
         self.moon_data['constellation'] = ephem.constellation(moon)
         self.moon_data['hlat'] = moon.hlat
         self.moon_data['hlon'] = moon.hlon
+        self.moon_data['next_moonset'] = self.obs.next_setting(moon)
+        self.moon_data['next_moonrise'] = self.obs.next_rising(moon)
 
        
     def planet_info(self, **kw):
