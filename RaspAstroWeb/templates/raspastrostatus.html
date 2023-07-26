@@ -181,6 +181,7 @@ function refreshdata() {
 	<td>Altitude</td>
 	<td>Azimuth</td>
 	<td>Magnitude</td>
+	<td>Next Transit</td>
 	<td>Sun Distance (AU)</td>
 	<td>Earth Distance (AU)</td>
 	<td rowspan=8><img src="/static/planets.png" width="200"><br><a href="/static/planets.png">Full-size</a></td>
@@ -194,6 +195,7 @@ function refreshdata() {
 	<td>{{ mercury['alt'] }} {{ mercury['rising_sign'] }}</td>
 	<td>{{ mercury['az'] }}</td>
 	<td>{{ mercury['mag'] }}</td>
+	<td>{{ mercury['next_transit'] }}</td>
 	<td>{{ mercury['sun_distance'] }}</td>
 	<td>{{ mercury['earth_distance'] }}</td>
 </tr>
@@ -206,6 +208,7 @@ function refreshdata() {
 	<td>{{ venus['alt'] }} {{ venus['rising_sign'] }}</td>
 	<td>{{ venus['az'] }}</td>
 	<td>{{ venus['mag'] }}</td>
+	<td>{{ venus['next_transit'] }}</td>
 	<td>{{ venus['sun_distance'] }}</td>
 	<td>{{ venus['earth_distance'] }}</td>
 </tr>
@@ -218,6 +221,7 @@ function refreshdata() {
 	<td>{{ mars['alt'] }} {{ mars['rising_sign'] }}</td>
 	<td>{{ mars['az'] }}</td>
 	<td>{{ mars['mag'] }}</td>
+	<td>{{ mars['next_transit'] }}</td>
 	<td>{{ mars['sun_distance'] }}</td>
 	<td>{{ mars['earth_distance'] }}</td>
 </tr>
@@ -230,6 +234,7 @@ function refreshdata() {
 	<td>{{ jupiter['alt'] }} {{ jupiter['rising_sign'] }}</td>
 	<td>{{ jupiter['az'] }}</td>
 	<td>{{ jupiter['mag'] }}</td>
+	<td>{{ jupiter['next_transit'] }}</td>
 	<td>{{ jupiter['sun_distance'] }}</td>
 	<td>{{ jupiter['earth_distance'] }}</td>
 </tr>
@@ -242,6 +247,7 @@ function refreshdata() {
 	<td>{{ saturn['alt'] }} {{ saturn['rising_sign'] }}</td>
 	<td>{{ saturn['az'] }}</td>
 	<td>{{ saturn['mag'] }}</td>
+	<td>{{ saturn['next_transit'] }}</td>
 	<td>{{ saturn['sun_distance'] }}</td>
 	<td>{{ saturn['earth_distance'] }}</td>
 </tr>
@@ -254,6 +260,7 @@ function refreshdata() {
 	<td>{{ uranus['alt'] }} {{ uranus['rising_sign'] }}</td>
 	<td>{{ uranus['az'] }}</td>
 	<td>{{ uranus['mag'] }}</td>
+	<td>{{ uranus['next_transit'] }}</td>
 	<td>{{ uranus['sun_distance'] }}</td>
 	<td>{{ uranus['earth_distance'] }}</td>
 </tr>
@@ -266,6 +273,7 @@ function refreshdata() {
 	<td>{{ neptune['alt'] }} {{ neptune['rising_sign'] }}</td>
 	<td>{{ neptune['az'] }}</td>
 	<td>{{ neptune['mag'] }}</td>
+	<td>{{ neptune['next_transit'] }}</td>
 	<td>{{ neptune['sun_distance'] }}</td>
 	<td>{{ neptune['earth_distance'] }}</td>
 </tr>
