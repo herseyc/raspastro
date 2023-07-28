@@ -249,6 +249,7 @@ def iss():
                          "aos": time_to_human(to_local(i['aos'].datetime())), 
                          "los": time_to_human(to_local(i['los'].datetime())), 
                          "alt_max": round(math.degrees(i['alt_max'])),
+                         "azs": round(math.degrees(i['azs'])),
                          "constellation": i['constellation'][1],
                          })
 
