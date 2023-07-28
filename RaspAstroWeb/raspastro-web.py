@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3 
 from flask import Flask, render_template
 from raspissinfo import ISSData
 from raspastroinfo import AstroData
@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 from config import *
 from get_gps import *
 
+import sys
+sys.dont_write_bytecode = True
 
 app = Flask(__name__)
 

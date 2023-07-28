@@ -122,7 +122,7 @@ function refreshdata() {
 {% else %}
 <td>
 {% endif %}
-{{ sun['sun_alt'] }} degrees {{ sun['rising_sign'] }}</td>
+{{ sun['sun_alt'] }}° {{ sun['rising_sign'] }}</td>
 <td rowspan="6"><img src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" width="200"><br>Source: <a href="https://sdo.gsfc.nasa.gov/data/">SDO Image</a></td>
 
 
@@ -153,7 +153,7 @@ function refreshdata() {
 {% else %}
 <td>
 {% endif %}
-	{{ moon['moon_alt'] }} degrees {{ moon['rising_sign'] }}</td><td rowspan="8">
+	{{ moon['moon_alt'] }}° {{ moon['rising_sign'] }}</td><td rowspan="8">
 <img src="/static/Moon/{{ moonimage[moon['moon_quarter']][moon['moon_phase_name']] }}" width="200">
 <br>Source: <a href="https://moon.nasa.gov/">NASA Moon</a></td>
 </tr>
@@ -198,8 +198,8 @@ function refreshdata() {
 <tr>
 {% endif %}
         <td>☿️ {{ mercury['name'] }}</td>
-	<td>{{ mercury['alt'] }} {{ mercury['rising_sign'] }}</td>
-	<td>{{ mercury['az'] }}</td>
+	<td>{{ mercury['alt'] }}° {{ mercury['rising_sign'] }}</td>
+	<td>{{ mercury['az'] }}°</td>
 	<td>{{ mercury['mag'] }}</td>
 	<td>{{ mercury['next_transit'] }}</td>
 	<td>{{ mercury['sun_distance'] }}</td>
@@ -211,8 +211,8 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>♀️ {{ venus['name'] }}</td>
-	<td>{{ venus['alt'] }} {{ venus['rising_sign'] }}</td>
-	<td>{{ venus['az'] }}</td>
+	<td>{{ venus['alt'] }}° {{ venus['rising_sign'] }}</td>
+	<td>{{ venus['az'] }}°</td>
 	<td>{{ venus['mag'] }}</td>
 	<td>{{ venus['next_transit'] }}</td>
 	<td>{{ venus['sun_distance'] }}</td>
@@ -224,8 +224,8 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>♂️ {{ mars['name'] }}</td>
-	<td>{{ mars['alt'] }} {{ mars['rising_sign'] }}</td>
-	<td>{{ mars['az'] }}</td>
+	<td>{{ mars['alt'] }}° {{ mars['rising_sign'] }}</td>
+	<td>{{ mars['az'] }}°</td>
 	<td>{{ mars['mag'] }}</td>
 	<td>{{ mars['next_transit'] }}</td>
 	<td>{{ mars['sun_distance'] }}</td>
@@ -237,8 +237,8 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>♃ {{ jupiter['name'] }}</td>
-	<td>{{ jupiter['alt'] }} {{ jupiter['rising_sign'] }}</td>
-	<td>{{ jupiter['az'] }}</td>
+	<td>{{ jupiter['alt'] }}° {{ jupiter['rising_sign'] }}</td>
+	<td>{{ jupiter['az'] }}°</td>
 	<td>{{ jupiter['mag'] }}</td>
 	<td>{{ jupiter['next_transit'] }}</td>
 	<td>{{ jupiter['sun_distance'] }}</td>
@@ -250,8 +250,8 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>♄ {{ saturn['name'] }}</td>
-	<td>{{ saturn['alt'] }} {{ saturn['rising_sign'] }}</td>
-	<td>{{ saturn['az'] }}</td>
+	<td>{{ saturn['alt'] }}° {{ saturn['rising_sign'] }}</td>
+	<td>{{ saturn['az'] }}°</td>
 	<td>{{ saturn['mag'] }}</td>
 	<td>{{ saturn['next_transit'] }}</td>
 	<td>{{ saturn['sun_distance'] }}</td>
@@ -263,8 +263,8 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>♅ {{ uranus['name'] }}</td>
-	<td>{{ uranus['alt'] }} {{ uranus['rising_sign'] }}</td>
-	<td>{{ uranus['az'] }}</td>
+	<td>{{ uranus['alt'] }}° {{ uranus['rising_sign'] }}</td>
+	<td>{{ uranus['az'] }}°</td>
 	<td>{{ uranus['mag'] }}</td>
 	<td>{{ uranus['next_transit'] }}</td>
 	<td>{{ uranus['sun_distance'] }}</td>
@@ -276,8 +276,8 @@ function refreshdata() {
 <tr>
 {% endif %}
 	<td>♆ {{ neptune['name'] }}</td>
-	<td>{{ neptune['alt'] }} {{ neptune['rising_sign'] }}</td>
-	<td>{{ neptune['az'] }}</td>
+	<td>{{ neptune['alt'] }}° {{ neptune['rising_sign'] }}</td>
+	<td>{{ neptune['az'] }}°</td>
 	<td>{{ neptune['mag'] }}</td>
 	<td>{{ neptune['next_transit'] }}</td>
 	<td>{{ neptune['sun_distance'] }}</td>
@@ -300,7 +300,7 @@ function refreshdata() {
 <td>Refreshed at:</td><td>{{ datetime }}</td>
 </tr>
 <tr>
-	<td>Polaris Hour Angle:</td><td>{{ polaris['hourangle'] }} hours or {{ polaris['phourangle'] }} degrees</td>
+	<td>Polaris Hour Angle:</td><td>{{ polaris['hourangle'] }} hours or {{ polaris['phourangle'] }}°</td>
 </tr>
 <tr>
 <td>Polaris Next Transit:</td><td>{{ polaris['next_transit'] }}</td>
@@ -336,8 +336,8 @@ function refreshdata() {
 {% endif %}
 	<td>{{ object }}</td>
 	<td>{{ deepsky[object]['class_name'] }}</td>
-	<td>{{ deepsky[object]['alt'] }}{{ deepsky[object]['rising_sign'] }}</td>
-	<td>{{ deepsky[object]['az'] }}</td>
+	<td>{{ deepsky[object]['alt'] }}°{{ deepsky[object]['rising_sign'] }}</td>
+	<td>{{ deepsky[object]['az'] }}°</td>
 	<td>{{ deepsky[object]['a_ra'] }}</td>
 	<td>{{ deepsky[object]['a_dec'] }}</td>
 	<td>{{ deepsky[object]['next_transit'] }}</td>
@@ -372,8 +372,8 @@ function refreshdata() {
 
 	<td>{{ object }}</td>
 	<td>{{ messier[object]['class_name'] }}</td>
-	<td>{{ messier[object]['alt'] }}{{ messier[object]['rising_sign'] }}</td>
-	<td>{{ messier[object]['az'] }}</td>
+	<td>{{ messier[object]['alt'] }}°{{ messier[object]['rising_sign'] }}</td>
+	<td>{{ messier[object]['az'] }}°</td>
 	<td>{{ messier[object]['a_ra'] }}</td>
 	<td>{{ messier[object]['a_dec'] }}</td>
 	<td>{{ messier[object]['next_transit'] }}</td>

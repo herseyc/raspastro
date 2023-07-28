@@ -1,8 +1,10 @@
 # Store RaspAstro Configuration Variables
 
 # Web Server Port
-# Use this to change the port RaspAstroWeb listens on
+# Use this to change the port RaspAstroWeb (raspastro-web.py) listens on
 WEBPORT = 5000
+# Use this to change the port RaspAstroWeb Custom listens on
+CUSTOMWEBPORT = 5001
 
 # Number of days to calculate ISS Passes
 PASSDAYS = 5
