@@ -47,6 +47,7 @@ mirrorx -bottomup
 cd ../results
 save result_$LIVETIME:%d$s
 
-close
+# Load preprocessed results into Siril
+load result_$LIVETIME
 
 ### END ###
