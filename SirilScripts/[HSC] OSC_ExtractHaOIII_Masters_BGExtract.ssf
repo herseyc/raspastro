@@ -3,6 +3,7 @@
 # Updated by Hersey - http://www.suffolksky.com/
 # January 2024
 # - Use master flats and darks
+# - Background extract  
 #
 ############################################
 #
@@ -15,6 +16,8 @@
 #
 # Script for color camera preprocessing that
 # extracts Ha and OIII
+#
+# Perform Background Extraction on Seq
 #
 # Processing lights calibrated with master dark and flat
 # 
