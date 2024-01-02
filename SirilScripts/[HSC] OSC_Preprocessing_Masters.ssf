@@ -47,4 +47,6 @@ mirrorx -bottomup
 cd ../results
 save result_$LIVETIME:%d$s
 
+close
+
 ### END ###
