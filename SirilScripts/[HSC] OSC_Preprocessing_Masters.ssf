@@ -52,6 +52,4 @@ save result_$LIVETIME:%d$s
 # Load results into Siril
 load result_$LIVETIME:%d$s
 
-cd ..
-
-close
+### END ###
