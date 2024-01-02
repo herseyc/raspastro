@@ -44,7 +44,8 @@ stack r_pp_light rej 3 3 -norm=addscale -output_norm -rgb_equal -out=result
 # flip if required
 load result
 mirrorx -bottomup
-save ../result_$LIVETIME:%d$s
+save ./results/result_$LIVETIME:%d$s
 
-cd ..
+load ./results/result_$LIVETIME:%d$s
+
 close
