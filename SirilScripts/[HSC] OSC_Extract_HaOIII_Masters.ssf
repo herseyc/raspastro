@@ -23,6 +23,8 @@
 #
 # Results saved to ./results
 #
+# Extracted HA and OIII saved in ./results/
+#
 ############################################
 
 # Requires at least Siril 1.2.0
