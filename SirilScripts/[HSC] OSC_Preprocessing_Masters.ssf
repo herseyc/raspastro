@@ -24,10 +24,9 @@
 #
 ############################################
 
-# Requires at least Siril 1.2.0
+# Require Siril 1.2.0
 requires 1.2.0
 
-# Process Light Frames
 cd lights
 convert light -out=../process
 cd ../process
@@ -35,7 +34,7 @@ cd ../process
 # Calibrate Light Frames
 calibrate light -dark=../masters/dark_stacked -flat=../masters/pp_flat_stacked -cc=dark -cfa -equalize_cfa -debayer
 
-# Register Light Frames
+# Align lights
 register pp_light
 
 # Stack calibrated lights to result.fit
@@ -46,10 +45,6 @@ load result
 mirrorx -bottomup
 
 cd ../results
-# Save results
 save result_$LIVETIME:%d$s
-
-# Load results into Siril
-load result_$LIVETIME:%d$s
 
 ### END ###
