@@ -46,6 +46,7 @@ load result
 mirrorx -bottomup
 save ./results/result_$LIVETIME:%d$s
 
+# Load results into Siril
 load ./results/result_$LIVETIME:%d$s
 
 close
