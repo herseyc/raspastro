@@ -51,6 +51,7 @@ sed -i 's\^User=.*\User='${current_user}'\' ${INSTALL_DIR}/raspastroweb.service
 sed -i 's\INSTALLDIR\'${INSTALL_DIR}'\g' ${INSTALL_DIR}/raspastroweb.service
 echo "To use raspastroweb.service with systemd make sure paths are correct"
 sudo cp ${INSTALL_DIR}/raspastroweb.service /etc/systemd/system
+sudo chmod 644 /etc/systemd/system/raspastroweb.service
 sudo systemctl daemon-reload
 sudo systemctl enable raspastroweb.service
 sudo systemctl start raspastroweb.service

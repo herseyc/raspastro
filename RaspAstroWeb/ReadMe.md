@@ -53,7 +53,7 @@ Edit config.py with your configuration settings and then use install_raspastro-w
 ```
 ./install_raspastro-web.sh
 cd /var/www/raspastro
-python3 raspastro-web.py
+/var/www/raspastro/virtualenv/raspastroweb/bin/python3 raspastro-web.py
 ```
 
 Will listen on port 5000, so just access at http://ipofdevice:5000 
@@ -62,8 +62,9 @@ If config.py exists in the INSTALL_DIR (default /var/www/raspastro) a copy of it
 
 ## raspastroweb.service
 This can be used to set up systemd to start raspastro-web.py at boot.
+It is setup and installed by install_raspastro-web.sh
 
-Edit the file and udate the user and directory if required (default user is pi, default directory is /var/www/raspastro)
+Edit the file and update the user and directory if required (default user is pi, replace INSTALLDIR with the installation directory - ie /var/www/raspastro)
 ```
 cd /var/www/raspastro
 sudo cp raspastroweb.service /etc/systemd/system
