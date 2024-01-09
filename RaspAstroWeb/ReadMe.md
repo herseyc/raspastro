@@ -11,9 +11,9 @@ Run
 ```
 ./install_raspastro-web.sh
 ```
-Creates install directory and sets up python virtual environment with required modultes.
+Creates install directory and sets up python virtual environment with required python modules.
 
-Then the files copied to the INSTALL_DIR
+RaspAstroWeb files copied to the INSTALL_DIR
 
 raspastroweb.service is configured to start RaspAstroWeb at boot. Finally it will start RaspAstroWeb 
 
