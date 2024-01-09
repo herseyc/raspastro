@@ -3,11 +3,19 @@ Web application which display interesting and useful Astronomy data.  Informatio
 
 RaspAstro Web Demo running here: http://vhersey.hopto.org:5000/
 
-## requirements.txt
-Install the required python modules.
+## Installation 
+Edit install_raspastro-web.sh and set INSTALL_DIR 
+The Default INSTALL_DIR is /var/www/raspastro
+
+Run
 ```
-pip3 install -r requirements.txt
+./install_raspastro-web.sh
 ```
+Creates install directory and sets up python virtual environment with required modultes.
+
+Then the files copied to the INSTALL_DIR
+
+raspastroweb.service is configured to start RaspAstroWeb at boot. Finally it will start RaspAstroWeb 
 
 ## config.py 
 Config.py contains all the user-defined settings.
