@@ -16,11 +16,6 @@ if [ -f "${INSTALL_DIR}/config.py" ]; then
     cp ${INSTALL_DIR}/config.py ${INSTALL_DIR}/config.old
 fi
 
-echo "Setting ${current_user} in raspastroweb.service..."
-sed -i 's\^User=.*\User='${current_user}'\' raspastroweb.service
-sed -i 's\INSTALLDIR\'${INSTALL_DIR}'\g' raspastroweb.service
-echo "To use raspastroweb.service with systemd make sure paths are correct"
-
 echo "Copying python files to ${INSTALL_DIR}"
 cp *.py ${INSTALL_DIR}
 echo "Copying template directory to ${INSTALL_DIR}"
@@ -48,6 +43,15 @@ echo "Install requirements"
 pip3 install --upgrade pip setuptools wheel
 pip3 install -r "requirements.txt"
 
-
 echo "RaspAstro Web Installed in ${INSTALL_DIR}!"
+
+echo "Setting ${current_user} in raspastroweb.service..."
+echo "Updating raspastroweb.service"
+sed -i 's\^User=.*\User='${current_user}'\' ${INSTALL_DIR}/raspastroweb.service
+sed -i 's\INSTALLDIR\'${INSTALL_DIR}'\g' ${INSTALL_DIR}/raspastroweb.service
+echo "To use raspastroweb.service with systemd make sure paths are correct"
+sudo cp ${INSTALL_DIR}\raspastroweb.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable raspastroweb.service
+sudo systemctl start raspastroweb.service
 
