@@ -1,6 +1,6 @@
 [Unit]
 Description=RaspAstro Web Application
-After=multi-user.target
+After=network.target
 
 [Service]
 Type=idle
@@ -8,13 +8,13 @@ Type=idle
 User=pi
 
 # SHOULD BE SET TO INSTALL_DIR
-WorkingDirectory=/var/www/raspastro
+WorkingDirectory=INSTALLDIR
 
 # PATH SHOULD BE SET TO INSTALL_DIR 
-ExecStart=/var/www/raspastro/raspastro-web.py
+ExecStart=INSTALLDIR/virtualenv/raspastroweb/bin/python3 INSTALLDIR/raspastro-web.py
 
 Restart=always
 RestartSec=5
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
