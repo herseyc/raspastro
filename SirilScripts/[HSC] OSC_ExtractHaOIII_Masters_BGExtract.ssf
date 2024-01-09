@@ -1,0 +1,88 @@
+############################################
+#
+# Updated by Hersey - http://www.suffolksky.com/
+# January 2024
+# - Use master flats and darks
+# - Background extract  
+#
+############################################
+#
+# Script for Siril 1.2
+# February 2023
+# (C) Cyril Richard
+# ExtractHaOIII v1.4
+#
+########### PREPROCESSING SCRIPT ###########
+#
+# Script for color camera preprocessing that
+# extracts Ha and OIII
+#
+# Perform Background Extraction on Seq
+#
+# Processing lights calibrated with master dark and flat
+# 
+# Lights in ./lights
+# Masters in ./masters
+#
+# Results saved to ./results
+#
+############################################
+
+# Requires at least Siril 1.2.0
+requires 1.2.0
+
+# Process and Convert Light Frames to .fit files
+cd lights
+convert light -out=../process
+cd ../process
+
+# Calibrate Light Frames using master dark and master flat
+calibrate light -dark=../masters/dark_stacked -flat=../masters/pp_flat_stacked -cc=dark -cfa -equalize_cfa
+
+# Extract Ha and OIII
+seqextract_HaOIII pp_light
+
+# Ha
+
+# Extract linear gradient
+seqsubsky Ha_pp_light 1
+
+# Align Ha lights
+register bkg_Ha_pp_light -drizzle
+
+# Stack calibrated Ha lights to Ha_stack (temporary)
+stack r_bkg_Ha_pp_light rej 3 3 -norm=addscale -output_norm -out=results_00001
+
+# and flip if required
+mirrorx_single results_00001
+
+# OIII
+
+# Extract linear gradient
+seqsubsky OIII_pp_light 1
+
+# Align OIII lights
+register bkg_OIII_pp_light
+
+# Stack calibrated OIII lights to OIII_stack (temporary)
+stack r_bkg_OIII_pp_light rej 3 3 -norm=addscale -output_norm -out=results_00002
+
+# and flip if required
+mirrorx_single results_00002
+
+# Align the result images, small shifts and chromatic aberrations can occur
+register results -transf=shift -interp=none
+
+# Renorm OIII to Ha using PixelMath
+pm $r_results_00002$*mad($r_results_00001$)/mad($r_results_00002$)-mad($r_results_00001$)/mad($r_results_00002$)*median($r_results_00002$)+median($r_results_00001$)
+save ../results/result_OIII_$LIVETIME:%d$s
+
+# Save Ha final result
+load r_results_00001
+save ../results/result_Ha_$LIVETIME:%d$s
+
+cd ..
+
+close
+
+### END ###
