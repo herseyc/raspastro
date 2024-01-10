@@ -43,6 +43,10 @@ echo "Installing python module requirements..."
 pip3 install --upgrade pip setuptools wheel
 pip3 install -r "requirements.txt"
 
+echo "Generating Solar System map..."
+cd ${INSTALL_DIR}
+${INSTALL_DIR}/virtualenv/raspastroweb/bin/python3 ./planets.py
+
 echo "Updating raspastroweb.service..."
 echo "Setting ${current_user} in raspastroweb.service..."
 sed -i 's\^User=.*\User='${current_user}'\' ${INSTALL_DIR}/raspastroweb.service
