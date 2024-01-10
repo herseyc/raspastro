@@ -12,6 +12,7 @@ git clone https://github.com/herseyc/raspastro.git
 cd ~/Projects/raspastro/RaspAstroWeb
 ```
 Edit install_raspastro-web.sh and set INSTALL_DIR (default: /var/www/raspastro) 
+
 Update the PYTHON_BIN (default: /usr/bin/python3) if necessary.
 
 Run
@@ -19,9 +20,13 @@ Run
 ./install_raspastro-web.sh
 ```
 Creates the configured install directory (INSTALL_DIR)
+
 Sets up the python virtual environment with required python modules.
+
 RaspAstroWeb files copied to the INSTALL_DIR
+
 raspastroweb.service is configured to start RaspAstroWeb at boot. 
+
 Starts RaspAstroWeb.  
 
 To update the Solar System map image run:
