@@ -31,12 +31,6 @@ raspastroweb.service is configured to start RaspAstroWeb at boot.
 
 Starts RaspAstroWeb.  
 
-To update the Solar System map image run:
-```
-INSTALL_DIR/virtualenv/raspastroweb/bin/python3 INSTALL_DIR/planets.py
-```
-Replace INSTALL_DIR with the full path to the directory where RaspAstroWeb was installed.
-
 ## config.py 
 Config.py contains all the user-defined settings.
 
@@ -113,9 +107,10 @@ Sun, Moon, and Planet Data.  This information on this page is only updated when 
 ## planets.py
 Generates a Solar System Map. 
 
-To update the Solar System map image run:
+To update the Solar System map image manually run:
 ```
-INSTALL_DIR/virtualenv/raspastroweb/bin/python3 INSTALL_DIR/planets.py
+cd INSTALL_DIR
+INSTALL_DIR/virtualenv/raspastroweb/bin/python3 ./planets.py
 ```
 Replace INSTALL_DIR with the full path to the directory where RaspAstroWeb was installed.
 
