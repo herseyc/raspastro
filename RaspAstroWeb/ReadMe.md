@@ -25,6 +25,8 @@ Sets up the python virtual environment with required python modules.
 
 RaspAstroWeb files copied to the INSTALL_DIR
 
+Generates Solar System map and places it at INSTALL_DIR/static/planets.png
+
 raspastroweb.service is configured to start RaspAstroWeb at boot. 
 
 Starts RaspAstroWeb.  
