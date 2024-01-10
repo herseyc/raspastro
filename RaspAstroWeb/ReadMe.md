@@ -4,18 +4,25 @@ Web application which display interesting and useful Astronomy data.  Informatio
 RaspAstro Web Demo running here: http://vhersey.hopto.org:5000/
 
 ## Installation 
-Edit install_raspastro-web.sh and set INSTALL_DIR 
-The Default INSTALL_DIR is /var/www/raspastro
+Download raspastro
+```
+mkdir -p ~/Projects
+cd ~/Projects
+git clone https://github.com/herseyc/raspastro.git
+cd ~/Projects/raspastro/RaspAstroWeb
+```
+Edit install_raspastro-web.sh and set INSTALL_DIR (default: /var/www/raspastro) 
+Update the PYTHON_BIN (default: /usr/bin/python3) if necessary.
 
 Run
 ```
 ./install_raspastro-web.sh
 ```
-Creates install directory and sets up python virtual environment with required python modules.
-
+Creates the configured install directory (INSTALL_DIR)
+Sets up the python virtual environment with required python modules.
 RaspAstroWeb files copied to the INSTALL_DIR
-
-raspastroweb.service is configured to start RaspAstroWeb at boot. Finally it will start RaspAstroWeb 
+raspastroweb.service is configured to start RaspAstroWeb at boot. 
+Starts RaspAstroWeb.  
 
 To update the Solar System map image run:
 ```
