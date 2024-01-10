@@ -6,6 +6,9 @@
 INSTALL_DIR="/var/www/raspastro"
 PYTHON_BIN="/usr/bin/python3"
 
+# Get Hostname
+HOSTNAME=$(hostname)
+
 echo "Installing RaspAstro Web to ${INSTALL_DIR}..."
 current_user="$(id -u -n)"
 sudo mkdir -p ${INSTALL_DIR}
@@ -62,5 +65,9 @@ echo "Starting RaspAstroWeb..."
 sudo systemctl start raspastroweb.service
 
 echo "RaspAstro Web Installed in ${INSTALL_DIR}!"
+
+echo "###############################################"
+echo "RaspAstroWeb at  http://${HOSTNAME}.local:5000/"
+echo "###############################################"
 echo "Done!"
 
