@@ -21,13 +21,18 @@ import json
 import board
 import adafruit_dht
 
+###########################################
 # Initialize DHT Device
 # This is for a DHT11 connected to GPIO4 (pin 7)
+###########################################
 dhtDevice = adafruit_dht.DHT11(board.D4)
+
+###########################################
 # My DHT11 sensor is wired as follows:
 # + to pin 2 (5v)
 # data to pin 7 (GPIO4)
 # - to pin 9 (ground)
+###########################################
 
 # Get the Temperature in C
 temperature = dhtDevice.temperature
