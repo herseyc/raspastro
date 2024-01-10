@@ -31,6 +31,22 @@ raspastroweb.service is configured to start RaspAstroWeb at boot.
 
 Starts RaspAstroWeb.  
 
+## Update RaspAstroWeb 
+Updating RaspAstroWeb
+
+```
+cd ~/Projects/raspastro
+git pull origin master
+cd RaspAstroWeb
+```
+Edit install_raspastroweb.sh and set the INSTALL_DIR
+```
+./install_raspastroweb.sh
+```
+INSTALL_DIR/config.py will be copied to INSTALL_DIR/config.old
+
+Update INSTALL_DIR/config.py as needed.
+
 ## config.py 
 Config.py contains all the user-defined settings.
 
