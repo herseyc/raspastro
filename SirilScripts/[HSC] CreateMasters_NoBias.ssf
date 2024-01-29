@@ -1,10 +1,7 @@
 ############################################
-#
 # Hersey - http://www.suffolksky.com/
 # January 2024
-#
 #############################################
-#
 # Script to create master flat and master dark
 #   master flat is created with out bias frames
 #
@@ -14,14 +11,13 @@
 #   Place dark frames in the following working directory
 #         darks/
 #
-# Saves master flat to ./masters/
-#
+# Saves master flat and dark  to ./masters/
 ############################################
 
 # Requires at least Siril 1.2.0
 requires 1.2.0
 
-# Convert Flat Frames to .fit files
+# Convert Flat Frames to Siril .fit files
 cd flats
 convert flat -out=../process
 cd ../process
@@ -29,16 +25,16 @@ cd ../process
 # Calibrate Flat Frames
 calibrate flat 
 
-# Stack Flat Frames to pp_flat_stacked.fit
+# Stack Flat Frames save to ./masters/pp_flat_stacked.fit
 stack pp_flat rej 3 3 -norm=mul -out=../masters/pp_flat_stacked
 cd ..
 
-# Convert Dark Frames to .fit files
+# Convert Dark Frames to Siril .fit files
 cd darks
 convert dark -out=../process
 cd ../process
 
-# Stack Dark Frames to dark_stacked.fit
+# Stack Dark Frames save to ./masters/dark_stacked.fit
 stack dark rej 3 3 -nonorm -out=../masters/dark_stacked
 cd ..
 
