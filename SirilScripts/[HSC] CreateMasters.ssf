@@ -1,0 +1,54 @@
+############################################
+# [HSC] CreateMasters.ssf
+# Hersey - http://www.suffolksky.com/
+# January 2024
+#############################################
+# Script to create master bias(offset), flat and dark
+# Create directories in Siril working directory
+#
+#   Place bias frames in the following directory
+#         biases/
+#
+#   Place flat frames in the following directory
+#         flats/
+#
+#   Place dark frames in the following directory
+#         darks/
+#
+# Saves master flat and dark  to ./masters/
+############################################
+
+# Requires at least Siril 1.2.0
+requires 1.2.0
+
+# Convert Bias Frames to Siril .fit files
+cd biases
+convert bias -out=../process
+cd ../process 
+
+# Stack Bias Frames to bias_stacked.fit
+stack bias rej 3 3 -nonorm -out=../masters/bias_stacked
+cd ..
+
+# Convert Flat Frames to Siril .fit files
+cd flats
+convert flat -out=../process
+cd ../process
+
+# Calibrate Flat Frames using bias_stacked.fit
+calibrate flat -bias=../masters/bias_stacked
+
+# Stack Flat Frames save to ./masters/pp_flat_stacked.fit
+stack pp_flat rej 3 3 -norm=mul -out=../masters/pp_flat_stacked
+cd ..
+
+# Convert Dark Frames to Siril .fit files
+cd darks
+convert dark -out=../process
+cd ../process
+
+# Stack Dark Frames save to ./masters/dark_stacked.fit
+stack dark rej 3 3 -nonorm -out=../masters/dark_stacked
+cd ..
+
+close
