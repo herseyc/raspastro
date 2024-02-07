@@ -22,6 +22,10 @@ LOGFILE=~/$BUILDDIR/build-raspastro.log
 # Set JOBS to 2 if Raspberry Pi has < 2 GB RAM
 JOBS=4
 
+# Set version of INDI to install.  I am stuck on v2.0.3 due to an issue with 
+# the OSSAG camera.  
+INDIVERSION="v2.0.3"
+
 #Array of INDI Libraries to build
 INDILIBRARIES=(
   libasi
@@ -64,7 +68,7 @@ cd ~/${BUILDDIR}
 echo "Build INDI Core"
 echo "Getting INDI Core..."
 cd ~/${BUILDDIR}
-[ ! -d "indi" ] && git clone --depth 1 https://github.com/indilib/indi.git
+[ ! -d "indi" ] && git clone --branch ${INDIVERSION} --depth 1 https://github.com/indilib/indi.git
 cd indi
 git pull origin --no-rebase
 
@@ -88,7 +92,7 @@ sudo make install
 echo "Build INDI 3rd-Party Libraries and Drivers"
 echo "Getting INDI 3rd-Party Libraries and Drivers..."
 cd ~/${BUILDDIR}
-[ ! -d "indi-3rdparty" ] && git clone --depth=1 https://github.com/indilib/indi-3rdparty
+[ ! -d "indi-3rdparty" ] && git clone --branch ${INDIVERSION} --depth=1 https://github.com/indilib/indi-3rdparty
 cd indi-3rdparty
 git pull origin --no-rebase
 
