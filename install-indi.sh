@@ -24,7 +24,7 @@ JOBS=4
 
 # Set version of INDI to install.  I am stuck on v2.0.3 due to an issue with 
 # the OSSAG camera.  
-INDIVERSION="v2.0.3"
+INDIVERSION="v2.0.6"
 
 #Array of INDI Libraries to build
 INDILIBRARIES=(
