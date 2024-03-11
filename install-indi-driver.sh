@@ -18,6 +18,8 @@
 #Set JOBS to 2 for Raspberry Pi with < 4 GB RAM
 JOBS=4
 
+INDIVERSION="v2.0.6"
+
 BUILDDIR=Projects
 
 mkdir -p ~/${BUILDDIR}/build
@@ -27,7 +29,7 @@ read INDIPKG
 
 echo "Getting INDI 3rd-Party Drivers and Libraries..."
 cd ~/${BUILDDIR}
-[ ! -d "indi-3rdparty" ] && git clone --depth=1 https://github.com/indilib/indi-3rdparty
+[ ! -d "indi-3rdparty" ] && git clone --branch=${INDIVERSION}  --depth=1 https://github.com/indilib/indi-3rdparty
 cd indi-3rdparty
 git pull origin --no-rebase
 
