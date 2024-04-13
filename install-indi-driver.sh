@@ -18,7 +18,7 @@
 #Set JOBS to 2 for Raspberry Pi with < 4 GB RAM
 JOBS=4
 
-INDIVERSION="v2.0.6"
+INDIVERSION="v2.0.7"
 
 BUILDDIR=Projects
 
