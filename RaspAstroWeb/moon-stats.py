@@ -1,5 +1,5 @@
 #########################################################
-# Get informaiton about the Moon                         #
+# Get informaiton about the Moon                        #
 #########################################################
 import numpy
 from datetime import datetime, timedelta, timezone
@@ -44,6 +44,7 @@ utc_datetime = today_midnight - timeoffset
 
 luna.moon_data = {}
 
+print(f"Location: {gpslatdms} {gpslondms}")
 print(f"Moon Rise/Sun Set for next {numdays}")
 
 while day < numdays:
@@ -52,6 +53,7 @@ while day < numdays:
    display_date = moondate.strftime("%m/%d/%Y")
    print(f"Date: {display_date}")
    luna.obs.date = moondate
+   luna.obs.horizon = "-0:34"
    luna.moon_info()
 
    local_human_next_moonrise = time_to_human(to_local(luna.moon_data['next_moonrise'].datetime()))

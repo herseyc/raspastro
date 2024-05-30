@@ -44,6 +44,7 @@ utc_datetime = today_midnight - timeoffset
 
 sol.sun_data = {}
 
+print(f"Location: {gpslatdms} {gpslondms}")
 print(f"Sun Rise/Sun Set for next {numdays}")
 
 while day < numdays:
@@ -52,6 +53,8 @@ while day < numdays:
    display_date = sundate.strftime("%m/%d/%Y")
    print(f"Date: {display_date}")
    sol.obs.date = sundate
+   sol.obs.horizon = "-0:34"
+   sol.obs.pressure = 0
    sol.sun_info()
 
    local_human_next_sunrise = time_to_human(to_local(sol.sun_data['next_sunrise'].datetime()))
