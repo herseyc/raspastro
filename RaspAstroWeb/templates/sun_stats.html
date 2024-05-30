@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+<title>RaspAstro Sun Statistics</title>
+<link rel="stylesheet" href="/static/raspastro-style.css">
+</head>
+
+<body>
+<h1>RaspAstro</h1>
+<h2>The Sun</h2>
+<p><a href="/">Home</a></p>
+
+<table>
+<tr>
+	<td>Sun Rise</td><td>Sun Set</td><td>Day Length</td><td>Astronomical Twilight</td>
+</tr>
+{% for sun in sunstats %}
+<tr>
+	<td>{{ sunstats[sun]['Sunrise'] }}</td>
+	<td>{{ sunstats[sun]['Sunset'] }}</td>
+	<td>{{ sunstats[sun]['DayLengthHours'] }} Hours {{ sunstats[sun]['DayLengthMinutes'] }} Minutes</td>
+	<td>{{ sunstats[sun]['AstronomicalTwilight'] }}</td>
+</tr>
+{% endfor %}
+</table>
+
+
+<p><a href="https://github.com/herseyc/raspastro">RaspAstro</a> by Hersey from <a href="http://www.suffolksky.com">SuffolkSky.com</a></p>
+
+</body>
+
+</html>
