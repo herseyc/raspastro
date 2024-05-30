@@ -44,6 +44,8 @@ utc_datetime = today_midnight - timeoffset
 
 sol.sun_data = {}
 
+sun = {}
+
 print(f"Location: {gpslatdms} {gpslondms}")
 print(f"Sun Rise/Sun Set for next {numdays}")
 
@@ -71,12 +73,21 @@ while day < numdays:
 
    local_human_astronomical_twilight = time_to_human(to_local(sol.sun_data['next_sunset'].datetime()))
 
+   
+   sun[display_date] = { 
+           "Sunrise": local_human_next_sunrise, 
+           "Sunset": local_human_next_sunset,
+           "AstronomicalTwilight": local_human_astronomical_twilight, 
+           "DayLengthHours": display_length[0], 
+           "DayLengthMinutes": display_length[1],
+    }
 
-   print(f"Sunrise: {local_human_next_sunrise}")
-   print(f"Sunset: {local_human_next_sunset}")
-   print(f"Astronomical Twilight: {local_human_astronomical_twilight}")
+   print(f"Sunrise: {sun[display_date]['Sunrise']}")
+   print(f"Sunset: {sun[display_date]['Sunset']}")
+   print(f"Astronomical Twilight: {sun[display_date]['AstronomicalTwilight']}")
 
-   print(f"Day Length: {display_length[0]} Hours {display_length[1]} Minutes")
+   print(f"Day Length: {sun[display_date]['DayLengthHours']} Hours {sun[display_date]['DayLengthMinutes']} Minutes")
+
 
    day = day+1
 
