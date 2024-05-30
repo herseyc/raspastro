@@ -16,11 +16,12 @@
 <p>Sun Rise/Set Times Next {{ numdays }} Days</p>
 <table>
 <tr>
-	<td>Sun Rise</td><td>Sun Set</td><td>Day Length</td><td>Astronomical Twilight</td>
+	<td>Sun Rise</td><td>Solar Noon(Transit)</td><td>Sun Set</td><td>Day Length</td><td>Astronomical Twilight</td>
 </tr>
 {% for sun in sunstats %}
 <tr>
 	<td>{{ sunstats[sun]['Sunrise'] }}</td>
+	<td>{{ sunstats[sun]['SunTransit'] }}</td>
 	<td>{{ sunstats[sun]['Sunset'] }}</td>
 	<td>{{ sunstats[sun]['DayLengthHours'] }} Hours {{ sunstats[sun]['DayLengthMinutes'] }} Minutes</td>
 	<td>{{ sunstats[sun]['AstronomicalTwilight'] }}</td>
