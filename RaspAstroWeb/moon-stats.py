@@ -42,8 +42,8 @@ today_midnight = datetime.now().replace(hour=0, minute=0)
 utc_datetime = today_midnight - timeoffset
 #print(utc_datetime)
 
+#Set up dictionaries to store data
 luna.moon_data = {}
-
 moon = {}
 
 print(f"Location: {gpslatdms} {gpslondms}")
@@ -70,8 +70,8 @@ while day < numdays:
            "PhasePercent": luna.moon_data['moon_phase_percent'],
    }
 
-   print(f"Moon Rise: {moon[display_date]['Moonrise']}")
    print(f"Moon Phase: {moon[display_date]['Phase']} {moon[display_date]['PhaseName']} %{moon[display_date]['PhasePercent']}")
+   print(f"Moon Rise: {moon[display_date]['Moonrise']}")
    print(f"Moon Set: {moon[display_date]['Moonset']}")
 
    day = day+1

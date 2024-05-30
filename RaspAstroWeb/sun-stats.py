@@ -29,21 +29,16 @@ sol = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obsh
 numdays = 7
 day = 0
 
-#Get local time offset
+#Get local time offset (timezone)
 timeoffset = datetime.now() - datetime.utcnow()
 timeoffsetsec = int(round(timeoffset.total_seconds() / 3600))
-#print(timeoffsetsec)
-
 #Set time to today at midnight
 today_midnight = datetime.now().replace(hour=0, minute=0)
-#print(today_midnight)
-
 #convert today at midnight to UTC
 utc_datetime = today_midnight - timeoffset
-#print(utc_datetime)
 
+# Set up dictionaries to store data
 sol.sun_data = {}
-
 sun = {}
 
 print(f"Location: {gpslatdms} {gpslondms}")
@@ -62,6 +57,7 @@ while day < numdays:
    # Next Sun Rise and Sun Set
    local_human_next_sunrise = time_to_human(to_local(sol.sun_data['next_sunrise'].datetime()))
    local_human_next_sunset = time_to_human(to_local(sol.sun_data['next_sunset'].datetime()))
+   local_human_next_transit = time_to_human(to_local(sol.sun_data['next_sun_transit'].datetime()))
    #Compute the length of the day
    day_length = sol.sun_data['next_sunset'].datetime()- sol.sun_data['next_sunrise'].datetime() 
    display_length = str(day_length).split(":")
@@ -77,16 +73,18 @@ while day < numdays:
    sun[display_date] = { 
            "Sunrise": local_human_next_sunrise, 
            "Sunset": local_human_next_sunset,
+           "SunTransit": local_human_next_transit,
            "AstronomicalTwilight": local_human_astronomical_twilight, 
            "DayLengthHours": display_length[0], 
            "DayLengthMinutes": display_length[1],
     }
 
    print(f"Sunrise: {sun[display_date]['Sunrise']}")
+   print(f"Solar Noon(Transit): {sun[display_date]['SunTransit']}")
    print(f"Sunset: {sun[display_date]['Sunset']}")
+   print(f"Day Length: {sun[display_date]['DayLengthHours']} Hours {sun[display_date]['DayLengthMinutes']} Minutes")
    print(f"Astronomical Twilight: {sun[display_date]['AstronomicalTwilight']}")
 
-   print(f"Day Length: {sun[display_date]['DayLengthHours']} Hours {sun[display_date]['DayLengthMinutes']} Minutes")
 
 
    day = day+1
