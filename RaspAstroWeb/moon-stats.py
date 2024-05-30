@@ -44,6 +44,8 @@ utc_datetime = today_midnight - timeoffset
 
 luna.moon_data = {}
 
+moon = {}
+
 print(f"Location: {gpslatdms} {gpslondms}")
 print(f"Moon Rise/Sun Set for next {numdays}")
 
@@ -59,9 +61,18 @@ while day < numdays:
 
    local_human_next_moonrise = time_to_human(to_local(luna.moon_data['next_moonrise'].datetime()))
    local_human_next_moonset = time_to_human(to_local(luna.moon_data['next_moonset'].datetime()))
-   print(f"Moon Rise: {local_human_next_moonrise}")
-   print(f"Moon Phase: {luna.moon_data['moon_quarter']} {luna.moon_data['moon_phase_name']} %{luna.moon_data['moon_phase_percent']}")
-   print(f"Moon Set: {local_human_next_moonset}")
+
+   moon[display_date] = {
+           "Moonrise": local_human_next_moonrise,
+           "Moonset": local_human_next_moonset,
+           "Phase": luna.moon_data['moon_quarter'],
+           "PhaseName": luna.moon_data['moon_phase_name'],
+           "PhasePercent": luna.moon_data['moon_phase_percent'],
+   }
+
+   print(f"Moon Rise: {moon[display_date]['Moonrise']}")
+   print(f"Moon Phase: {moon[display_date]['Phase']} {moon[display_date]['PhaseName']} %{moon[display_date]['PhasePercent']}")
+   print(f"Moon Set: {moon[display_date]['Moonset']}")
 
    day = day+1
 
