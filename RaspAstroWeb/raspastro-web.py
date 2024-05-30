@@ -366,7 +366,7 @@ def sun():
 
        day = day+1
 
-    return render_template('sun_stats.html', datetime=current_datetime, sunstats=sun)
+    return render_template('sun_stats.html', datetime=current_datetime, sunstats=sun, numdays=numdays)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=WEBPORT)
