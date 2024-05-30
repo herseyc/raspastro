@@ -16,16 +16,23 @@
 <p>Sun Rise/Set Times Next {{ numdays }} Days</p>
 <table>
 <tr>
-	<td>Day</td><td>Sun Rise</td><td>Solar Noon</td><td>Sun Set</td><td>Day Length</td><td>Astronomical Dark</td>
+	<td>Day</td>
+	<td>Astronomical Day</td>
+	<td>Sun Rise</td>
+	<td>Solar Noon</td>
+	<td>Sun Set</td>
+	<td>Astronomical Dark</td>
+	<td>Day Length</td>
 </tr>
 {% for sun in sunstats %}
 <tr>
 	<td>{{ sun }}</td>
+	<td>{{ sunstats[sun]['AstronomicalDay'] }}</td>
 	<td>{{ sunstats[sun]['Sunrise'] }}</td>
 	<td>{{ sunstats[sun]['SunTransit'] }}</td>
 	<td>{{ sunstats[sun]['Sunset'] }}</td>
-	<td>{{ sunstats[sun]['DayLengthHours'] }}h {{ sunstats[sun]['DayLengthMinutes'] }}m</td>
 	<td>{{ sunstats[sun]['AstronomicalTwilight'] }}</td>
+	<td>{{ sunstats[sun]['DayLengthHours'] }}h {{ sunstats[sun]['DayLengthMinutes'] }}m</td>
 </tr>
 {% endfor %}
 </table>
