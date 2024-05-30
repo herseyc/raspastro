@@ -57,14 +57,25 @@ while day < numdays:
    sol.obs.pressure = 0
    sol.sun_info()
 
+   # Next Sun Rise and Sun Set
    local_human_next_sunrise = time_to_human(to_local(sol.sun_data['next_sunrise'].datetime()))
    local_human_next_sunset = time_to_human(to_local(sol.sun_data['next_sunset'].datetime()))
-   print(f"Sunrise: {local_human_next_sunrise}")
-   print(f"Sunset: {local_human_next_sunset}")
-
    #Compute the length of the day
    day_length = sol.sun_data['next_sunset'].datetime()- sol.sun_data['next_sunrise'].datetime() 
    display_length = str(day_length).split(":")
+
+   # Next Astronomical Twilight
+   sol.obs.horizon = "-18"
+   sol.obs.pressure = 0
+   sol.sun_info()
+
+   local_human_astronomical_twilight = time_to_human(to_local(sol.sun_data['next_sunset'].datetime()))
+
+
+   print(f"Sunrise: {local_human_next_sunrise}")
+   print(f"Sunset: {local_human_next_sunset}")
+   print(f"Astronomical Twilight: {local_human_astronomical_twilight}")
+
    print(f"Day Length: {display_length[0]} Hours {display_length[1]} Minutes")
 
    day = day+1

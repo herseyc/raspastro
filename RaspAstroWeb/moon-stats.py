@@ -54,6 +54,7 @@ while day < numdays:
    print(f"Date: {display_date}")
    luna.obs.date = moondate
    luna.obs.horizon = "-0:34"
+   luna.obs.pressure = 0
    luna.moon_info()
 
    local_human_next_moonrise = time_to_human(to_local(luna.moon_data['next_moonrise'].datetime()))
