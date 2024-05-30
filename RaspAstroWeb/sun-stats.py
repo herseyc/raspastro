@@ -55,9 +55,9 @@ while day < numdays:
    sol.sun_info()
 
    # Next Sun Rise and Sun Set
-   local_human_next_sunrise = time_to_human(to_local(sol.sun_data['next_sunrise'].datetime()))
-   local_human_next_sunset = time_to_human(to_local(sol.sun_data['next_sunset'].datetime()))
-   local_human_next_transit = time_to_human(to_local(sol.sun_data['next_sun_transit'].datetime()))
+   local_human_next_sunrise = time_to_human(to_local(sol.sun_data['next_sunrise'].datetime())).split()
+   local_human_next_sunset = time_to_human(to_local(sol.sun_data['next_sunset'].datetime())).split()
+   local_human_next_transit = time_to_human(to_local(sol.sun_data['next_sun_transit'].datetime())).split()
    #Compute the length of the day
    day_length = sol.sun_data['next_sunset'].datetime()- sol.sun_data['next_sunrise'].datetime() 
    display_length = str(day_length).split(":")
@@ -67,14 +67,13 @@ while day < numdays:
    sol.obs.pressure = 0
    sol.sun_info()
 
-   local_human_astronomical_twilight = time_to_human(to_local(sol.sun_data['next_sunset'].datetime()))
+   local_human_astronomical_twilight = time_to_human(to_local(sol.sun_data['next_sunset'].datetime())).split()
 
-   
    sun[display_date] = { 
-           "Sunrise": local_human_next_sunrise, 
-           "Sunset": local_human_next_sunset,
-           "SunTransit": local_human_next_transit,
-           "AstronomicalTwilight": local_human_astronomical_twilight, 
+           "Sunrise": local_human_next_sunrise[1] + " " + local_human_next_sunrise[2] + " " + local_human_next_sunrise[3], 
+           "Sunset": local_human_next_sunset[1] + " " + local_human_next_sunset[2] + " " + local_human_next_sunset[3], 
+           "SunTransit": local_human_next_transit[1] + " " + local_human_next_transit[2] + " " + local_human_next_transit[3], 
+           "AstronomicalTwilight": local_human_astronomical_twilight[1] + " " + local_human_astronomical_twilight[2] + " " + local_human_astronomical_twilight[3], 
            "DayLengthHours": display_length[0], 
            "DayLengthMinutes": display_length[1],
     }
