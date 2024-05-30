@@ -60,8 +60,9 @@ while day < numdays:
    print(f"Sunset: {local_human_next_sunset}")
 
    #Compute the length of the day
-   day_length = sol.sun_data['next_sunset'].datetime() - sol.sun_data['next_sunrise'].datetime() 
-   print(f"Day Length: {day_length}")
+   day_length = sol.sun_data['next_sunset'].datetime()- sol.sun_data['next_sunrise'].datetime() 
+   display_length = str(day_length).split(":")
+   print(f"Day Length: {display_length[0]} Hours {display_length[1]} Minutes")
 
    day = day+1
 
