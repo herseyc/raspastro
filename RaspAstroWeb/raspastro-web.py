@@ -345,7 +345,7 @@ def sun():
        local_human_next_transit = time_to_human(to_local(sol.sun_data['next_sun_transit'].datetime())).split()
        #Compute the length of the day
        day_length = sol.sun_data['next_sunset'].datetime()- sol.sun_data['next_sunrise'].datetime() 
-       display_length = str(day_length).split(":")
+       display_day = str(day_length).split(":")
 
        # Next Astronomical Twilight
        sol.obs.horizon = "-18"
@@ -354,7 +354,6 @@ def sun():
 
        local_human_astronomical_twilight = time_to_human(to_local(sol.sun_data['next_sunset'].datetime())).split()
        local_human_astronomical_day = time_to_human(to_local(sol.sun_data['next_sunrise'].datetime())).split()
-
    
        sun[display_date] = { 
                "Sunrise": local_human_next_sunrise[1] + " " + local_human_next_sunrise[2] + " " + local_human_next_sunrise[3], 
@@ -362,8 +361,8 @@ def sun():
                "SunTransit": local_human_next_transit[1] + " " + local_human_next_transit[2] + " " + local_human_next_transit[3], 
                "AstronomicalTwilight": local_human_astronomical_twilight[1] + " " + local_human_astronomical_twilight[2] + " " + local_human_astronomical_twilight[3], 
                "AstronomicalDay": local_human_astronomical_day[1] + " " + local_human_astronomical_day[2] + " " + local_human_astronomical_day[3], 
-               "DayLengthHours": display_length[0], 
-               "DayLengthMinutes": display_length[1],
+               "DayLengthHours": display_day[0], 
+               "DayLengthMinutes": display_day[1],
         }
 
        day = day+1
