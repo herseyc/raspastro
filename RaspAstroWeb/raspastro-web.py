@@ -350,6 +350,7 @@ def sun():
        # Next Astronomical Twilight
        sol.obs.horizon = "-18"
        sol.obs.pressure = 0
+       # Astronomical Twilight is calculated using the center of the Sun
        sol.sun_info(usecenter=True)
 
        local_human_astronomical_twilight = time_to_human(to_local(sol.sun_data['next_sunset'].datetime())).split()
