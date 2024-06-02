@@ -47,13 +47,14 @@ class AstroData:
         '''
         obs = kw.get("obs", self.obs)
         sun = ephem.Sun()
+        usecenter = kw.get("usecenter", False)
         sun.compute(obs)
         self.sun_data = {}
         sun_alt = round(math.degrees(sun.alt), 1)
 
         # All times are in UTC Time
-        self.sun_data['next_sunset'] = self.obs.next_setting(sun, use_center=True)
-        self.sun_data['next_sunrise'] = self.obs.next_rising(sun, use_center=True)
+        self.sun_data['next_sunset'] = self.obs.next_setting(sun, use_center=usecenter)
+        self.sun_data['next_sunrise'] = self.obs.next_rising(sun, use_center=usecenter)
         self.sun_data['previous_solstice'] = ephem.previous_solstice(obs.date)
         self.sun_data['previous_equinox'] = ephem.previous_equinox(obs.date)
         self.sun_data['next_solstice'] = ephem.next_solstice(obs.date)
