@@ -143,6 +143,8 @@ class AstroData:
         self.moon_data['constellation'] = ephem.constellation(moon)
         self.moon_data['hlat'] = moon.hlat
         self.moon_data['hlon'] = moon.hlon
+        self.moon_data['earth_distance'] = moon.earth_distance
+        self.moon_data['earth_distance_km'] = round(moon.earth_distance*ephem.meters_per_au/1000, 2)
         self.moon_data['next_moonset'] = self.obs.next_setting(moon)
         self.moon_data['next_moonrise'] = self.obs.next_rising(moon)
 
