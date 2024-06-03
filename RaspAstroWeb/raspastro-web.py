@@ -387,7 +387,7 @@ def moon():
     luna = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
 
     # number of days to compute
-    numdays = 10
+    numdays = 30
     day = 0
 
     #Get local time offset
