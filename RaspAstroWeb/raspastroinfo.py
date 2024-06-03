@@ -65,6 +65,7 @@ class AstroData:
         self.sun_data['earth_radius'] = ephem.earth_radius
         self.sun_data['sun_radius'] = ephem.sun_radius
         self.sun_data['earth_distance'] = sun.earth_distance
+        self.sun_data['earth_distance_km'] = round(sun.earth_distance*ephem.meters_per_au/1000, 2)
         self.sun_data['next_sun_transit'] = self.obs.next_transit(sun)
          
 
