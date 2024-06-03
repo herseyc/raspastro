@@ -316,7 +316,7 @@ def sun():
     sol = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
 
     # number of days to compute
-    numdays = 7
+    numdays = 10
     day = 0
 
     #Get local time offset (timezone)
@@ -369,6 +369,71 @@ def sun():
        day = day+1
 
     return render_template('sun_stats.html', datetime=current_datetime, sunstats=sun, numdays=numdays)
+
+@app.route('/moon')
+def moon():
+    current_datetime = time_to_human(to_local(datetime.utcnow()))
+
+    gps_data_tuple = get_gps_data()
+
+    gpsfixtype = gps_data_tuple[0]
+    gpslatdms = gps_data_tuple[1]
+    gpslondms = gps_data_tuple[2]
+    gpsaltitude = gps_data_tuple[3]
+    gpslatitude = gps_data_tuple[4]
+    gpslongitude = gps_data_tuple[5]
+    gps_data = gps_data_tuple[6]
+
+    luna = AstroData(obslat=gps_data[1], obslon=gps_data[2], obslev=gps_data[3], obshorizon=MY_HORIZON)
+
+    # number of days to compute
+    numdays = 10
+    day = 0
+
+    #Get local time offset
+    timeoffset = datetime.now() - datetime.utcnow()
+    timeoffsetsec = int(round(timeoffset.total_seconds() / 3600))
+    #print(timeoffsetsec)
+
+    #Set time to today at midnight
+    today_midnight = datetime.now().replace(hour=0, minute=0)
+    #print(today_midnight)
+
+    #convert today at midnight to UTC
+    utc_datetime = today_midnight - timeoffset
+    #print(utc_datetime)
+
+    #Set up dictionaries to store data
+    luna.moon_data = {}
+    moon = {}
+
+    while day < numdays:
+       moondate = utc_datetime + timedelta(days=day)
+       print(day)
+       display_date = moondate.strftime("%m/%d/%Y")
+       print(f"Date: {display_date}")
+       luna.obs.date = moondate
+       luna.obs.horizon = "-0:34"
+       luna.obs.pressure = 0
+       luna.moon_info()
+
+       local_human_next_moonrise = time_to_human(to_local(luna.moon_data['next_moonrise'].datetime()))
+
+
+       moon[display_date] = {
+               "Moonrise": local_human_next_moonrise,
+               "Phase": luna.moon_data['moon_quarter'],
+               "PhaseName": luna.moon_data['moon_phase_name'],
+               "PhasePercent": luna.moon_data['moon_phase_percent'],
+               "PhaseIcon": luna.moon_data['moon_phase_emoji'],
+       }
+       luna.obs.date = luna.moon_data['next_moonrise'].datetime()
+       luna.moon_info()
+       moon[display_date]['Moonset'] = time_to_human(to_local(luna.moon_data['next_moonset'].datetime())) 
+
+       day = day+1
+
+    return render_template('moon_stats.html', datetime=current_datetime, moonstats=moon, numdays=numdays)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=WEBPORT)

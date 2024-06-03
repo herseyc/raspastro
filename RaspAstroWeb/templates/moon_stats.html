@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+<title>RaspAstro Moon Statistics</title>
+<link rel="stylesheet" href="/static/raspastro-style.css">
+</head>
+
+<body>
+<h1>RaspAstro</h1>
+<h2>The Moon</h2>
+<p><a href="/">Home</a></p>
+
+<p>Refreshed at: {{ datetime }}</p>
+
+
+
+<p>Moon Info  Next {{ numdays }} Days</p>
+<table>
+<tr>
+	<td>Day</td>
+	<td>Rise</td>
+	<td>Set</td>
+	<td>Phase</td>
+	<td>Percent</td>
+</tr>
+{% for moon in moonstats %}
+<tr>
+	<td>{{ moon }}</td>
+	<td>{{ moonstats[moon]['Moonrise'] }}</td>
+	<td>{{ moonstats[moon]['Moonset'] }}</td>
+	<td>{{ moonstats[moon]['PhaseIcon'] }} {{ moonstats[moon]['Phase'] }} {{ moonstats[moon]['PhaseName'] }}</td>
+	<td>{{ moonstats[moon]['PhasePercent'] }}%</td>
+</tr>
+{% endfor %}
+</table>
+
+
+<p><a href="https://github.com/herseyc/raspastro">RaspAstro</a> by Hersey from <a href="http://www.suffolksky.com">SuffolkSky.com</a></p>
+
+</body>
+
+</html>
