@@ -20,15 +20,13 @@
 	<td>Rise</td>
 	<td>Set</td>
 	<td>Phase at Rise</td>
-	<td>Percent</td>
 </tr>
 {% for moon in moonstats %}
 <tr>
 	<td>{{ moon }}</td>
 	<td>{{ moonstats[moon]['Moonrise'] }}</td>
 	<td>{{ moonstats[moon]['Moonset'] }}</td>
-	<td>{{ moonstats[moon]['PhaseIcon'] }} {{ moonstats[moon]['Phase'] }} {{ moonstats[moon]['PhaseName'] }}</td>
-	<td>{{ moonstats[moon]['PhasePercent'] }}%</td>
+	<td>{{ moonstats[moon]['PhaseIcon'] }} {{ moonstats[moon]['PhasePercent'] }}% {{ moonstats[moon]['Phase'] }} {{ moonstats[moon]['PhaseName'] }}</td>
 </tr>
 {% endfor %}
 </table>
