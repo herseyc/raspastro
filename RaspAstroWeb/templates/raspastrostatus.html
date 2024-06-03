@@ -160,7 +160,7 @@ function refreshdata() {
 {% else %}
 <td>
 {% endif %}
-	{{ moon['moon_alt'] }}° {{ moon['rising_sign'] }}</td><td rowspan="9">
+	{{ moon['moon_alt'] }}° {{ moon['rising_sign'] }}</td><td rowspan="10">
 <img src="/static/Moon/{{ moonimage[moon['moon_quarter']][moon['moon_phase_name']] }}" width="200">
 <br>Source: <a href="https://moon.nasa.gov/">NASA Moon</a></td>
 </tr>
@@ -187,6 +187,9 @@ function refreshdata() {
 </tr>
 <tr>
 <td>Next Full Moon:</td><td>{{ moon['next_full_moon'] }} </td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><a href="/moon">Moon Stats</a></td>
 </tr>
 </table>
 
