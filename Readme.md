@@ -9,7 +9,8 @@ I am testing these scripts on Raspberry Pi 64-bit OS, but they should also work 
 I have also tested RaspAstro on Libre Computer Renegade SBC running Armbian Jammy. 
 
 ## RaspAstroWeb
-The RaspAstroWeb directory contains a python web application which displays interesting and useful Astronomical data about the Sun, Moon, and Planets.  Also provides information on the current location and path of the International Space Station (ISS) along with information about visible passes based on an observer's location.  There is information on Polaris and how Polaris should be oriented in a polar scope for a proper polar alignment in the Northern Hemisphere.
+RaspAstroWeb has moved to a dedicated git repository. 
+https://github.com/herseyc/RaspAstroWeb
 
 Visit a live site running RaspAstroWeb at http://vhersey.hopto.org:5000/
 

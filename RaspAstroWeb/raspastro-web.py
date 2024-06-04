@@ -421,9 +421,12 @@ def moon():
 
        luna.obs.date = luna.moon_data['next_moonrise'].datetime()
        luna.moon_info()
+
+       local_human_next_moonset = time_to_human(to_local(luna.moon_data['next_moonset'].datetime()))
+
        moon[display_date] = { 
                "Moonrise": local_human_next_moonrise,
-               "Moonset": time_to_human(to_local(luna.moon_data['next_moonset'].datetime())),
+               "Moonset": local_human_next_moonset,
                "Phase": luna.moon_data['moon_quarter'],
                "PhaseName": luna.moon_data['moon_phase_name'],
                "PhasePercent": luna.moon_data['moon_phase_percent'],
