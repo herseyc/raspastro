@@ -23,7 +23,7 @@ LOGFILE=~/$BUILDDIR/build-raspastro.log
 JOBS=4
 
 # Set version of INDI to install based on release tag
-INDIVERSION="v2.0.7"
+INDIVERSION="v2.0.8"
 
 #Start Code Block
 {
